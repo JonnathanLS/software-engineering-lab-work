@@ -6,7 +6,12 @@ O levantamento dos requisitos, viabilidade, especificação e definição da arq
 
 ## Fase 1 - Requisitos
 
-Elaboração das tabelas pertinentes aos requisitos funcionais e não funcionais conforme modelo abaixo:
+Definição do termo de abertura de projeto que no decorrer de entrega dos artefatos será incrementado progressivamente até a fase de implementação, afim de se obter o escopo detalhado do projeto.
+
+- Problema
+- Objetivo
+
+Definição dos requisitos funcionais e não funcionais, conforme modelo abaixo:
 
 | Descrição | Prioridade | Tipo | Métrica |
 | --------- | ---------- | ---- | --------|
@@ -16,26 +21,22 @@ Elaboração das tabelas pertinentes aos requisitos funcionais e não funcionais
 - Tipo: agrupamento dos requisitos em categorias.
 - Métrica: parâmetro para saber se um requisito foi concluído.
 
-
-Nesta fase também devem ser produzidos protótipos das interfaces do sistema.
-
 ## Fase 2 - Projeto
 
 Definição das tecnologias a serem usadas para a codificação e infraestrutura do projeto.
 
-Para inicio do projeto será elaborado um termo de abertura do projeto que deverá conter os seguintes tópicos.
+Divisão das responsabilidades tecnológicas aos membros do projeto.
 
-- Introdução
-- Objetivo
-- Escopo do projeto
-- Responsabilidades dos membros da equipe
+Definição da arquitetura, identificando suas partes e comunicação entre elas.
 
-Definição da arquitetura,identificando suas partes e comunicação entre elas, permitindo a construção dos diagramas abaixo listados:
+Elaboração dos diagramas do projeto.
 
 - Casos de uso
 - Sequência
 - Fluxos de Trabalho
 - Arquitetura do Sistema
+
+Produção dos protótipos das interfaces do sistema (esboço das telas).
 
 ## Fase 3: Implementação
 
@@ -67,10 +68,8 @@ Durante os testes serão verificadas as métricas descritas na fase de levantame
 
 ## Fase 5: Produção
 
-Deverá ser validado o ambiente de produção.
+Deve ser validado o ambiente de produção.
 
-Nessa fase serão definidas métricas para validação do ambiente. 
+Nessa fase serão definidas métricas para validação do ambiente, essas métricas serão constantemente monitoradas e em casa de anormalidade, deve ser escrito um documento que descreva o problema para que possa ser analisado e corrigido.
 
-Essas métricas serão constantemente monitoradas e em casa de anormalidade, deve ser escrito um documento que descreva o problema para que possa ser analisado e corrigido.
-
-Ao fim de cada sprint a equipe deve ter produzido um sistema utilizável que será implementado no ambiente preparado. 
+> No fim de cada sprint a equipe deve ter produzido um sistema utilizável que será implementado no ambiente preparado. 
