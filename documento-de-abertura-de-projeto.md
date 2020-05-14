@@ -47,3 +47,10 @@ Ao fim do processo de um candidato o sistema deverá gerar uma compilação de c
 |Sistema será hospedado em ambiente cloud|Alta|Infraestrutura|-|
 |O sistema será em plataforma web.|Alta|Infraestrutura|-|
 
+## Tecnologia
+
+### Infraestrutura
+- Hospedagem: [Heroku](https://www.heroku.com/) ou [Firebase](https://firebase.google.com/?hl=pt-br)
+- Server: Node.js
+- Banco de dados: PostgreSQL
+- Ciente: Angular
