@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Sistema</title>
+    <style>
+        body{
+          overflow-y: scroll;
+        }
+        section{
+            padding: 10px;
+            background-color: lightgray;
+        }
+        .principal{
+            height: auto    ;
+            background-color: whitesmoke;
+        }
+        .card {
+          margin-top: 5px;
+        }
+        img{
+            height: 50px;
+            margin-right: 20px;
+        }
+        .list-group-item{
+          padding: 0.5em;
+          font-size: 20px;
+          margin: 0.2em 0;
+        }
+        #content-candidato {
+          overflow:hidden;
+          max-height: 200px;
+          transition: max-height 0.5s ease-in-out;
+        }
+        #content-candidato.hide {
+          max-height: 0;
+          pointer-events: none;
+        }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Sistema</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Cadastrar Vaga<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Configurações de Usuário</a>
+            </li>
+          </ul>
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Conteúdo" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
+          </form>
+        </div>
+    </nav>
+    <main>
+        <section>
+            <div id="accordion">
+                <div class="card">
+                  <div class="card-header" id="headingOne">
+                    <h5 class="mb-0">
+                      <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Desenvolvedor Senior - [ Tecnologia da Informação ] - 2 Days 
+                        
+                    </button>
+                    <span style="float: right; padding-top: 5px;">
+                        <a href="#" class="badge badge-light">Cadastrar Candidato</a>
+                        <a href="#" class="badge badge-light">Estatística de Contratação</a>
+                        <a href="#" class="badge badge-warning">Encerrar Vaga</a>
+                    </span>
+                      
+                    </h5>
+                    
+                  </div>
+              
+                  <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+                        <div class="list-group">
+                            <a href="#" onclick="onClickCandidato()" id="candidato" class="list-group-item list-group-item-action"><img src="https://avatars2.githubusercontent.com/u/35238611?s=460&u=1187ca2cb91f7ec8373d51b98a6323b3858edfc9&v=4" alt="..." class="rounded">
+                                Jonnathan Lacerda Santos
+                                <span style="float: right; padding-top: 10px;">
+                                    <span href="#" class="badge badge-light">Processo de Recrutamento</span>
+                                    <span href="#" class="badge badge-light">Histórico e Anotações</span>
+                                    <span href="#" class="badge badge-light">Informações do Candidato</span>
+                                    <span href="#" class="badge badge-danger">Inapto</span>
+                                </span>
+                                
+                            </a>
+                            <div id="content-candidato">
+                              <h4 style="margin: 15px 0;"> Processo de Recrutamento 
+                                <select style="background-color: lemonchiffon; float: right; font-size: 0.7em; width: auto; border: 0; line-height: 1; margin: 0; height: 100%;" class="custom-select">
+                                  <option selected>Selecionar Etapa</option>
+                                  <option value="1">Recursos Humanos</option>
+                                  <option value="2">Vendas</option>
+                                  <option value="3">Tecnologia</option>
+                                </select>
+                              </h4>
+                              <table class="table table-sm">
+                                <thead class="thead-light">
+                                  <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Critério</th>
+                                    <th scope="col">Avaliação</th>
+                                    <th scope="col">Observação</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <th scope="row">1</th>
+                                    <td>Comunicação em Equipe</td>
+                                    <td>
+                                      <select style="border: 0; padding: 0; margin: 0; height: 100%;" class="custom-select">
+                                        <option selected>Pontuação</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                      </select>
+                                    </td>
+                                    <td>
+                                      <input style="background-color: aliceblue; border: 0; padding: 2px; margin-top: 3px; height: 100%;" class="form-control"></input>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">2</th>
+                                    <td>Conhecimentos em DevOps</td>
+                                    <td>
+                                      <select style="border: 0; padding: 0; margin: 0; height: 100%;" class="custom-select">
+                                        <option selected>Pontuação</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                      </select>
+                                    </td>
+                                    <td>
+                                      <input style="background-color: aliceblue; border: 0; padding: 2px; margin-top: 3px; height: 100%;" class="form-control"></input>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">3</th>
+                                    <td>Noções de Calculo Financeiro</td>
+                                    <td>
+                                      <select style="border: 0; padding: 0; margin: 0; height: 100%;" class="custom-select">
+                                        <option selected>Pontuação</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                      </select>
+                                    </td>
+                                    <td>
+                                      <input style="background-color: aliceblue; border: 0; padding: 2px; margin-top: 3px; height: 100%;" class="form-control"></input>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                            <a href="#" class="list-group-item list-group-item-action"><img src="https://avatars2.githubusercontent.com/u/29349885?s=64&v=4" alt="..." class="shadow-sm rounded">
+                                Felipe Marcondes Pena
+                                <span style="float: right; padding-top: 10px;">
+                                    <span href="#" class="badge badge-light">Processo de Recrutamento</span>
+                                    <span href="#" class="badge badge-light">Histórico e Anotações</span>
+                                    <span href="#" class="badge badge-light">Informações do Candidato</span>
+                                    <span href="#" class="badge badge-danger">Inapto</span>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="headingTwo">
+                    <h5 class="mb-0">
+                      <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Analista de Negociação [ Vendas ] - 15 Days 
+                      </button>
+                      <span style="float: right; padding-top: 5px;">
+                        <a href="#" class="badge badge-light">Cadastrar Candidato</a>
+                        <a href="#" class="badge badge-light">Estatística de Contratação</a>
+                        <a href="#" class="badge badge-warning">Encerrar Vaga</a>
+                      </span>   
+                    </h5>
+                  </div>
+                  <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                    <div class="card-body">
+                      ...
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="headingThree">
+                    <h5 class="mb-0">
+                      <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Gerente de Controle [ Comercial ] - 7 Days 
+                      </button>
+                      <span style="float: right; padding-top: 5px;">
+                        <a href="#" class="badge badge-light">Cadastrar Candidato</a>
+                        <a href="#" class="badge badge-light">Estatística de Contratação</a>
+                        <a href="#" class="badge badge-warning">Encerrar Vaga</a>
+                    </span>
+                    </h5>
+                  </div>
+                  <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                    <div class="card-body">
+                      ...
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </section>
+    </main>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script>
+      let check = false;
+      var element = document.getElementById("content-candidato");
+      let ocultar = () => element.classList.add("hide");
+      let mostrar = () => element.classList.remove("hide");
+      function onClickCandidato(){
+        check ? mostrar() : ocultar();
+        check = !check;
+      }
+      
+    </script>
+  </body>
+</html>
