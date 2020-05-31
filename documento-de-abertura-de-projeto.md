@@ -10,11 +10,11 @@ A falta de um processo bem definido para recrutamento e seleção pode resultar 
 
 ## Objetivo do Projeto
 
-Elaboração de um sistema que contenha um claro processo de recrutamento e seleção para departamentos de recursos humanos. 
+Elaboração de um sistema que contenha um claro processo de recrutamento e seleção para o departamento de recursos humanos.
 
 ## Premissas
 
-O sistema deverá possibilitar o cadastro de vagas e requisitos para esta, bem como associar os responsáveis por cada etapa do processo, definindo também quais ações cada individuo envolvido deve tomar. 
+O sistema deverá possibilitar o cadastro de vagas e requisitos para esta, bem como associar os responsáveis por cada etapa do processo, definindo também quais ações cada individuo envolvido deve avaliar e atuar.
 
 Ao fim do processo de um candidato o sistema deverá gerar uma compilação de cada etapa e respectivas avaliações, bem como o avaliação geral.
 
@@ -24,18 +24,18 @@ Ao fim do processo de um candidato o sistema deverá gerar uma compilação de c
 
 |Descrição|Prioridade|Tipo|Métrica|
 |---------|----------|----|-------|
-|Cadastrar pessoas envolvidas no processo de Recrutamento|Alta|Cadastros|É possível inserir, atualizar, remover e ver uma lista de Pessoas?|
-|Cadastrar vagas. |Alta|Cadastros|É possível inserir, atualizar, remover e ver uma lista de Vagas?|
-|Cadastrar qualidades a serem analisadas em uma vaga.|Alta|Cadastros|É possível inserir, atualizar, remover e ver uma lista de Qualidades?|
-|Cadastrar candidatos para uma vaga.|Alta|Cadastros|É possível inserir, atualizar, remover e ver uma lista de Candidatos?|
+|Cadastrar pessoas envolvidas no processo de Recrutamento|Alta|Cadastros|É possível inserir, atualizar e ver uma lista de Pessoas?|
+|Cadastrar vagas. |Alta|Cadastros|É possível inserir, atualizar, encerrar e ver uma lista de Vagas?|
+|Cadastrar etapas e critérios a serem analisadas em uma vaga.|Alta|Cadastros|É possível inserir, atualizar, remover e ver uma lista de etapas e critérios?|
+|Cadastrar candidatos para uma vaga.|Alta|Cadastros|É possível inserir, atualizar e ver uma lista de Candidatos?|
 |Cadastrar arquivo com currículo de um Candidato.|Média|Cadastros|É possível inserir, e remover um arquivo?|
-|Cadastrar links associados a informações profissionais de um Candidato.|Média|Cadastros|É possível associar muitos links a um Candidato?|
-|Cadastrar entrevistas e outras atividades para uma vaga.|Alta|Cadastros|É possível inserir, atualizar, remover e ver uma lista de Entrevistas?|
-|Associar responsáveis as suas entrevistas|Alta|Processo|É possível associar e desassociar Responsáveis?|
-|Para cada entrevista, cada responsável deve preencher uma página de avaliação, onde deve pontuar as qualidades daquele candidato para aquela vaga.|Alta|Processo|É possível preencher cada qualidade associada a uma vaga segundo a Escala?|
-|Cada qualidade deve ser avaliada segundo a escala: péssimo, ruim, normal, positivo, ótimo.|Alta|Processo|-|
+|Cadastrar as informações profissionais de um Candidato.|Média|Cadastros|É possível registrar dados essenciais a um Candidato?|
+|Exibir entrevistas e outras informações de uma vaga.|Média|Processo|É possível listar as Entrevistas e estatísticas de uma vaga?|
+|Associar responsáveis as etapas da entrevista|Alta|Processo|É possível associar e desassociar Responsáveis?|
+|Para cada etapa, o responsável deve preencher a avaliação, e pontuar as qualidades do candidato para a vaga.|Alta|Processo|É possível registrar cada critério de uma etapa associada a uma vaga com base em uma escala?|
+|Cada critério deve ser avaliada seguindo a escala: péssimo, ruim, normal, positivo, ótimo.|Alta|Processo|É possível atualizar a avaliação e observação do critério?|
 |Ao fim do processo de cada candidato deve ser possível acessar todas as Avaliações|Alta|Relatórios|Todas as avaliações feitas para o candidato são Visíveis?|
-|Valores consolidados das avaliações.|Média|Relatórios|A soma das pontuações da escala é visível para cada qualidade da Vaga?|
+|Valores consolidados das avaliações.|Média|Relatórios|A soma das pontuações da escala é visível para cada critério das etapas da Vaga?|
 
 
 > **Não Funcionais**
@@ -45,12 +45,17 @@ Ao fim do processo de um candidato o sistema deverá gerar uma compilação de c
 |Facilidade de preenchimento de Avaliação.|Média|Usabilidade|Tempo médio para preenchimento. Número de preenchimentos Completos.|
 |Disponibilidade de Avaliações.|Alta|Usabilidade|Avaliações devem ser mantidas e indexadas por tempo Indeterminado.|
 |Sistema será hospedado em ambiente cloud|Alta|Infraestrutura|-|
-|O sistema será em plataforma web.|Alta|Infraestrutura|-|
+|O sistema será em plataforma web.|Alta|Infraestrutura|Disponibilização do sistema via browser|
 
 ## Tecnologia
 
 ### Infraestrutura
 - Hospedagem: [Heroku](https://www.heroku.com/) ou [Firebase](https://firebase.google.com/?hl=pt-br)
-- Server: Node.js
-- Banco de dados: PostgreSQL
+- Servidor: Node.js
+- Banco de Dados: MongoDB
 - Ciente: Angular
+
+## Responsábilidades Técnicas
+
+- Felipe: Servidor e Banco de Dados
+- Jonnathan: Hospedagem e Aplicação Cliente

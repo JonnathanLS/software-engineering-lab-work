@@ -2,11 +2,11 @@
 
 A metodologia será constituída das cinco principais fases no ciclo de vida de um projeto de software: requisitos, projeto, implementação, testes e produção.
 
-O levantamento dos requisitos, viabilidade, especificação e definição da arquitetura do projeto serão feitas ao início do projeto e devem ser a base para as fases seguintes, já as fases de implementação, testes e produção serão realizadas conforme metodologia Scrum, contendo sprints semanais com reuniões a cada 2 dias no decorrer da sprint.
+O levantamento dos requisitos, viabilidade, especificação e definição da arquitetura do projeto serão feitas ao início do projeto e devem ser a base para as fases seguintes, já as fases de implementação, testes e produção serão realizadas conforme metodologia Scrum, contendo sprints semanais com reuniões 2 ou 3 vezes no decorrer da sprint.
 
 ## Fase 1 - Requisitos
 
-Definição do termo de abertura de projeto que no decorrer de entrega dos artefatos será incrementado progressivamente até a fase de implementação, afim de se obter o escopo detalhado do projeto.
+Definição do termo de abertura de projeto, e que no decorrer de entrega dos artefatos será incrementado progressivamente até a fase de implementação, afim de se obter o escopo detalhado do projeto.
 
 - Problema
 - Objetivo
@@ -63,13 +63,13 @@ Durante a implementação do projeto deverão ser desenvolvidos cobertura de tes
 No fim de cada sprint, aquilo que foi implementado deve ser testado em um ambiente de testes.
 
 Durante os testes serão verificadas as métricas descritas na fase de levantamento de requisitos, caso os objetivos não sejam alcançados, as tarefas devem retornar ao backlog para que o sistema possa ser aperfeiçoado.
-
-> Deverá ser discutido a viabilidade de testes funcionais automatizados.
+s
+> Obs.: Deverá ser discutido a viabilidade de testes funcionais automatizados.
 
 ## Fase 5: Produção
 
 Deve ser validado o ambiente de produção.
 
-Nessa fase serão definidas métricas para validação do ambiente, essas métricas serão constantemente monitoradas e em casa de anormalidade, deve ser escrito um documento que descreva o problema para que possa ser analisado e corrigido.
+Nessa fase serão definidas métricas para validação do ambiente, essas métricas serão constantemente monitoradas e em caso de anormalidade, deve ser escrito um documento que descreva o problema para que possa ser analisado e corrigido.
 
 > No fim de cada sprint a equipe deve ter produzido um sistema utilizável que será implementado no ambiente preparado. 

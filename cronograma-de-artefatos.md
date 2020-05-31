@@ -1,6 +1,8 @@
 # Cronograma de Artefatos
 
-Artefatos a serem entregues e suas respectivas datas de entrega, junto das tarefas contidas na produção do artefato.
+Artefatos a serem entregues e suas respectivas datas de entregas.
+
+> Os itens de cada artefato, tratam-se de sub-entregas mínimas do planejamento.
 
 ⭐ **12 de Mai** ⭐
 
@@ -35,7 +37,7 @@ Artefatos a serem entregues e suas respectivas datas de entrega, junto das taref
 
 > Sprint de Desenvolvimento
 
-- Features Inicias 
+- Features Iniciais 
 - Implementação 
 - Testes
 - Validação Parcial
@@ -62,7 +64,7 @@ Artefatos a serem entregues e suas respectivas datas de entrega, junto das taref
 
 ⭐ **23 de Jun** ⭐
 
-> Sprint de Refinamento
+> Sprint de Revisão
 
 - Apontamentos de Melhorias
 - Nova Implementação
@@ -77,7 +79,7 @@ Artefatos a serem entregues e suas respectivas datas de entrega, junto das taref
 - Correções necessárias (caso houver)
 - Documento Descritivo das Métricas
 
-⭐ **07 de Maio** ⭐
+⭐ **07 de Julho** ⭐
 
 > Software em Produção
 
