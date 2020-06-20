@@ -25,17 +25,15 @@ Ao fim do processo de um candidato o sistema deverá gerar uma compilação de c
 |Descrição|Prioridade|Tipo|Métrica|
 |---------|----------|----|-------|
 |Cadastrar pessoas envolvidas no processo de Recrutamento|Alta|Cadastros|É possível inserir, atualizar e ver uma lista de Pessoas?|
-|Cadastrar vagas. |Alta|Cadastros|É possível inserir, atualizar, encerrar e ver uma lista de Vagas?|
-|Cadastrar etapas e critérios a serem analisadas em uma vaga.|Alta|Cadastros|É possível inserir, atualizar, remover e ver uma lista de etapas e critérios?|
+|Cadastrar vagas. |Alta|Cadastros|É possível inserir, atualizar, deletar e ver uma lista de Vagas?|
+|Cadastrar etapas e critérios a serem analisadas em uma vaga.|Alta|Cadastros|É possível inserir, atualizar, remover e ver uma lista de etapas e competências?|
 |Cadastrar candidatos para uma vaga.|Alta|Cadastros|É possível inserir, atualizar e ver uma lista de Candidatos?|
-|Cadastrar arquivo com currículo de um Candidato.|Média|Cadastros|É possível inserir, e remover um arquivo?|
 |Cadastrar as informações profissionais de um Candidato.|Média|Cadastros|É possível registrar dados essenciais a um Candidato?|
-|Exibir entrevistas e outras informações de uma vaga.|Média|Processo|É possível listar as Entrevistas e estatísticas de uma vaga?|
+|Exibir entrevistas e resultados de uma vaga.|Média|Processo|É possível listar as Entrevistas e resultados de uma vaga?|
 |Associar responsáveis as etapas da entrevista|Alta|Processo|É possível associar e desassociar Responsáveis?|
-|Para cada etapa, o responsável deve preencher a avaliação, e pontuar as qualidades do candidato para a vaga.|Alta|Processo|É possível registrar cada critério de uma etapa associada a uma vaga com base em uma escala?|
+|Para cada etapa, o responsável deve preencher a avaliação, e pontuar as qualidades do candidato para a vaga.|Alta|Processo|É possível registrar cada compe†ência de uma etapa associada a uma vaga com base em uma escala?|
 |Cada critério deve ser avaliada seguindo a escala: péssimo, ruim, normal, positivo, ótimo.|Alta|Processo|É possível atualizar a avaliação e observação do critério?|
 |Ao fim do processo de cada candidato deve ser possível acessar todas as Avaliações|Alta|Relatórios|Todas as avaliações feitas para o candidato são Visíveis?|
-|Valores consolidados das avaliações.|Média|Relatórios|A soma das pontuações da escala é visível para cada critério das etapas da Vaga?|
 
 
 > **Não Funcionais**
@@ -50,10 +48,10 @@ Ao fim do processo de um candidato o sistema deverá gerar uma compilação de c
 ## Tecnologia
 
 ### Infraestrutura
-- Hospedagem: [Heroku](https://www.heroku.com/) ou [Firebase](https://firebase.google.com/?hl=pt-br)
+- Hospedagem: [Heroku](https://www.heroku.com/)
 - Servidor: Node.js
 - Banco de Dados: MongoDB
-- Ciente: Angular
+- Cliente: Angular
 
 ## Responsábilidades Técnicas
 
