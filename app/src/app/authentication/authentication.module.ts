@@ -4,6 +4,7 @@ import { AuthenticationComponent } from './authentication.component';
 import { AuthenticationService } from './authentication.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ApiModule } from '../api/api.module';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -12,6 +13,8 @@ import { ApiModule } from '../api/api.module';
   imports: [
     BrowserModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
     ApiModule
   ],
   providers: [AuthenticationService],

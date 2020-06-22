@@ -9,7 +9,7 @@ export class AuthenticationService {
 
   constructor(private http: HttpClient){}
 
-	authenticate = (user: User) => {
+	authenticate = (user: User): Promise<string> => {
 		if (!user.username) throw new Error('Authentication Service : authentication method requires a user to be informed.');
 		
 		const auth = btoa(`${user.username}:${user.password}`);

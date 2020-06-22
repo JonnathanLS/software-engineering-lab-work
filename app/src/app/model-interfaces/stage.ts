@@ -1,5 +1,8 @@
+import { Skill } from './skill';
+
 export interface Stage {
+	id: string,
 	name: string,
 	description: string,
-	skillIds: string[]
+	skills: Skill[]
 }
