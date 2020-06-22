@@ -5,6 +5,7 @@ import { AuthenticationService } from './authentication.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ApiModule } from '../api/api.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { AuthenticationGuardService } from './authentication-guard.service';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     ReactiveFormsModule,
     ApiModule
   ],
-  providers: [AuthenticationService],
+  providers: [AuthenticationService, AuthenticationGuardService],
   bootstrap: [AuthenticationComponent]
 })
 export class AuthenticationModule { }

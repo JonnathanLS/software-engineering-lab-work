@@ -1,0 +1,40 @@
+<form [formGroup]="userForm" (ngSubmit)="onSubmit(userForm.value)">
+
+    <div>
+        <label for="username">
+            username
+        </label>
+        <input id="username" type="text" formControlName="username">
+    </div>
+    
+    <div>
+        <label for="password">
+            description
+        </label>
+        <input id="password" type="text" formControlName="password">
+    </div>
+    <div>
+        <label for="department">
+            department
+        </label>
+        <input id="department" type="text" formControlName="department" value="SOFTWARE_DEVELOPMENT">
+    </div>
+    <div>
+        <label for="role">
+            role
+        </label>
+        <input id="role" type="text" formControlName="role">
+    </div>
+    
+    <button class="button" type="submit">Cadastrar</button>
+
+</form>
+
+<h3>Avaliadores / Usuários</h3>
+
+<div *ngFor="let evaluator of evaluators">
+    <div>
+        <strong>EVALUATOR</strong>: {{ evaluator.id }} - {{ evaluator.username }} - {{ evaluator.department }} - {{ evaluator.role }}
+    </div>
+    <br>
+</div>

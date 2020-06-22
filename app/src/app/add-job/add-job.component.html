@@ -1,0 +1,25 @@
+<form [formGroup]="jobForm" (ngSubmit)="onSubmit(jobForm.value)">
+
+    <div>
+        <label for="name">
+            name
+        </label>
+        <input id="name" type="text" formControlName="name">
+    </div>
+    
+    <div>
+        <label for="description">
+            description
+        </label>
+        <input id="description" type="text" formControlName="description">
+    </div>
+    <div>
+        <label for="department">
+            department
+        </label>
+        <input id="department" type="text" formControlName="department" value="SOFTWARE_DEVELOPMENT">
+    </div>
+    
+    <button class="button" type="submit">Cadastrar</button>
+
+</form>

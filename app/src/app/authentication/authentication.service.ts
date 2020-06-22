@@ -4,10 +4,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { API } from '../api/api-endpoint';
 import { ErrorMessages } from 'src/assets/error-messages';
 
+const TOKEN = "token";
+
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
 
-  constructor(private http: HttpClient){}
+  	constructor(private http: HttpClient){}
 
 	authenticate = (user: User): Promise<string> => {
 		if (!user.username) throw new Error('Authentication Service : authentication method requires a user to be informed.');
@@ -24,7 +26,7 @@ export class AuthenticationService {
 				response => {
 					if(response.status === 200) 
 						if (response.body.hasOwnProperty("data"))
-							sessionStorage.setItem('Authorization', auth);
+							sessionStorage.setItem(TOKEN, auth);
 					resolve(ErrorMessages.authenticate.valid);
 				},
 				error => {
@@ -35,7 +37,6 @@ export class AuthenticationService {
 
 	}
 	
-	isAuthenticated = (): boolean => !!sessionStorage.getItem('Authorization');
-	getAuthorization = (): string => sessionStorage.getItem('Authorization');
-    
+	isAuthenticated = (): boolean => !!sessionStorage.getItem(TOKEN);
+	getAuthorization = (): string => sessionStorage.getItem(TOKEN);    
 }

@@ -3,7 +3,7 @@ import { AuthenticationService } from './authentication.service';
 import { User } from '../model-interfaces/user';
 import { APIService } from '../api/api.service';
 import { Stage } from '../model-interfaces/stage';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 })
 export class AuthenticationComponent implements OnInit {
 
-  public authForm;
+  public authForm: FormGroup;
 
   constructor(
     private service: AuthenticationService,
@@ -39,7 +39,7 @@ export class AuthenticationComponent implements OnInit {
     });
   }
   onSubmit(userData) {
-    const user: User = { username: userData.username, password: userData.password }
+    const user: User = { id: '', username: userData.username, password: userData.password }
     this.service
       .authenticate(user)
       .then(response => this.router.navigate(['/home']))

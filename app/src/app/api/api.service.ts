@@ -6,6 +6,7 @@ import { Stage } from '../model-interfaces/stage';
 import { Skill } from '../model-interfaces/skill';
 import { Candidate } from '../model-interfaces/candidate';
 import { CandidateJobOpportunity } from '../model-interfaces/candidate-job-opportunity';
+import { User } from '../model-interfaces/user';
 
 const json = (object: Object) => JSON.stringify(object);
 
@@ -14,12 +15,17 @@ export class APIService {
 
 	constructor(private httpClient: HttpClient) { }
 
+	user = {
+		create: (user: User) => this.httpClient.post(API.users, json(user)),
+		evaluators: () => this.httpClient.get(`${API.users}evaluators`),
+	}
+
 	jobOpportunities = {
 		get: {
 			all: () => this.httpClient.get(API.job_opportunities),
 			id: (id: string) => this.httpClient.get(`${API.job_opportunities}${id}`),
 			stages: (job_id: Stage) => this.httpClient.get(`${API.job_opportunities}${job_id}${stagesPath}`),
-			evaluators: () => this.httpClient.get(`${API.job_opportunities}/users/evaluators`),
+			
 		},
 		add: (stage: Stage, job_id: string) => this.httpClient.post(`${API.job_opportunities}${job_id}${stagesPath}`, json(stage)),
 		create: (job: JobOpportunity) => this.httpClient.post(API.job_opportunities, json(job)),

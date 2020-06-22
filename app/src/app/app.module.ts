@@ -8,11 +8,17 @@ import { HttpClientModule } from '@angular/common/http'
 import { AuthenticationModule } from './authentication/authentication.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
+import { HeaderComponent } from './header/header.component';
+import { AddJobComponent } from './add-job/add-job.component';
+import { UserConfigComponent } from './user-config/user-config.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
+    HeaderComponent,
+    AddJobComponent,
+    UserConfigComponent,
   ],
   imports: [
     BrowserModule,
@@ -21,7 +27,6 @@ import { HomeComponent } from './home/home.component';
     FormsModule,
     ReactiveFormsModule,
     AuthenticationModule
-
   ],
   providers: [HttpClientModule],
   bootstrap: [AppComponent]
