@@ -1,0 +1,97 @@
+.user-info {
+    display: flex;
+    margin: 50px;
+    flex-direction: column;
+    align-items: center;
+}
+.user-details{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+.user-details span{
+    margin: 10px 0;
+}
+
+.user-config{
+    display: flex;
+    flex-direction: column;
+    padding: 1% 4%;
+}
+.user-config div {
+    width: 100%;
+}
+
+.user-config label {
+    font-size: 15px;
+    font-weight: bold;
+    display: block;
+}
+.user-config input {
+    flex-basis: auto;
+    padding: 10px;
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    border: 1px solid lightslategray;
+    border-radius: 5px;
+    height: 2.5rem;
+}
+.user-config button {
+    background-color: rgb(15, 15, 161, 0.8);
+    color: white;
+    border-radius: 5px;
+    padding: 0.85em;
+    transition: background 0.75s, color 0.75s;
+    border: 0;
+}
+.user-config button:hover {
+    background-color: rgb(15, 15, 161);
+    color: yellow;
+}
+
+
+@media screen and (min-width: 600px) {
+    .user-info {
+        display: flex;
+        flex-direction: row;
+    }
+    .user-details{
+        height: 150px;
+        margin: 20px 0 0 30px;
+        align-items: flex-start;
+    }
+    
+    .user-config{
+        align-items: center;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .user-config div {
+        width: auto;
+    }
+    .user-config input, .user-config label, .user-config button {
+        width: auto;
+    }
+    .user-list-title{
+        margin: 30px 0 0 55px;
+        color: blue;
+        font-size: 1rem;
+        font-weight: bold;
+    }
+    .user-list {
+        margin: 20px 55px;
+    }
+    .user-list li {
+        display: flex;
+        align-items: flex-start;
+    }
+    .user-list span {
+        width: 25%;
+    }
+    .user-list li {
+        padding: 10px 0;
+    }
+
+}

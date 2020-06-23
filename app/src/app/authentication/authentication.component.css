@@ -1,0 +1,55 @@
+.authentication{
+    display: flex;
+    flex-direction: column;
+    padding: 5%;
+    text-align: center;
+}
+.authentication div {
+    width: 100%;
+}
+
+.authentication label {
+    font-size: 15px;
+    font-weight: bold;
+    margin: 15px 0;
+    display: block;
+}
+.authentication input {
+    text-align: center;
+    padding: 10px;
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    border: 1px solid lightslategray;
+    border-radius: 5px;
+    height: 2.5rem;
+}
+.authentication button {
+    cursor: pointer;
+    background-color: rgb(15, 15, 161, 0.8);
+    color: white;
+    width: 100%;
+    margin: 30px 0 0 0;
+    border-radius: 5px;
+    padding: 1em;
+    transition: background 0.75s, color 0.75s;
+    border: 0;
+}
+.authentication button:hover {
+    background-color: rgb(15, 15, 161);
+    color: yellow;
+}
+@media screen and (min-width: 600px) {
+    .authentication{
+        align-items: center;
+    }
+    .authentication div {
+        width: auto;
+    }
+    .authentication input, .authentication label, .authentication button {
+        width: 575px;
+    }
+    .authentication button {
+        margin-top: 50px;
+    }
+}

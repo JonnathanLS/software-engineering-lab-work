@@ -1,0 +1,45 @@
+.menu{
+    display: flex;
+    height: 100%;
+    background-color: rgb(22, 89, 145);
+    grid-area: header;
+    padding: 0;
+    flex-direction: column;
+    
+}
+.menu li {
+    padding: 15px 0px;
+    border: 1px solid lightcyan;
+    height: 100%;
+    width: 100%;
+    transition: font 0.5s, color 0.5s;
+    cursor: pointer;
+}
+.menu li:hover{
+    background: lightsteelblue
+}
+.menu a{
+    text-decoration: none;
+    color: white;
+    height: 100%;
+    display: flex;
+    padding: 5px;
+    align-items: center;
+}
+.menu li:hover a{
+    font-size: 1rem;
+    color: black    ;
+    background: lightsteelblue
+}
+@media screen and (min-width: 600px) {
+    .menu {
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+    .menu li {
+        width: auto;
+        border: 0;
+        padding: 0 10px;
+    }
+}

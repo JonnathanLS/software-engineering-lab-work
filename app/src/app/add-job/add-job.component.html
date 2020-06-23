@@ -1,21 +1,21 @@
-<form [formGroup]="jobForm" (ngSubmit)="onSubmit(jobForm.value)">
+<form class="add-job" [formGroup]="jobForm" (ngSubmit)="onSubmit(jobForm.value)">
 
     <div>
         <label for="name">
-            name
+            Nome de Vaga 
         </label>
         <input id="name" type="text" formControlName="name">
     </div>
     
     <div>
         <label for="description">
-            description
+            Descrição ou Detalhes da Vaga
         </label>
         <input id="description" type="text" formControlName="description">
     </div>
     <div>
         <label for="department">
-            department
+            Departamento Responsável
         </label>
         <input id="department" type="text" formControlName="department" value="SOFTWARE_DEVELOPMENT">
     </div>

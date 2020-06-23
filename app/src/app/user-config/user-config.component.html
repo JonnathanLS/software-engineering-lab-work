@@ -1,27 +1,39 @@
-<form [formGroup]="userForm" (ngSubmit)="onSubmit(userForm.value)">
+<div class="user-info">
+    <div>
+        <img src="https://rmtelefonia.com.br/wp-content/uploads/2015/11/Avatar-masculino.png" alt="..." class="rounded">
+    </div>
+    <div class="user-details">
+        <span>Nome de Usuário</span>
+        <span>Senha de Acesso</span>
+        <span>Departamento</span>
+        <span>Função</span>
+    </div>
+</div>
+
+<form class="user-config" [formGroup]="userForm" (ngSubmit)="onSubmit(userForm.value)">
 
     <div>
         <label for="username">
-            username
+            Nome de Usuário
         </label>
         <input id="username" type="text" formControlName="username">
     </div>
     
     <div>
         <label for="password">
-            description
+            Senha de Acesso
         </label>
         <input id="password" type="text" formControlName="password">
     </div>
     <div>
         <label for="department">
-            department
+            Departamento Responsável
         </label>
         <input id="department" type="text" formControlName="department" value="SOFTWARE_DEVELOPMENT">
     </div>
     <div>
         <label for="role">
-            role
+            Função
         </label>
         <input id="role" type="text" formControlName="role">
     </div>
@@ -30,11 +42,13 @@
 
 </form>
 
-<h3>Avaliadores / Usuários</h3>
 
-<div *ngFor="let evaluator of evaluators">
-    <div>
-        <strong>EVALUATOR</strong>: {{ evaluator.id }} - {{ evaluator.username }} - {{ evaluator.department }} - {{ evaluator.role }}
-    </div>
-    <br>
-</div>
+<div class="user-list-title">Lista de Usuários</div>
+<ul class="user-list">
+    
+    <li><span>ID</span><span>Usuário</span><span>Departamento</span><span>Função</span></li>
+    <li *ngFor="let evaluator of evaluators">
+        <span> 0 </span><span>{{ evaluator.username }}</span><span>{{ evaluator.department }} </span><span>{{ evaluator.role }} </span>
+    </li>
+</ul>
+

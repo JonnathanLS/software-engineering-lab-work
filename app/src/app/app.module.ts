@@ -11,11 +11,12 @@ import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { AddJobComponent } from './add-job/add-job.component';
 import { UserConfigComponent } from './user-config/user-config.component';
+import { HomeModule } from './home/home.module';
+import { HeaderModule } from './header/header.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     HeaderComponent,
     AddJobComponent,
     UserConfigComponent,
@@ -26,7 +27,8 @@ import { UserConfigComponent } from './user-config/user-config.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    AuthenticationModule
+    AuthenticationModule,
+    HomeModule,
   ],
   providers: [HttpClientModule],
   bootstrap: [AppComponent]
