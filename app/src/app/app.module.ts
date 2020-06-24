@@ -13,6 +13,12 @@ import { AddJobComponent } from './add-job/add-job.component';
 import { UserConfigComponent } from './user-config/user-config.component';
 import { HomeModule } from './home/home.module';
 import { HeaderModule } from './header/header.module';
+import { AddStagesComponent } from './add-job/add-stages/add-stages.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
+import { StageComponent } from './add-job/add-stages/stage/stage.component'
 
 @NgModule({
   declarations: [
@@ -20,6 +26,8 @@ import { HeaderModule } from './header/header.module';
     HeaderComponent,
     AddJobComponent,
     UserConfigComponent,
+    AddStagesComponent,
+    StageComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,6 +37,9 @@ import { HeaderModule } from './header/header.module';
     ReactiveFormsModule,
     AuthenticationModule,
     HomeModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatSelectModule
   ],
   providers: [HttpClientModule],
   bootstrap: [AppComponent]

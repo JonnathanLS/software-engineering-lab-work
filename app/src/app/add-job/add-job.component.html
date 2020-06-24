@@ -20,6 +20,49 @@
         <input id="department" type="text" formControlName="department" value="SOFTWARE_DEVELOPMENT">
     </div>
     
-    <button class="button" type="submit">Cadastrar</button>
+    <!-- <app-add-stages (updateStagesEventEmitter)="updateStages($event)"></app-add-stages> -->
+    <div class="add-job-stages">
+        <hr>
+        <br>
+        <h2 class="add-job-stages-title">
+            Etapas
+        </h2>
+        <br>
+        <div>
+            <div>
+                <label for="name">
+                    Nome da Etapa
+                </label>
+                <input id="name" type="text" formControlName="name">
+            </div>
+            
+            <div>
+                <label for="description">
+                    Descrição ou Detalhes da Etapa
+                </label>
+                <input id="description" type="text" formControlName="description">
+            </div>
+            <div>
+                <label for="skills">
+                    Competências Exigidas
+                </label>
+                <select name="skills" id="caskillsrs">
+                    <option value="volvo">Competência 1</option>
+                    <option value="saab">Competência 2</option>
+                </select>
+            </div>
+        </div>
+        <button mat-stroked-button>Adicionar Etapa</button>
+        <div class="add-job-stages-list">
+            <div>Etapa 1</div>
+            <div>Descrição da Etapa  1</div>
+            <div>Competências da Etapa  1</div>
+        </div>
+        <hr>
+    </div>
+    
+
+    
+    <button mat-button class="button" type="submit">Cadastrar</button>
 
 </form>

@@ -2,6 +2,6 @@ export interface Candidate {
     id: string
     name: string,
 	cpf: string,
-	endereco: string,
+	address: string,
 	links: string[]
 }

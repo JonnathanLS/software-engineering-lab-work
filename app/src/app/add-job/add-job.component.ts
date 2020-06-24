@@ -11,15 +11,16 @@ import { APIService } from '../api/api.service';
 export class AddJobComponent implements OnInit {
 
   jobForm: FormGroup;
-  
+  properties: JobOpportunity = { id: '', name: '', stages: [], department: '', description: '' }
+
   constructor(
     private formBuilder: FormBuilder,
     private apiService: APIService,
   ) { }
 
   ngOnInit(): void {
-    let properties: JobOpportunity = { id: '', name: '', stages: [], department: '', description: '' }
-    this.jobForm = this.formBuilder.group(properties);
+    
+    this.jobForm = this.formBuilder.group(this.properties);
   }
   onSubmit(jobData: JobOpportunity) {
     this.apiService.jobOpportunities.create(jobData).subscribe(
@@ -28,4 +29,5 @@ export class AddJobComponent implements OnInit {
     );
   }
 
+  updateStages = ($event) => this.properties.stages.push($event);
 }
