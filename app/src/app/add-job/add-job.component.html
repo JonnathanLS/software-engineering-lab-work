@@ -1,12 +1,13 @@
-<form class="add-job" [formGroup]="jobForm" (ngSubmit)="onSubmit(jobForm.value)">
+<h3 class="titulo" style="margin-top: 30px;">Nova Vaga</h3>
+<form class="add-job" [formGroup]="jobForm" (ngSubmit)="createJob(jobForm.value)">
 
     <div>
         <label for="name">
-            Nome de Vaga 
+            Nome de Vaga
         </label>
         <input id="name" type="text" formControlName="name">
     </div>
-    
+
     <div>
         <label for="description">
             Descrição ou Detalhes da Vaga
@@ -17,16 +18,18 @@
         <label for="department">
             Departamento Responsável
         </label>
-        <input id="department" type="text" formControlName="department" value="SOFTWARE_DEVELOPMENT">
+        <select id="department" type="text" formControlName="department">
+            <option *ngFor="let department of departments" [value]="department">{{ department }}</option>
+        </select>
     </div>
-    
+
+    <button mat-button class="button" style="margin-top: 0px;" type="submit">Cadastrar Vaga</button>
+
     <!-- <app-add-stages (updateStagesEventEmitter)="updateStages($event)"></app-add-stages> -->
-    <div class="add-job-stages">
-        <hr>
+    <!-- <div class="add-job-stages">
+
         <br>
-        <h2 class="add-job-stages-title">
-            Etapas
-        </h2>
+        <h3 class="titulo">Criar Etapas</h3>
         <br>
         <div>
             <div>
@@ -35,7 +38,7 @@
                 </label>
                 <input id="name" type="text" formControlName="name">
             </div>
-            
+
             <div>
                 <label for="description">
                     Descrição ou Detalhes da Etapa
@@ -46,23 +49,30 @@
                 <label for="skills">
                     Competências Exigidas
                 </label>
-                <select name="skills" id="caskillsrs">
+                <select multiple>
                     <option value="volvo">Competência 1</option>
-                    <option value="saab">Competência 2</option>
-                </select>
+                    <option value="volvo">Competência 2</option>
+                    <option value="volvo">Competência 3</option>
+                  </select>
             </div>
         </div>
         <button mat-stroked-button>Adicionar Etapa</button>
         <div class="add-job-stages-list">
             <div>Etapa 1</div>
-            <div>Descrição da Etapa  1</div>
-            <div>Competências da Etapa  1</div>
+            <div>Descrição da Etapa 1</div>
+            <div>Competências da Etapa 1</div>
         </div>
-        <hr>
-    </div>
-    
 
-    
-    <button mat-button class="button" type="submit">Cadastrar</button>
+    </div> -->
+
 
 </form>
+
+
+<div class="jobs">
+
+    <h1 class="jobs__title">Lista de Vagas</h1>
+    <ul>
+        <li *ngFor="let job of jobs.reverse()">{{ job._id }}</li>
+    </ul>
+</div>

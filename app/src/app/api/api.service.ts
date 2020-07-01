@@ -10,7 +10,7 @@ import { User } from '../model-interfaces/user';
 
 const json = (object: Object) => JSON.stringify(object);
 
-@Injectable({ providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class APIService {
 
 	constructor(private httpClient: HttpClient) { }
@@ -20,15 +20,25 @@ export class APIService {
 		evaluators: () => this.httpClient.get(`${API.users}evaluators`),
 	}
 
+	departments = {
+		get: {
+			all: () => this.httpClient.get(API.departments)
+		}
+	}
 	jobOpportunities = {
 		get: {
 			all: () => this.httpClient.get(API.job_opportunities),
 			id: (id: string) => this.httpClient.get(`${API.job_opportunities}${id}`),
 			stages: (job_id: Stage) => this.httpClient.get(`${API.job_opportunities}${job_id}${stagesPath}`),
-			
+
 		},
 		add: (stage: Stage, job_id: string) => this.httpClient.post(`${API.job_opportunities}${job_id}${stagesPath}`, json(stage)),
-		create: (job: JobOpportunity) => this.httpClient.post(API.job_opportunities, json(job)),
+		create: (job: JobOpportunity) => {
+			const invalid = this.hasPropertyWithValueNullOrEmpty(job, 'name', 'description', 'department');
+			if (invalid) throw new Error('Job Opportunities: the reported object contains properties with invalid values');
+			const newJob = { name: job.name, description: job.description, department: job.department };
+			return this.httpClient.post(API.job_opportunities, json(newJob));
+		},
 		update: (id: string, job: JobOpportunity) => this.httpClient.put(`${API.job_opportunities}${id}`, json(job)),
 		delete: (id: string) => this.httpClient.delete(`${API.job_opportunities}${id}`)
 	}
@@ -42,7 +52,7 @@ export class APIService {
 		update: (id: string, skill: Skill) => this.httpClient.put(`${API.skills}${id}`, json(skill)),
 		delete: (id: string) => this.httpClient.delete(`${API.skills}${id}`)
 	}
-	
+
 	stages = {
 		update: (id: string, stage: Stage) => this.httpClient.put(`${API.stages}${id}`, json(stage)),
 		delete: (id: string) => this.httpClient.delete(`${API.stages}${id}`)
@@ -57,9 +67,22 @@ export class APIService {
 		update: (id: string, candidate: Candidate) => this.httpClient.put(`${API.candidates}${id}`, json(candidate)),
 		associate: (candidate_id: string, associate: CandidateJobOpportunity) => this.httpClient.post(`${API.candidates}${candidate_id}${jobsPath}`, json(associate)),
 		delete: {
-			id: (id: string) => this.httpClient.delete(`${API.candidates}${id}`),	
+			id: (id: string) => this.httpClient.delete(`${API.candidates}${id}`),
 			job: (associate_id: string, job_id: string) => this.httpClient.delete(`${API.candidates}job-opportunities/${associate_id}`)
 		},
 
+	}
+
+	hasPropertyWithValueNullOrEmpty = (object: Object, ...props: string[]): boolean => {
+		let result = false;
+		props.forEach(prop => {
+			if (!result) {
+				if (object.hasOwnProperty(prop)) {
+					const value = object[prop];
+					if (!value) result = true;
+				}
+			}
+		});
+		return result;
 	}
 }

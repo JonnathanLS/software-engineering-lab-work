@@ -1,7 +1,7 @@
 import { Stage } from './stage';
 
 export interface JobOpportunity {
-    id: string,
+    _id: string,
     name: string,
     stages: Stage[]
     description: string,
