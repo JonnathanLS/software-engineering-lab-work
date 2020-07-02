@@ -32,10 +32,15 @@ export class APIService {
 			stages: (job_id: Stage) => this.httpClient.get(`${API.job_opportunities}${job_id}${stagesPath}`),
 
 		},
-		add: (stage: Stage, job_id: string) => this.httpClient.post(`${API.job_opportunities}${job_id}${stagesPath}`, json(stage)),
+		add: (stage: Stage, job_id: string) => {
+			const invalid = this.hasPropertyWithValueNullOrEmpty(stage, 'name', 'description', 'skills');
+			if (invalid) throw new Error('Job Opportunities - Add Stage : the reported object contains properties with invalid values');
+			const newStage = { name: stage.name, description: stage.description, skills: stage.skills };
+			return this.httpClient.post(`${API.job_opportunities}${job_id}${stagesPath}`, json(newStage));
+		},
 		create: (job: JobOpportunity) => {
 			const invalid = this.hasPropertyWithValueNullOrEmpty(job, 'name', 'description', 'department');
-			if (invalid) throw new Error('Job Opportunities: the reported object contains properties with invalid values');
+			if (invalid) throw new Error('Job Opportunities - Create : the reported object contains properties with invalid values');
 			const newJob = { name: job.name, description: job.description, department: job.department };
 			return this.httpClient.post(API.job_opportunities, json(newJob));
 		},
@@ -79,7 +84,8 @@ export class APIService {
 			if (!result) {
 				if (object.hasOwnProperty(prop)) {
 					const value = object[prop];
-					if (!value) result = true;
+					if ( !value ) result = true;
+					else if ( Array.isArray(value) && !value["length"]) result = true;
 				}
 			}
 		});

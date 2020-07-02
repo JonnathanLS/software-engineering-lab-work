@@ -1,0 +1,42 @@
+<!-- 
+<div class="stages">
+    <div class="stages__title">
+        Etapas
+    </div>
+    <div>
+        <app-stage (addEventEmitter)="addStage($event)"></app-stage>
+    </div>>
+    <div class="stages__list"></div>
+</div> -->
+
+<div class="stages">
+    <button class="stages__title" (click)="toggleAddStage()">Nova Etapa</button>
+    <form *ngIf="showAddStage" class="stages__new-stage" [formGroup]="stageForm" (ngSubmit)="addStage(stageForm.value)">
+        <div>
+            <label for="name">Nome de Etapa</label>
+            <input id="name" type="text" formControlName="name">
+        </div>
+    
+        <div>
+            <label for="description">Descrição ou Detalhes da Etapa</label>
+            <input id="description" type="text" formControlName="description">
+        </div>
+        <div>
+            <label for="skills">Competências Necessárias</label>
+            <select id="skills" type="text" formControlName="skills" multiple>
+                <option *ngFor="let skill of skills" [value]="skill._id">{{ skill.name }}</option>
+            </select>
+        </div>
+        <button class="button" type="submit">Adiccionar Etapa</button>
+    </form>
+    <div *ngIf="job.stages?.length" class="stages__list">
+        <div class="stages__title">Lista de Etapas</div>
+        <div class="stage" *ngFor="let stage of job.stages.reverse()" [id]="stage._id">
+            <div>{{ stage.name }}</div>
+            <div>{{ stage.description }}</div>
+            <div *ngFor="let skill of stage.skills">{{ skill.name }}</div>            
+        </div>
+    </div>
+</div>
+
+

@@ -1,23 +1,17 @@
-<h3 class="titulo" style="margin-top: 30px;">Nova Vaga</h3>
-<form class="add-job" [formGroup]="jobForm" (ngSubmit)="createJob(jobForm.value)">
 
+<form class="new-job" [formGroup]="jobForm" (ngSubmit)="createJob(jobForm.value)">
+    <div class="new-job__title">Nova Vaga</div>
     <div>
-        <label for="name">
-            Nome de Vaga
-        </label>
+        <label for="name">Nome de Vaga</label>
         <input id="name" type="text" formControlName="name">
     </div>
 
     <div>
-        <label for="description">
-            Descrição ou Detalhes da Vaga
-        </label>
+        <label for="description">Descrição ou Detalhes da Vaga</label>
         <input id="description" type="text" formControlName="description">
     </div>
     <div>
-        <label for="department">
-            Departamento Responsável
-        </label>
+        <label for="department">Departamento Responsável</label>
         <select id="department" type="text" formControlName="department">
             <option *ngFor="let department of departments" [value]="department">{{ department }}</option>
         </select>
@@ -26,7 +20,7 @@
     <button mat-button class="button" style="margin-top: 0px;" type="submit">Cadastrar Vaga</button>
 
     <!-- <app-add-stages (updateStagesEventEmitter)="updateStages($event)"></app-add-stages> -->
-    <!-- <div class="add-job-stages">
+    <!-- <div class="jobs-stages">
 
         <br>
         <h3 class="titulo">Criar Etapas</h3>
@@ -57,7 +51,7 @@
             </div>
         </div>
         <button mat-stroked-button>Adicionar Etapa</button>
-        <div class="add-job-stages-list">
+        <div class="jobs-stages-list">
             <div>Etapa 1</div>
             <div>Descrição da Etapa 1</div>
             <div>Competências da Etapa 1</div>
@@ -70,9 +64,11 @@
 
 
 <div class="jobs">
-
-    <h1 class="jobs__title">Lista de Vagas</h1>
-    <ul>
-        <li *ngFor="let job of jobs.reverse()">{{ job._id }}</li>
-    </ul>
+    <span class="jobs__title">Lista de Vagas</span>
+    <div class="job" *ngFor="let job of jobs.reverse()" [id]="job._id">
+        <div>{{ job.name }}</div>
+        <div>{{ job.description }}</div>
+        <div>{{ job.department }}</div>
+        <app-stages [job]="job"></app-stages>
+    </div>
 </div>

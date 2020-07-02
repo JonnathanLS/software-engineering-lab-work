@@ -4,11 +4,11 @@ import { JobOpportunity } from '../model-interfaces/job-opportunity';
 import { APIService } from '../api/api.service';
 
 @Component({
-  selector: 'app-add-job',
-  templateUrl: './add-job.component.html',
-  styleUrls: ['./add-job.component.css']
+  selector: 'app-jobs',
+  templateUrl: './jobs.component.html',
+  styleUrls: ['./jobs.component.css']
 })
-export class AddJobComponent implements OnInit {
+export class JobsComponent implements OnInit {
   jobForm: FormGroup;
   departments: string[] = [];
   jobs: JobOpportunity[] = [];
