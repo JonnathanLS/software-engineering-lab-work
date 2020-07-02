@@ -1,74 +1,33 @@
 
-<form class="new-job" [formGroup]="jobForm" (ngSubmit)="createJob(jobForm.value)">
+<form class="new-job" [formGroup]="jobForm" (ngSubmit)="create(jobForm.value)">
     <div class="new-job__title">Nova Vaga</div>
-    <div>
-        <label for="name">Nome de Vaga</label>
-        <input id="name" type="text" formControlName="name">
-    </div>
-
-    <div>
-        <label for="description">Descrição ou Detalhes da Vaga</label>
-        <input id="description" type="text" formControlName="description">
-    </div>
-    <div>
-        <label for="department">Departamento Responsável</label>
-        <select id="department" type="text" formControlName="department">
-            <option *ngFor="let department of departments" [value]="department">{{ department }}</option>
-        </select>
-    </div>
-
-    <button mat-button class="button" style="margin-top: 0px;" type="submit">Cadastrar Vaga</button>
-
-    <!-- <app-add-stages (updateStagesEventEmitter)="updateStages($event)"></app-add-stages> -->
-    <!-- <div class="jobs-stages">
-
-        <br>
-        <h3 class="titulo">Criar Etapas</h3>
-        <br>
-        <div>
-            <div>
-                <label for="name">
-                    Nome da Etapa
-                </label>
-                <input id="name" type="text" formControlName="name">
-            </div>
-
-            <div>
-                <label for="description">
-                    Descrição ou Detalhes da Etapa
-                </label>
-                <input id="description" type="text" formControlName="description">
-            </div>
-            <div>
-                <label for="skills">
-                    Competências Exigidas
-                </label>
-                <select multiple>
-                    <option value="volvo">Competência 1</option>
-                    <option value="volvo">Competência 2</option>
-                    <option value="volvo">Competência 3</option>
-                  </select>
-            </div>
-        </div>
-        <button mat-stroked-button>Adicionar Etapa</button>
-        <div class="jobs-stages-list">
-            <div>Etapa 1</div>
-            <div>Descrição da Etapa 1</div>
-            <div>Competências da Etapa 1</div>
-        </div>
-
-    </div> -->
-
-
+    <input formControlName="name" placeholder="Nome da Vaga">
+    <input formControlName="description" placeholder="Descrição da Vaga">
+    <select formControlName="department">
+        <option *ngFor="let department of departments" [value]="department">{{ department }}</option>
+    </select>
+    <button type="submit">Cadastrar Vaga</button>
 </form>
 
 
 <div class="jobs">
     <span class="jobs__title">Lista de Vagas</span>
     <div class="job" *ngFor="let job of jobs.reverse()" [id]="job._id">
-        <div>{{ job.name }}</div>
-        <div>{{ job.description }}</div>
-        <div>{{ job.department }}</div>
+        <button (click)="delete(job)">Deletar</button>
+        <input [(ngModel)]="job.name" disabled/>
+        <input [(ngModel)]="job.description" disabled/>
+        <select disabled [(ngModel)]="job.department">
+            <option 
+                *ngFor="let department of departments" 
+                [selected]="department === job.department" 
+                >
+                    {{ department }}
+            </option>
+        </select>
+        <button *ngIf="!(showButtonUpdateJobID === job._id); else updateButton" (click)="edit(job)"> Editar </button>
+        <ng-template #updateButton>
+            <button (click)="update(job)"> Atualizar </button>
+        </ng-template>
         <app-stages [job]="job"></app-stages>
     </div>
 </div>

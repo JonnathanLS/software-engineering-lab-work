@@ -34,7 +34,9 @@
         <div class="stage" *ngFor="let stage of job.stages.reverse()" [id]="stage._id">
             <div>{{ stage.name }}</div>
             <div>{{ stage.description }}</div>
-            <div *ngFor="let skill of stage.skills">{{ skill.name }}</div>            
+            <div class="stage__skills">
+                <div *ngFor="let skill of stage.skills">{{ skill.name }}</div>   
+            </div>
         </div>
     </div>
 </div>

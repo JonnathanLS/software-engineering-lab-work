@@ -34,18 +34,21 @@ export class APIService {
 		},
 		add: (stage: Stage, job_id: string) => {
 			const invalid = this.hasPropertyWithValueNullOrEmpty(stage, 'name', 'description', 'skills');
-			if (invalid) throw new Error('Job Opportunities - Add Stage : the reported object contains properties with invalid values');
+			if (invalid) throw new Error('Job Opportunities - ADD STAGES : the reported object contains properties with invalid values');
 			const newStage = { name: stage.name, description: stage.description, skills: stage.skills };
 			return this.httpClient.post(`${API.job_opportunities}${job_id}${stagesPath}`, json(newStage));
 		},
 		create: (job: JobOpportunity) => {
 			const invalid = this.hasPropertyWithValueNullOrEmpty(job, 'name', 'description', 'department');
-			if (invalid) throw new Error('Job Opportunities - Create : the reported object contains properties with invalid values');
+			if (invalid) throw new Error('Job Opportunities - CREATE : the reported object contains properties with invalid values');
 			const newJob = { name: job.name, description: job.description, department: job.department };
 			return this.httpClient.post(API.job_opportunities, json(newJob));
 		},
-		update: (id: string, job: JobOpportunity) => this.httpClient.put(`${API.job_opportunities}${id}`, json(job)),
-		delete: (id: string) => this.httpClient.delete(`${API.job_opportunities}${id}`)
+		update: (job: JobOpportunity) => {
+			const newData = { name: job.name, description: job.description, department: job.department };
+			return this.httpClient.put(`${API.job_opportunities}${job._id}`, json(newData), { observe: 'response'});
+		},
+		delete: (id: string) => this.httpClient.delete(`${API.job_opportunities}${id}`, { observe: 'response'})
 	}
 
 	skills = {
