@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { JobOpportunity } from '../model-interfaces/job-opportunity';
 import { APIService } from '../api/api.service';
+import { toggleDisabledInputsAndSelect } from '../utils/utils';
 
 @Component({
   selector: 'app-jobs',
@@ -46,27 +47,16 @@ export class JobsComponent implements OnInit {
     );
   }
   edit(job: JobOpportunity){
-    this.toggleDisabledInputsAndSelect(job);
+    toggleDisabledInputsAndSelect(job._id);
     this.showButtonUpdateJobID = job._id;
   }
   update(job: JobOpportunity){
     this.apiService.jobOpportunities.update(job).subscribe(
-      response => {
-        if(response.status === 200) {
-          console.log(response.body);
-          this.toggleDisabledInputsAndSelect(job);
-          this.showButtonUpdateJobID = null;
-        }
+      jobUpdated => {
+        toggleDisabledInputsAndSelect(job._id);
+        this.showButtonUpdateJobID = null;
       },
       error => console.log(error)
     );
   }
-  toggleDisabledInputsAndSelect(job: JobOpportunity){
-    const jobElement = document.getElementById(job._id);
-    jobElement.childNodes.forEach(node => {
-      if(node.nodeName === 'INPUT' || node.nodeName === 'SELECT')
-        node['disabled'] = !node['disabled'];
-    });
-  }
-  // updateStages = ($event) => this.properties.stages.push($event);
 }

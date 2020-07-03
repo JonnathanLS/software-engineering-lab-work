@@ -4,6 +4,7 @@ import { APIService } from 'src/app/api/api.service';
 import { Stage } from 'src/app/model-interfaces/stage';
 import { Skill } from 'src/app/model-interfaces/skill';
 import { JobOpportunity } from 'src/app/model-interfaces/job-opportunity';
+import { toggleDisabledInputsAndSelect } from 'src/app/utils/utils';
 
 @Component({
   selector: 'app-stages',
@@ -12,13 +13,12 @@ import { JobOpportunity } from 'src/app/model-interfaces/job-opportunity';
 })
 export class StagesComponent implements OnInit {
 
-  @Output() updateStagesEventEmitter = new EventEmitter<Stage[]>();
-
   @Input() job: JobOpportunity;
   stageForm: FormGroup;
   skills: Skill[] = [];
   showAddStage: boolean = false;
-  
+  showButtonUpdateStageID: string = null;
+
   constructor(
     private formBuilder: FormBuilder,
     private apiService: APIService,
@@ -29,6 +29,9 @@ export class StagesComponent implements OnInit {
     const stage: Stage = { _id: null, name: '', description: '', skills: null };
     this.stageForm = this.formBuilder.group(stage); 
   }
+
+  toggleAddStage = () => this.showAddStage = !this.showAddStage;
+
   addStage(stageData: Stage) {
     this.apiService.jobOpportunities.add(stageData, this.job._id).subscribe(
       (jobStages: Stage[]) => {
@@ -39,21 +42,42 @@ export class StagesComponent implements OnInit {
       error => console.log(error)
     );
     this.job.stages.push(stageData);
-    
   }
-  toggleAddStage = () => this.showAddStage = !this.showAddStage;
-  // ngOnChanges(changes: SimpleChanges) {
-  //   for (const propName in changes) {
-  //     if (changes.hasOwnProperty(propName)) {
-  //       switch (propName) {
-  //         case 'stages': {
-  //           this.updateStages();
-  //         }
-  //       }
-  //     }
-  //   }
+  delete(stage: Stage){
+    this.apiService.stages.delete(stage._id).subscribe(
+      response => {
+        if (response.status === 204) {
+          console.log('Etapa deletada com sucesso');
+          this.job.stages = this.job.stages.filter(s => !(s._id === stage._id));
+        }
+      },
+      error => console.warn(error)
+    );
+  }
+  edit(stage: Stage){
+    toggleDisabledInputsAndSelect(stage._id);
+    this.showButtonUpdateStageID = stage._id;
+  }
+  update(stage: Stage){
+    this.apiService.stages.update(stage).subscribe(
+      (stageUpdated: Stage) => {
+        stage = stageUpdated;
+        toggleDisabledInputsAndSelect(stage._id);
+          this.showButtonUpdateStageID = null;
+      },
+      error => console.log(error)
+    );
+  }
+  // getValuesOfSkills(skills: Skill[]): string[]{
+  //   debugger
+  //   const result: string[] = [];
+  //   skills.map(skill => result.push(skill.name));
+  //   return result;
   // }
-  // addStage = ($event) => this.stages.push($event);
-  // updateStages = () => this.updateStagesEventEmitter.emit(this.stages);
-  
+  // skillsContainsID(id: string, skills: Skill[]): boolean {
+  //   debugger
+  //   const skillsID: string[] = [];
+  //   skills.map(skill => skillsID.push(skill._id));
+  //   return skillsID.includes(id);
+  // }
 }

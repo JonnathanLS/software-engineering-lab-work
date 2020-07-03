@@ -12,31 +12,39 @@
 <div class="stages">
     <button class="stages__title" (click)="toggleAddStage()">Nova Etapa</button>
     <form *ngIf="showAddStage" class="stages__new-stage" [formGroup]="stageForm" (ngSubmit)="addStage(stageForm.value)">
-        <div>
-            <label for="name">Nome de Etapa</label>
-            <input id="name" type="text" formControlName="name">
-        </div>
-    
-        <div>
-            <label for="description">Descrição ou Detalhes da Etapa</label>
-            <input id="description" type="text" formControlName="description">
-        </div>
-        <div>
-            <label for="skills">Competências Necessárias</label>
-            <select id="skills" type="text" formControlName="skills" multiple>
-                <option *ngFor="let skill of skills" [value]="skill._id">{{ skill.name }}</option>
-            </select>
-        </div>
+        <input type="text" formControlName="name" placeholder="Nome">
+        <input type="text" formControlName="description" placeholder="Descrição">
+        <select formControlName="skills" multiple>
+            <option *ngFor="let skill of skills" [value]="skill._id">{{ skill.name }}</option>
+        </select>
+        <!-- <app-multi-select formControlName="skills" label="Competências" [list]="skills"></app-multi-select> -->
         <button class="button" type="submit">Adiccionar Etapa</button>
     </form>
     <div *ngIf="job.stages?.length" class="stages__list">
         <div class="stages__title">Lista de Etapas</div>
         <div class="stage" *ngFor="let stage of job.stages.reverse()" [id]="stage._id">
-            <div>{{ stage.name }}</div>
+            <!-- <div>{{ stage.name }}</div>
             <div>{{ stage.description }}</div>
             <div class="stage__skills">
                 <div *ngFor="let skill of stage.skills">{{ skill.name }}</div>   
+            </div> -->
+
+            <button (click)="delete(stage)">Deletar</button>
+            <input [(ngModel)]="stage.name" disabled/>
+            <input [(ngModel)]="stage.description" disabled/>
+            <div *ngIf="!(showButtonUpdateStageID === stage._id); else selectSkills" class="stage__skills">
+                <div *ngFor="let skill of stage.skills">{{ skill.name }}</div>   
             </div>
+            <ng-template #selectSkills>
+                <select [(ngModel)]="stage.skills" multiple>
+                    <option *ngFor="let skill of skills" [value]="skill._id">{{ skill.name }}</option>
+                </select>
+            </ng-template>
+            <!-- <app-multi-select label="Competências" [list]="getValuesOfSkills(stage.skills)"></app-multi-select> -->
+            <button *ngIf="!(showButtonUpdateStageID === stage._id); else updateButton" (click)="edit(stage)"> Editar </button>
+            <ng-template #updateButton>
+                <button (click)="update(stage)"> Atualizar </button>
+            </ng-template>
         </div>
     </div>
 </div>

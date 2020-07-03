@@ -11,10 +11,10 @@ import { HeaderComponent } from './header/header.component';
 import { UserConfigComponent } from './user-config/user-config.component';
 import { HomeModule } from './home/home.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatSelectModule } from '@angular/material/select';
 import { JobsComponent } from './jobs/jobs.component';
 import { StagesComponent } from './jobs/stages/stages.component';
+import { SkillsComponent } from './skills/skills.component';
+import { AngularMaterialModule } from './angular-material/angular-material.module';
 
 @NgModule({
   declarations: [
@@ -23,6 +23,7 @@ import { StagesComponent } from './jobs/stages/stages.component';
     StagesComponent,
     JobsComponent,
     UserConfigComponent,
+    SkillsComponent
   ],
   imports: [
     BrowserModule,
@@ -33,8 +34,7 @@ import { StagesComponent } from './jobs/stages/stages.component';
     AuthenticationModule,
     HomeModule,
     BrowserAnimationsModule,
-    MatFormFieldModule,
-    MatSelectModule
+    AngularMaterialModule
   ],
   providers: [HttpClientModule],
   bootstrap: [AppComponent]

@@ -7,6 +7,7 @@ import { Skill } from '../model-interfaces/skill';
 import { Candidate } from '../model-interfaces/candidate';
 import { CandidateJobOpportunity } from '../model-interfaces/candidate-job-opportunity';
 import { User } from '../model-interfaces/user';
+import { hasPropertyWithValueNullOrEmpty, builderObject } from '../utils/utils';
 
 const json = (object: Object) => JSON.stringify(object);
 
@@ -14,6 +15,15 @@ const json = (object: Object) => JSON.stringify(object);
 export class APIService {
 
 	constructor(private httpClient: HttpClient) { }
+
+	// delete = (data: any, interfaceName: string) => {
+	// 	switch (interfaceName) {
+	// 		case "job": return this.jobOpportunities.delete(data);
+	// 		case "stage": return this.stages.delete(data);
+	// 		case "skill": return this.skills.delete(data);
+	// 		default: throw new Error("API Service DELETE : the interface name is not configured");
+	// 	}
+	// }
 
 	user = {
 		create: (user: User) => this.httpClient.post(API.users, json(user)),
@@ -33,20 +43,16 @@ export class APIService {
 
 		},
 		add: (stage: Stage, job_id: string) => {
-			const invalid = this.hasPropertyWithValueNullOrEmpty(stage, 'name', 'description', 'skills');
-			if (invalid) throw new Error('Job Opportunities - ADD STAGES : the reported object contains properties with invalid values');
-			const newStage = { name: stage.name, description: stage.description, skills: stage.skills };
+			const newStage = builderObject(stage, ['name', 'description', 'skills']);
 			return this.httpClient.post(`${API.job_opportunities}${job_id}${stagesPath}`, json(newStage));
 		},
 		create: (job: JobOpportunity) => {
-			const invalid = this.hasPropertyWithValueNullOrEmpty(job, 'name', 'description', 'department');
-			if (invalid) throw new Error('Job Opportunities - CREATE : the reported object contains properties with invalid values');
-			const newJob = { name: job.name, description: job.description, department: job.department };
+			const newJob = builderObject(job, ['name', 'description', 'department']);
 			return this.httpClient.post(API.job_opportunities, json(newJob));
 		},
 		update: (job: JobOpportunity) => {
 			const newData = { name: job.name, description: job.description, department: job.department };
-			return this.httpClient.put(`${API.job_opportunities}${job._id}`, json(newData), { observe: 'response'});
+			return this.httpClient.put(`${API.job_opportunities}${job._id}`, json(newData));
 		},
 		delete: (id: string) => this.httpClient.delete(`${API.job_opportunities}${id}`, { observe: 'response'})
 	}
@@ -56,14 +62,20 @@ export class APIService {
 			all: () => this.httpClient.get(API.skills),
 			id: (id: string) => this.httpClient.get(`${API.job_opportunities}${id}`)
 		},
-		create: (skill: Skill) => this.httpClient.post(API.skills, json(skill)),
-		update: (id: string, skill: Skill) => this.httpClient.put(`${API.skills}${id}`, json(skill)),
-		delete: (id: string) => this.httpClient.delete(`${API.skills}${id}`)
+		create: (skill: Skill) => {
+			const newSkill = builderObject(skill, ['name', 'description']);
+			return this.httpClient.post(API.skills, json(newSkill));
+		},
+		update: (skill: Skill) => this.httpClient.put(`${API.skills}${skill._id}`, json(skill)),
+		delete: (id: string) => this.httpClient.delete(`${API.skills}${id}`, { observe: 'response'})
 	}
 
 	stages = {
-		update: (id: string, stage: Stage) => this.httpClient.put(`${API.stages}${id}`, json(stage)),
-		delete: (id: string) => this.httpClient.delete(`${API.stages}${id}`)
+		update: (stage: Stage) => {
+			const newData = builderObject(stage, ['name', 'description', 'skills']);
+			return this.httpClient.put(`${API.stages}${stage._id}`, json(newData))
+		},
+		delete: (id: string) => this.httpClient.delete(`${API.stages}${id}`, { observe: 'response'})
 	}
 
 	candidates = {
@@ -78,20 +90,5 @@ export class APIService {
 			id: (id: string) => this.httpClient.delete(`${API.candidates}${id}`),
 			job: (associate_id: string, job_id: string) => this.httpClient.delete(`${API.candidates}job-opportunities/${associate_id}`)
 		},
-
-	}
-
-	hasPropertyWithValueNullOrEmpty = (object: Object, ...props: string[]): boolean => {
-		let result = false;
-		props.forEach(prop => {
-			if (!result) {
-				if (object.hasOwnProperty(prop)) {
-					const value = object[prop];
-					if ( !value ) result = true;
-					else if ( Array.isArray(value) && !value["length"]) result = true;
-				}
-			}
-		});
-		return result;
 	}
 }

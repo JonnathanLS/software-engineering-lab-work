@@ -1,0 +1,13 @@
+<mat-form-field appearance="fill">
+    <mat-label>{{ label }}</mat-label>
+    <mat-select [formControl]="formSelect" multiple>
+        <mat-select-trigger>
+            {{formSelect.value ? formSelect.value[0] : ''}}
+            <span *ngIf="formSelect.value?.length > 1" class="example-additional-selection">
+                (+{{formSelect.value.length - 1}} {{formSelect.value?.length === 2 ? 'other' : 'others'}})
+            </span>
+        </mat-select-trigger>
+        <mat-option *ngFor="let val of list" [value]="val">{{val}}</mat-option>
+    </mat-select>
+</mat-form-field>
+    
