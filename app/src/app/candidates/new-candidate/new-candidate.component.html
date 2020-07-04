@@ -1,0 +1,17 @@
+<form class="new-candidate" [formGroup]="candidateForm" (ngSubmit)="create(candidateForm.value)">
+    <div class="new-candidate__title">Novo Candidato</div>
+    <input formControlName="name" placeholder="Nome">
+    <input formControlName="cpf" maxlength="11" placeholder="CPF">
+    <input formControlName="address" placeholder="Endereço">
+    <div class="new-candidate__new-link">
+        <input placeholder="Perfil Social" [(ngModel)]="newLink" [ngModelOptions]="{standalone: true}">
+        <button type="button" (click)="addLink()">Adicionar</button>
+        <div class="new-candidate__links">
+            <div *ngFor="let link of fbGetValue('links')">
+                {{link}}
+                <button (click)="removeLink(link)">Remover</button>
+            </div>
+        </div>
+    </div>
+    <button type="submit">Cadastrar</button>
+</form>

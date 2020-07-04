@@ -15,6 +15,9 @@ import { JobsComponent } from './jobs/jobs.component';
 import { StagesComponent } from './jobs/stages/stages.component';
 import { SkillsComponent } from './skills/skills.component';
 import { AngularMaterialModule } from './angular-material/angular-material.module';
+import { CandidatesComponent } from './candidates/candidates.component';
+import { NewCandidateComponent } from './candidates/new-candidate/new-candidate.component';
+import { UploadFileComponent } from './candidates/upload-file/upload-file.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,10 @@ import { AngularMaterialModule } from './angular-material/angular-material.modul
     StagesComponent,
     JobsComponent,
     UserConfigComponent,
-    SkillsComponent
+    SkillsComponent,
+    CandidatesComponent,
+    NewCandidateComponent,
+    UploadFileComponent,
   ],
   imports: [
     BrowserModule,

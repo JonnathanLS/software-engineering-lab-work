@@ -7,7 +7,7 @@ import { Skill } from '../model-interfaces/skill';
 import { Candidate } from '../model-interfaces/candidate';
 import { User } from '../model-interfaces/user';
 import { Evaluate } from '../model-interfaces/evaluate';
-import { builderObject } from '../utils/utils';
+import { builderObject, hasPropertyWithValueNullOrEmpty } from '../utils/utils';
 import { CandidateJobOpportunity } from '../model-interfaces/candidate-job-opportunity';
 
 const json = (object: Object) => JSON.stringify(object);
@@ -45,7 +45,7 @@ export class APIService {
 		candidate: (id: string) => this.httpClient.get(`${API.candidates}${id}`),
 		candidate_resume: (candidate_id: string) => this.httpClient.get(`${API.candidates}${candidate_id}/resume`),
 
-		list_of_stages_a_user_is_responsible: () => this.httpClient.get(`${API.evaluations}`),
+		evaluations_that_the_user_is_responsible: () => this.httpClient.get(`${API.evaluations}`),
 		job_opportunity_by_evaluation: (id: string) => this.httpClient.get(`${API.evaluations}${id}/job-opportunity`),
 		candidate_by_evaluation: (id: string) => this.httpClient.get(`${API.evaluations}${id}/candidate`),
 		skills_by_evaluation: (id: string) => this.httpClient.get(`${API.evaluations}${id}/skills`),
@@ -73,12 +73,18 @@ export class APIService {
 			const newData = { name: job.name, description: job.description, department: job.department };
 			return this.httpClient.put(`${API.job_opportunities}${job._id}`, json(newData));
 		},
-		skill: (skill: Skill) => this.httpClient.put(`${API.skills}${skill._id}`, json(skill)),
+		skill: (skill: Skill) => {
+			const newData = builderObject(skill, ['name', 'description']);
+			return this.httpClient.put(`${API.skills}${skill._id}`, json(skill));
+		},
 		stage: (stage: Stage) => {
 			const newData = builderObject(stage, ['name', 'description', 'skills']);
 			return this.httpClient.put(`${API.stages}${stage._id}`, json(newData))
 		},
-		candidate: (candidate: Candidate) => this.httpClient.put(`${API.candidates}${candidate._id}`, json(candidate)),
+		candidate: (candidate: Candidate) => {
+			const newData = builderObject(candidate, ['name', 'cpf', 'address', 'links']);
+			return this.httpClient.put(`${API.candidates}${candidate._id}`, json(newData))
+		},
 	}
 	delete = {
 		job_opportunity: (id: string) => this.httpClient.delete(`${API.job_opportunities}${id}`, { observe: 'response'}),
@@ -94,5 +100,10 @@ export class APIService {
 	}
 	associate_candidate_with_job_opportunity = (candidate_id: string, associate: CandidateJobOpportunity) => this.httpClient.post(`${API.candidates}${candidate_id}${JOBS_PATH}`, json(associate));
 	disassociate_candidate_with_job_opportunity = (associate_id: string) => this.httpClient.delete(`${API.candidates}job-opportunities/${associate_id}`);
-	upload_candidate_resume = (candidate_id: string, file: FormData) => this.httpClient.post(`${API.candidates}${candidate_id}`, file, { observe: 'response'});
+	upload_candidate_curriculum = (candidate_id: string, file: FormData) => {
+		debugger
+		const empty = file.get('resume') === 'null';
+		if (empty) throw new Error('You must attach a resume to the candidate!');
+		return this.httpClient.post(`${API.candidates}${candidate_id}/resume`, file, { observe: 'response'});
+	}
 }

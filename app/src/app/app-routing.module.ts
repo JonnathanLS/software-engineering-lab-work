@@ -5,6 +5,7 @@ import { AuthenticationGuardService } from './authentication/authentication-guar
 import { UserConfigComponent } from './user-config/user-config.component';
 import { JobsComponent } from './jobs/jobs.component';
 import { SkillsComponent } from './skills/skills.component';
+import { CandidatesComponent } from './candidates/candidates.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'auth', pathMatch: 'full' },
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'jobs', canActivate: [AuthenticationGuardService], component: JobsComponent },
   { path: 'users', canActivate: [AuthenticationGuardService], component: UserConfigComponent },
   { path: 'skills', canActivate: [AuthenticationGuardService], component: SkillsComponent },
+  { path: 'candidates', canActivate: [AuthenticationGuardService], component: CandidatesComponent },
 ];
 
 @NgModule({

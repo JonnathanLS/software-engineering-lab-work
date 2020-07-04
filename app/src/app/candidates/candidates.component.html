@@ -1,0 +1,26 @@
+<app-new-candidate (candidateCreated)="addCandidate($event)"></app-new-candidate>
+<div class="candidates">
+    <div class="candidate" *ngFor="let candidate of candidates" [id]="candidate._id">
+        <app-upload-file [candidateId]="candidate._id"></app-upload-file>
+        <button (click)="delete(candidate)">Deletar</button>
+        <input [(ngModel)]="candidate.name" disabled/>
+        <input [(ngModel)]="candidate.cpf" disabled/>
+        <input [(ngModel)]="candidate.address" disabled/>
+        <div class="candidate-links-content">
+            <div *ngIf="!showComponent(candidate._id)" class="candidate__new-link">
+                <input placeholder="Perfil Social" [(ngModel)]="newLink" [ngModelOptions]="{standalone: true}">
+                <button type="button" (click)="addLinkToCandidate(candidate)">Adicionar</button>
+            </div>            
+            <div class="candidate__links">
+                <div *ngFor="let link of candidate.links">
+                    {{link}}
+                    <button *ngIf="!showComponent(candidate._id)" (click)="removeLinkOfCandidate(link, candidate)">Remover</button>
+                </div>
+            </div>
+        </div>
+        <button *ngIf="showComponent(candidate._id); else updateButton" (click)="edit(candidate)"> Editar </button>
+        <ng-template #updateButton>
+            <button (click)="update(candidate)"> Atualizar </button>
+        </ng-template>
+    </div>
+</div>

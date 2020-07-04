@@ -6,5 +6,6 @@ export interface Candidate {
 	cpf: string,
 	address: string,
 	links: string[],
+	curriculum: FormData,
 	jobOpportunities: JobOpportunity[]
 }
