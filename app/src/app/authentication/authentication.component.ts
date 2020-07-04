@@ -22,24 +22,13 @@ export class AuthenticationComponent implements OnInit {
     private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-    // const user: User = { username: "Felipe", password: "123456", department: "HR", role: "HR" };
-    // this.service.authenticate(user).then((response)=> {
-    //   console.log(response);
-    //   const stage: Stage = {
-    //     description: "TesteDescrp",
-    //     name: "TesteName",
-    //     skillIds: [ "ID-Skill-1" ]
-    //   }
-    //   this.apiService.jobOpportunities.add(stage, "5eefd2c6dc11e00028af931a").subscribe(data => console.log(data));
-    // })
-
     this.authForm = this.formBuilder.group({
       username: '',
       password: ''
     });
   }
   onSubmit(userData) {
-    const user: User = { id: '', username: userData.username, password: userData.password }
+    const user: User = { _id: '', username: userData.username, password: userData.password, department: null, role: null };
     this.service
       .authenticate(user)
       .then(response => this.router.navigate(['/home']))

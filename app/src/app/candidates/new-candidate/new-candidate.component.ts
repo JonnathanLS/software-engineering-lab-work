@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Candidate } from 'src/app/model-interfaces/candidate';
 import { APIService } from 'src/app/api/api.service';
+import { fbSetValue, fbGetValue } from 'src/app/utils/utils';
 
 @Component({
   selector: 'app-new-candidate',
@@ -11,22 +12,21 @@ import { APIService } from 'src/app/api/api.service';
 export class NewCandidateComponent implements OnInit {
   newLink: string;
   candidateForm: FormGroup;
-  
+
   @Output() candidateCreated = new EventEmitter();
-  
+
   constructor(private formBuilder: FormBuilder, private apiService: APIService) { }
-  
+
   ngOnInit(): void {
-    const newCandidate: Candidate = { _id: null, name: '', cpf: '', address: '', links: null, curriculum: null, jobOpportunities: null};
+    const newCandidate: Candidate = { _id: null, name: '', cpf: '', address: '', links: null, curriculum: null, jobOpportunities: null, hasResume: null };
     this.candidateForm = this.formBuilder.group(newCandidate);
-    this.fbSetValue('links', []);
+    fbSetValue(this.candidateForm, 'links', []);
   }
-  fbGetValue = (key: string) => this.candidateForm.get(key).value;
-  private fbSetValue = (key: string, value: any) => this.candidateForm.get(key).setValue(value);
+
   addLink = () => {
-    const links: string[] = this.fbGetValue('links');
-    if ( this.newLink && !links.includes(this.newLink)) {
-      this.fbSetValue('links', [...links, this.newLink]);
+    const links: string[] = fbGetValue(this.candidateForm, 'links');
+    if (this.newLink && !links.includes(this.newLink)) {
+      fbSetValue(this.candidateForm, 'links', [...links, this.newLink]);
       this.newLink = '';
     }
   };
@@ -40,6 +40,9 @@ export class NewCandidateComponent implements OnInit {
     );
   }
   emitCandidateCreated = (candidate: Candidate) => this.candidateCreated.emit(candidate);
-  removeLink = (url: string) => 
-    this.fbSetValue('links', this.fbGetValue('links').filter(link => !(link === url)));
+  getLinks = () => fbGetValue(this.candidateForm, 'links');
+  removeLink = (url: string) => {
+    const newLinks: string[] = fbGetValue(this.candidateForm, 'links').filter(link => !(link === url));
+    fbSetValue(this.candidateForm, 'links', newLinks);
+  }
 }

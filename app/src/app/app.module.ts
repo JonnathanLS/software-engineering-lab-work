@@ -17,7 +17,10 @@ import { SkillsComponent } from './skills/skills.component';
 import { AngularMaterialModule } from './angular-material/angular-material.module';
 import { CandidatesComponent } from './candidates/candidates.component';
 import { NewCandidateComponent } from './candidates/new-candidate/new-candidate.component';
-import { UploadFileComponent } from './candidates/upload-file/upload-file.component';
+import { UploadFileComponent } from './candidates/candidate/upload-file/upload-file.component';
+import { CandidateComponent } from './candidates/candidate/candidate.component';
+import { StageEvaluatorComponent } from './candidates/candidate/associate-job/stage-evaluator/stage-evaluator.component';
+import { AssociateJobComponent } from './candidates/candidate/associate-job/associate-job.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +33,9 @@ import { UploadFileComponent } from './candidates/upload-file/upload-file.compon
     CandidatesComponent,
     NewCandidateComponent,
     UploadFileComponent,
+    CandidateComponent,
+    AssociateJobComponent,
+    StageEvaluatorComponent,
   ],
   imports: [
     BrowserModule,

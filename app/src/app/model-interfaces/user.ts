@@ -1,7 +1,7 @@
 export interface User {
-    id: string,
+    _id: string,
     username: string,
-    password: string,
-    department?: string,
-    role?: string
+    department: string,
+    role: string
+    password?: string
 }

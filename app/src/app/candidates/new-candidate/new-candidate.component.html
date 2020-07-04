@@ -7,7 +7,7 @@
         <input placeholder="Perfil Social" [(ngModel)]="newLink" [ngModelOptions]="{standalone: true}">
         <button type="button" (click)="addLink()">Adicionar</button>
         <div class="new-candidate__links">
-            <div *ngFor="let link of fbGetValue('links')">
+            <div *ngFor="let link of getLinks()">
                 {{link}}
                 <button (click)="removeLink(link)">Remover</button>
             </div>

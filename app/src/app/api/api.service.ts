@@ -31,10 +31,12 @@ export class APIService {
 		evaluators: () => this.httpClient.get(`${API.users}evaluators`),
 	}
 	get = {
+		// Users
+		evaluators: () => this.httpClient.get(`${API.users}evaluators`),
 		// Departments
-		all_departments: () => this.httpClient.get(API.departments),
+		departments: () => this.httpClient.get(API.departments),
 		// Job Oppotunities
-		all_job_opportunities: () => this.httpClient.get(API.job_opportunities),
+		job_opportunities: () => this.httpClient.get(API.job_opportunities),
 		job_opportunity: (id: string) => this.httpClient.get(`${API.job_opportunities}${id}`),
 		stages_of_job_opportunity: (job_id: Stage) => this.httpClient.get(`${API.job_opportunities}${job_id}${STAGES_PATH}`),
 		// Skills
@@ -49,8 +51,10 @@ export class APIService {
 		job_opportunity_by_evaluation: (id: string) => this.httpClient.get(`${API.evaluations}${id}/job-opportunity`),
 		candidate_by_evaluation: (id: string) => this.httpClient.get(`${API.evaluations}${id}/candidate`),
 		skills_by_evaluation: (id: string) => this.httpClient.get(`${API.evaluations}${id}/skills`),
+		candidate_curriculum: (id: string) => this.httpClient.get(`${API.candidates}${id}/resume`)
 	}
 	post = {
+		user: (user: User) => this.httpClient.post(API.users, json(user)),
 		job_opportunity: (job: JobOpportunity) => {
 			const newValue = builderObject(job, ['name', 'description', 'department']);
 			return this.httpClient.post(API.job_opportunities, json(newValue));
@@ -63,10 +67,17 @@ export class APIService {
 			const newValue = builderObject(candidate, ['name', 'cpf', 'address', 'links']);
 			return this.httpClient.post(API.candidates, json(newValue));
 		},
+		candidate_curriculum: (candidate_id: string, file: FormData) => {
+			debugger
+			const empty = file.get('resume') === 'null';
+			if (empty) throw new Error('You must attach a resume to the candidate!');
+			return this.httpClient.post(`${API.candidates}${candidate_id}/resume`, file, { observe: 'response' });
+		},
 		evaluate: (evaluate: Evaluate) => {
 			const newValue = builderObject(evaluate, ['stageEvaluator', 'skillScoreList']);
 			return this.httpClient.post(API.evaluations, json(newValue));
 		}
+
 	}
 	update = {
 		job_opportunity: (job: JobOpportunity) => {
@@ -87,12 +98,12 @@ export class APIService {
 		},
 	}
 	delete = {
-		job_opportunity: (id: string) => this.httpClient.delete(`${API.job_opportunities}${id}`, { observe: 'response'}),
-		skill: (id: string) => this.httpClient.delete(`${API.skills}${id}`, { observe: 'response'}),
-		stage: (id: string) => this.httpClient.delete(`${API.stages}${id}`, { observe: 'response'}),
+		job_opportunity: (id: string) => this.httpClient.delete(`${API.job_opportunities}${id}`, { observe: 'response' }),
+		skill: (id: string) => this.httpClient.delete(`${API.skills}${id}`, { observe: 'response' }),
+		stage: (id: string) => this.httpClient.delete(`${API.stages}${id}`, { observe: 'response' }),
 		// Candidates
-		candidate: (id: string) => this.httpClient.delete(`${API.candidates}${id}`, { observe: 'response'}),
-		candidate_resume: (candidate_id: string) => this.httpClient.delete(`${API.candidates}${candidate_id}/resume`, { observe: 'response'}),
+		candidate: (id: string) => this.httpClient.delete(`${API.candidates}${id}`, { observe: 'response' }),
+		candidate_curriculum: (id: string) => this.httpClient.delete(`${API.candidates}${id}/resume`, { observe: 'response' }),
 	}
 	add_estages_to_job_opportunity = (stage: Stage, job_id: string) => {
 		const newStage = builderObject(stage, ['name', 'description', 'skills']);
@@ -100,10 +111,4 @@ export class APIService {
 	}
 	associate_candidate_with_job_opportunity = (candidate_id: string, associate: CandidateJobOpportunity) => this.httpClient.post(`${API.candidates}${candidate_id}${JOBS_PATH}`, json(associate));
 	disassociate_candidate_with_job_opportunity = (associate_id: string) => this.httpClient.delete(`${API.candidates}job-opportunities/${associate_id}`);
-	upload_candidate_curriculum = (candidate_id: string, file: FormData) => {
-		debugger
-		const empty = file.get('resume') === 'null';
-		if (empty) throw new Error('You must attach a resume to the candidate!');
-		return this.httpClient.post(`${API.candidates}${candidate_id}/resume`, file, { observe: 'response'});
-	}
 }

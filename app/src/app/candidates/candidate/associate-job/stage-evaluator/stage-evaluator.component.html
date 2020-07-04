@@ -1,0 +1,7 @@
+<div class="stage-evaluator">
+  <p>{{ stage.name }}</p>
+  <select type="text" [(ngModel)]="evaluatorSelected" [ngModelOptions]="{standalone: true}"
+    (change)="addStageEvaluator(stage._id)">
+    <option *ngFor="let evaluator of evaluators()" [value]="evaluator._id">{{ evaluator.username }}</option>
+  </select>
+</div>

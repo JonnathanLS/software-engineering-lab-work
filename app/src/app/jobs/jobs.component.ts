@@ -20,10 +20,10 @@ export class JobsComponent implements OnInit {
     private apiService: APIService) { }
 
   ngOnInit(): void {
-    this.apiService.get.all_departments().subscribe((departments: string[]) => this.departments = departments);
+    this.apiService.get.departments().subscribe((departments: string[]) => this.departments = departments);
     const job: JobOpportunity = { _id: null, name: '', stages: null, department: '', description: '' };
     this.jobForm = this.formBuilder.group(job);
-    this.apiService.get.all_job_opportunities().subscribe((jobs: JobOpportunity[]) => this.jobs = jobs);
+    this.apiService.get.job_opportunities().subscribe((jobs: JobOpportunity[]) => this.jobs = jobs);
   }
   create(job: JobOpportunity) {
     this.apiService.post.job_opportunity(job).subscribe(
@@ -34,7 +34,7 @@ export class JobsComponent implements OnInit {
       error => console.log(error)
     );
   }
-  delete(job: JobOpportunity){
+  delete(job: JobOpportunity) {
     debugger
     this.apiService.delete.job_opportunity(job._id).subscribe(
       response => {
@@ -46,11 +46,11 @@ export class JobsComponent implements OnInit {
       error => console.warn(error)
     );
   }
-  edit(job: JobOpportunity){
+  edit(job: JobOpportunity) {
     toggleDisabledInputsAndSelect(job._id);
     this.showButtonUpdateJobID = job._id;
   }
-  update(job: JobOpportunity){
+  update(job: JobOpportunity) {
     this.apiService.update.job_opportunity(job).subscribe(
       jobUpdated => {
         toggleDisabledInputsAndSelect(job._id);

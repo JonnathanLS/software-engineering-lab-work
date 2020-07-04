@@ -1,0 +1,29 @@
+<div class="candidate" [id]="candidate._id">
+    <app-menu *ngIf="hasCurriculum; else uploadCurriculo" content="Currículo" [items]="curriculumActions" (clicked)="curriculumClicked($event)"></app-menu>
+    <ng-template #uploadCurriculo>
+        <app-upload-file [candidateId]="candidate._id" (curriculumAdded)="curriculumAdded($event)"></app-upload-file>
+    </ng-template>
+    <input [(ngModel)]="candidate.name" disabled/>
+    <input [(ngModel)]="candidate.cpf" disabled/>
+    <input [(ngModel)]="candidate.address" disabled/>
+    <div class="candidate-links-content">
+        <div *ngIf="uploadCandidate" class="candidate__new-link">
+            <input placeholder="Perfil Social" [(ngModel)]="newLink" [ngModelOptions]="{standalone: true}">
+            <button type="button" (click)="addLinkToCandidate()">Adicionar</button>
+        </div>
+        <div class="candidate__links">
+            <div *ngFor="let link of candidate.links">
+                {{link}}
+                <button *ngIf="uploadCandidate" (click)="removeLinkOfCandidate(link)">Remover</button>
+            </div>
+        </div>
+    </div>
+    <button *ngIf="!uploadCandidate; else updateCandidate" (click)="edit()"> Editar </button>
+    <ng-template #updateCandidate>
+        <button (click)="update()"> Atualizar </button>
+    </ng-template>
+    <app-associate-job [candidateId]="candidate._id"></app-associate-job>
+    <div candidate-job-opportunities>
+
+    </div>
+</div>

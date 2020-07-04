@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { APIService } from 'src/app/api/api.service';
 
@@ -10,6 +10,7 @@ import { APIService } from 'src/app/api/api.service';
 export class UploadFileComponent implements OnInit {
   uploadForm: FormGroup;
   @Input() candidateId: string;
+  @Output() curriculumAdded = new EventEmitter<boolean>();
   constructor(
     private formBuilder: FormBuilder,
     private apiService: APIService
@@ -27,10 +28,11 @@ export class UploadFileComponent implements OnInit {
   onSubmit() {
     const file = new FormData();
     file.append('resume', this.uploadForm.get('file').value);
-    this.apiService.upload_candidate_curriculum(this.candidateId, file).subscribe(
+    this.apiService.post.candidate_curriculum(this.candidateId, file).subscribe(
       response => {
         if (response.status === 201) {
           console.log('Currículo carregado com sucesso');
+          this.curriculumAdded.emit(true);
         }
       },
       error => console.error(error)

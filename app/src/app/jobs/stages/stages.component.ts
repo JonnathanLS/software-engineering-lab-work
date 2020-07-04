@@ -25,9 +25,11 @@ export class StagesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    if (!this.job)
+      throw new Error('StagesComponent : there are properties that have not been loaded.');
     this.apiService.get.all_skills().subscribe((skills: Skill[]) => this.skills = skills);
     const stage: Stage = { _id: null, name: '', description: '', skills: null };
-    this.stageForm = this.formBuilder.group(stage); 
+    this.stageForm = this.formBuilder.group(stage);
   }
 
   toggleAddStage = () => this.showAddStage = !this.showAddStage;
@@ -43,7 +45,7 @@ export class StagesComponent implements OnInit {
     );
     this.job.stages.push(stageData);
   }
-  delete(stage: Stage){
+  delete(stage: Stage) {
     this.apiService.delete.stage(stage._id).subscribe(
       response => {
         if (response.status === 204) {
@@ -54,16 +56,16 @@ export class StagesComponent implements OnInit {
       error => console.warn(error)
     );
   }
-  edit(stage: Stage){
+  edit(stage: Stage) {
     toggleDisabledInputsAndSelect(stage._id);
     this.showButtonUpdateStageID = stage._id;
   }
-  update(stage: Stage){
+  update(stage: Stage) {
     this.apiService.update.stage(stage).subscribe(
       (stageUpdated: Stage) => {
         stage = stageUpdated;
         toggleDisabledInputsAndSelect(stage._id);
-          this.showButtonUpdateStageID = null;
+        this.showButtonUpdateStageID = null;
       },
       error => console.log(error)
     );
