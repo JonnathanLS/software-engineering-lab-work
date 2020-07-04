@@ -1,7 +1,10 @@
+import { JobOpportunity } from './job-opportunity';
+
 export interface Candidate {
-    id: string
+    _id: string
     name: string,
 	cpf: string,
 	address: string,
-	links: string[]
+	links: string[],
+	jobOpportunities: JobOpportunity[]
 }

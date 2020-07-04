@@ -33,7 +33,7 @@ export const hasPropertyWithValueNullOrEmpty = (object: Object, ...props: string
   return result;
 }
 
-export const builderObject = (object: Skill | JobOpportunity | Stage, properties: string[]) =>{
+export const builderObject = (object: Object, properties: string[]) =>{
   const invalid = hasPropertyWithValueNullOrEmpty(object, ...properties);
   if (invalid) throw new Error(`Builder Object : the reported object contains properties with invalid values`);
   return properties.reduce( (newObject, prop) => {

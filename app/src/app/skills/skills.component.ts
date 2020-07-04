@@ -19,12 +19,12 @@ export class SkillsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.apiService.skills.get.all().subscribe((skills: Skill[]) => this.skills = skills);
+    this.apiService.get.all_skills().subscribe((skills: Skill[]) => this.skills = skills);
     const newSkill: Skill = { _id: null, name: '', description: '' };
     this.skillForm = this.formBuilder.group(newSkill);
   }
   create(skill: Skill){
-    this.apiService.skills.create(skill).subscribe(
+    this.apiService.post.skill(skill).subscribe(
       (skillCreated: Skill) => {
         this.skills.push(skillCreated);
         this.skillForm.reset();
@@ -33,7 +33,7 @@ export class SkillsComponent implements OnInit {
     );
   }
   delete(skill: Skill){
-    this.apiService.skills.delete(skill._id).subscribe(
+    this.apiService.delete.skill(skill._id).subscribe(
       response => {
         if (response.status === 204) {
           console.log('Competência deletada com sucesso');
@@ -48,7 +48,7 @@ export class SkillsComponent implements OnInit {
     this.showButtonUpdateSkillID = skill._id;
   }
   update(skill: Skill){
-    this.apiService.skills.update(skill).subscribe(
+    this.apiService.update.skill(skill).subscribe(
       (skillUpdated: Skill) => {
         toggleDisabledInputsAndSelect(skillUpdated._id);
         this.showButtonUpdateSkillID = null;

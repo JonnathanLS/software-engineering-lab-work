@@ -20,13 +20,13 @@ export class JobsComponent implements OnInit {
     private apiService: APIService) { }
 
   ngOnInit(): void {
-    this.apiService.departments.get.all().subscribe((departments: string[]) => this.departments = departments);
+    this.apiService.get.all_departments().subscribe((departments: string[]) => this.departments = departments);
     const job: JobOpportunity = { _id: null, name: '', stages: null, department: '', description: '' };
     this.jobForm = this.formBuilder.group(job);
-    this.apiService.jobOpportunities.get.all().subscribe((jobs: JobOpportunity[]) => this.jobs = jobs);
+    this.apiService.get.all_job_opportunities().subscribe((jobs: JobOpportunity[]) => this.jobs = jobs);
   }
   create(job: JobOpportunity) {
-    this.apiService.jobOpportunities.create(job).subscribe(
+    this.apiService.post.job_opportunity(job).subscribe(
       (jobCreated: JobOpportunity) => {
         this.jobs.push(jobCreated);
         this.jobForm.reset();
@@ -36,10 +36,10 @@ export class JobsComponent implements OnInit {
   }
   delete(job: JobOpportunity){
     debugger
-    this.apiService.jobOpportunities.delete(job._id).subscribe(
+    this.apiService.delete.job_opportunity(job._id).subscribe(
       response => {
         if (response.status === 204) {
-          console.log('vaga deletada com sucesso');
+          console.log('Vaga deletada com sucesso');
           this.jobs = this.jobs.filter(j => !(j._id === job._id));
         }
       },
@@ -51,7 +51,7 @@ export class JobsComponent implements OnInit {
     this.showButtonUpdateJobID = job._id;
   }
   update(job: JobOpportunity){
-    this.apiService.jobOpportunities.update(job).subscribe(
+    this.apiService.update.job_opportunity(job).subscribe(
       jobUpdated => {
         toggleDisabledInputsAndSelect(job._id);
         this.showButtonUpdateJobID = null;

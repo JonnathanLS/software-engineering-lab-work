@@ -1,17 +1,23 @@
 const HOST = "https://software-engineering-lab-api.herokuapp.com";
-export const JOBS_PATH = "/job-opportunities/";
-export const SKILLS_PATH = "/skills/";
-export const STAGES_PATH = "/stages/";
-export const CANDIDATES_PATH = "/candidates/";
-export const USERS_PATH = '/users/';
-export const DEPARTMENTS = '/departments';
+const PATH = {
+    JOBS: "/job-opportunities/",
+    SKILLS: "/skills/",
+    STAGES: "/stages/",
+    CANDIDATES: "/candidates/",
+    USERS: '/users/',
+    DEPARTMENTS: '/departments/',
+    EVALUATIONS: '/evaluations/'
+}
+export const STAGES_PATH = PATH.STAGES;
+export const JOBS_PATH = PATH.JOBS;
 
 export const API = {
     authenticate: HOST,
-    departments: `${HOST}${DEPARTMENTS}`,
-    users: `${HOST}${USERS_PATH}`,
-    job_opportunities: `${HOST}${JOBS_PATH}`,
-    skills: `${HOST}${SKILLS_PATH}`,
-    stages: `${HOST}${STAGES_PATH}`,
-    candidates: `${HOST}${CANDIDATES_PATH}`,
+    departments: `${HOST}${PATH.DEPARTMENTS}`,
+    users: `${HOST}${PATH.USERS}`,
+    job_opportunities: `${HOST}${PATH.JOBS}`,
+    skills: `${HOST}${PATH.SKILLS}`,
+    stages: `${HOST}${PATH.STAGES}`,
+    candidates: `${HOST}${PATH.CANDIDATES}`,
+    evaluations: `${HOST}${PATH.EVALUATIONS}`,
 }

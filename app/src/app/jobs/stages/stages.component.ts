@@ -25,7 +25,7 @@ export class StagesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.apiService.skills.get.all().subscribe((skills: Skill[]) => this.skills = skills);
+    this.apiService.get.all_skills().subscribe((skills: Skill[]) => this.skills = skills);
     const stage: Stage = { _id: null, name: '', description: '', skills: null };
     this.stageForm = this.formBuilder.group(stage); 
   }
@@ -33,7 +33,7 @@ export class StagesComponent implements OnInit {
   toggleAddStage = () => this.showAddStage = !this.showAddStage;
 
   addStage(stageData: Stage) {
-    this.apiService.jobOpportunities.add(stageData, this.job._id).subscribe(
+    this.apiService.add_estages_to_job_opportunity(stageData, this.job._id).subscribe(
       (jobStages: Stage[]) => {
         this.job.stages = jobStages;
         this.stageForm.reset();
@@ -44,7 +44,7 @@ export class StagesComponent implements OnInit {
     this.job.stages.push(stageData);
   }
   delete(stage: Stage){
-    this.apiService.stages.delete(stage._id).subscribe(
+    this.apiService.delete.stage(stage._id).subscribe(
       response => {
         if (response.status === 204) {
           console.log('Etapa deletada com sucesso');
@@ -59,7 +59,7 @@ export class StagesComponent implements OnInit {
     this.showButtonUpdateStageID = stage._id;
   }
   update(stage: Stage){
-    this.apiService.stages.update(stage).subscribe(
+    this.apiService.update.stage(stage).subscribe(
       (stageUpdated: Stage) => {
         stage = stageUpdated;
         toggleDisabledInputsAndSelect(stage._id);

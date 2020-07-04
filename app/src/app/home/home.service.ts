@@ -7,5 +7,5 @@ import { APIService } from '../api/api.service';
 export class HomeService {
 
   constructor(private apiService: APIService) { }
-  getJobOpportunities = () => this.apiService.jobOpportunities.get.all();
+  
 }
