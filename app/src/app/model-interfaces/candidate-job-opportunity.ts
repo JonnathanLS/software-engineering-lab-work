@@ -1,7 +1,9 @@
 import { StageEvaluator } from './stage-evaluator';
+import { JobOpportunity } from './job-opportunity';
 
 export interface CandidateJobOpportunity {
     _id: string,
     jobOpportunityId: string,
-	stageEvaluatorList: StageEvaluator[]
+    jobOpportunity: JobOpportunity,
+    stageEvaluatorList: StageEvaluator[]
 }

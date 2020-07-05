@@ -4,6 +4,8 @@ import { CandidatesService } from 'src/app/candidates/candidates.service';
 import { StageEvaluator } from 'src/app/model-interfaces/stage-evaluator';
 import { fbGetValue, fbSetValue } from 'src/app/utils/utils';
 import { FormGroup } from '@angular/forms';
+import { Evaluate } from 'src/app/model-interfaces/evaluate';
+import { User } from 'src/app/model-interfaces/user';
 
 @Component({
   selector: 'app-stage-evaluator',
@@ -15,6 +17,7 @@ export class StageEvaluatorComponent implements OnInit {
   @Input() stage: Stage;
   @Input() form: FormGroup;
   evaluatorSelected: string;
+  evaluators: User[];
   constructor(
     private candidatesService: CandidatesService
   ) { }
@@ -25,8 +28,9 @@ export class StageEvaluatorComponent implements OnInit {
     this.candidatesService.reloadJobs();
     this.candidatesService.reloadEvaluators();
     this.evaluatorSelected = null;
+    this.evaluators = this.getEvaluators();
   }
-  evaluators = () => this.candidatesService.evaluators;
+  getEvaluators = () => this.candidatesService.evaluators;
   addStageEvaluator = (stageId: string) => {
     const key: string = 'stageEvaluatorList';
     let currentValues: StageEvaluator[] = fbGetValue(this.form, key);

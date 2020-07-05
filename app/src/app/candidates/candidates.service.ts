@@ -11,10 +11,7 @@ export class CandidatesService {
   evaluators: User[] = [];
   constructor(
     private apiService: APIService,
-  ) {
-    this.getJobs();
-    this.getEvaluators();
-  }
+  ) { }
   private getJobs = () => this.apiService.get.job_opportunities().subscribe(
     (jobs: JobOpportunity[]) => this.jobs = jobs,
     error => console.log(error)

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { API, STAGES_PATH, JOBS_PATH } from './api-endpoint';
 import { JobOpportunity } from '../model-interfaces/job-opportunity';
 import { Stage } from '../model-interfaces/stage';
@@ -68,10 +68,10 @@ export class APIService {
 			return this.httpClient.post(API.candidates, json(newValue));
 		},
 		candidate_curriculum: (candidate_id: string, file: FormData) => {
-			debugger
 			const empty = file.get('resume') === 'null';
 			if (empty) throw new Error('You must attach a resume to the candidate!');
-			return this.httpClient.post(`${API.candidates}${candidate_id}/resume`, file, { observe: 'response' });
+			const headers = new HttpHeaders().set("Content-Type", "multipart/form-data");
+			return this.httpClient.post(`${API.candidates}${candidate_id}/resume`, file, { observe: 'response', headers });
 		},
 		evaluate: (evaluate: Evaluate) => {
 			const newValue = builderObject(evaluate, ['stageEvaluator', 'skillScoreList']);
@@ -110,5 +110,5 @@ export class APIService {
 		return this.httpClient.post(`${API.job_opportunities}${job_id}${STAGES_PATH}`, json(newStage));
 	}
 	associate_candidate_with_job_opportunity = (candidate_id: string, associate: CandidateJobOpportunity) => this.httpClient.post(`${API.candidates}${candidate_id}${JOBS_PATH}`, json(associate));
-	disassociate_candidate_with_job_opportunity = (associate_id: string) => this.httpClient.delete(`${API.candidates}job-opportunities/${associate_id}`);
+	disassociate_candidate_with_job_opportunity = (associate_id: string) => this.httpClient.delete(`${API.candidates}job-opportunities/${associate_id}`, { observe: 'response' });
 }

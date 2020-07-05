@@ -3,6 +3,7 @@
     <ng-template #uploadCurriculo>
         <app-upload-file [candidateId]="candidate._id" (curriculumAdded)="curriculumAdded($event)"></app-upload-file>
     </ng-template>
+    <button type="button" (click)="delete()"> Deletar </button>
     <input [(ngModel)]="candidate.name" disabled/>
     <input [(ngModel)]="candidate.cpf" disabled/>
     <input [(ngModel)]="candidate.address" disabled/>
@@ -14,16 +15,28 @@
         <div class="candidate__links">
             <div *ngFor="let link of candidate.links">
                 {{link}}
-                <button *ngIf="uploadCandidate" (click)="removeLinkOfCandidate(link)">Remover</button>
+                <button type="button" *ngIf="uploadCandidate" (click)="removeLinkOfCandidate(link)">Remover</button>
             </div>
         </div>
     </div>
-    <button *ngIf="!uploadCandidate; else updateCandidate" (click)="edit()"> Editar </button>
+    <button type="button" *ngIf="!uploadCandidate; else updateCandidate" (click)="edit()"> Editar </button>
     <ng-template #updateCandidate>
         <button (click)="update()"> Atualizar </button>
     </ng-template>
-    <app-associate-job [candidateId]="candidate._id"></app-associate-job>
-    <div candidate-job-opportunities>
-
+    <app-associate-job [candidate]="candidate"
+        (associatedJobs)="newAssociatedJobs($event)"
+        *ngIf="thereAreJobOpportunitiesToAssociate">
+    </app-associate-job>
+    <div associated-jobs>
+        <div class="associated-job" *ngFor="let associate of candidate.jobOpportunities">
+            <button type="button" (click)="disassociateJob(associate._id)"> Desvincular </button>
+            <div class="associated-job__list">
+                {{ associate.jobOpportunity.name }}
+                <div class="associated-job__stage-evaluator" *ngFor="let stageEvaluator of associate.stageEvaluatorList">
+                    <p>Etapa: {{ stageEvaluator.stage.name }}</p>
+                    <p>Avaliador: {{ stageEvaluator.evaluator.username }}</p>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

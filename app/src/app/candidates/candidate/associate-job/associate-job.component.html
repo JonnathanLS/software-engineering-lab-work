@@ -1,7 +1,7 @@
 <form class="associate-job" [formGroup]="associateJobForm" (ngSubmit)="associate(associateJobForm.value)">
   <div class="associate-job__title">Associar Vaga</div>
   <select type="text" formControlName="jobOpportunityId" (change)="selectJob()">
-    <option *ngFor="let job of jobs()" [value]="job._id">{{ job.name }}</option>
+    <option *ngFor="let job of jobs" [value]="job._id">{{ job.name }}</option>
   </select>
   <div class="associate-job__stages">
     <app-stage-evaluator *ngFor="let stage of selectedJob?.stages" [form]="associateJobForm" [stage]="stage"></app-stage-evaluator>

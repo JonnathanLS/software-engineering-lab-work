@@ -2,6 +2,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Candidate } from 'src/app/model-interfaces/candidate';
 import { APIService } from 'src/app/api/api.service';
 import { toggleDisabledInputsAndSelect } from 'src/app/utils/utils';
+import { CandidateJobOpportunity } from 'src/app/model-interfaces/candidate-job-opportunity';
+import { CandidatesService } from '../candidates.service';
 
 @Component({
 	selector: 'app-candidate',
@@ -13,21 +15,27 @@ export class CandidateComponent implements OnInit {
 	@Input() candidate: Candidate;
 	@Output() candidateRemoved = new EventEmitter();
 
+	// associatedJobs: CandidateJobOpportunity[] = [];
+
 	uploadCandidate = false;
 	newLink: string = '';
 	hasCurriculum = true;
 	curriculumActions: string[] = ['download', 'delete'];
+	thereAreJobOpportunitiesToAssociate: boolean;
 
 	// associatedJobs: Job
 	constructor(
-		private apiService: APIService
+		private apiService: APIService,
+		private candidatesService: CandidatesService
 	) { }
 
 	ngOnInit(): void {
 		if (!this.candidate)
 			throw new Error('CandidateComponent : there are properties that have not been loaded.');
 		this.hasCurriculum = this.candidate.hasResume;
+		this.updatePropJobOpportunitiesToAssociate();
 	}
+
 	delete() {
 		this.apiService.delete.candidate(this.candidate._id).subscribe(
 			response => {
@@ -84,4 +92,25 @@ export class CandidateComponent implements OnInit {
 	}
 	curriculumAdded = (result: boolean) => this.hasCurriculum = result;
 
+	newAssociatedJobs = (newData: CandidateJobOpportunity[]) => {
+		debugger
+		this.candidate.jobOpportunities = newData;
+		this.updatePropJobOpportunitiesToAssociate();
+	}
+
+	disassociateJob = (associateId: string) => {
+		this.apiService.disassociate_candidate_with_job_opportunity(associateId).subscribe(
+			response => {
+				if (response.status === 204) {
+					console.log('Vaga de trabalho desvinculada do candidato');
+					this.thereAreJobOpportunitiesToAssociate = true;
+					this.candidate.jobOpportunities = this.candidate.jobOpportunities.filter(associate => associate._id !== associateId);
+				}
+			},
+			error => console.error(error)
+		);
+	}
+
+	updatePropJobOpportunitiesToAssociate = () =>
+		this.thereAreJobOpportunitiesToAssociate = this.candidate.jobOpportunities.length < this.candidatesService.jobs.length;
 }

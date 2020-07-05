@@ -1,4 +1,4 @@
-import { JobOpportunity } from './job-opportunity';
+import { CandidateJobOpportunity } from './candidate-job-opportunity';
 
 export interface Candidate {
 	_id: string
@@ -8,5 +8,5 @@ export interface Candidate {
 	links: string[],
 	hasResume: boolean,
 	curriculum: FormData,
-	jobOpportunities: JobOpportunity[]
+	jobOpportunities: CandidateJobOpportunity[]
 }

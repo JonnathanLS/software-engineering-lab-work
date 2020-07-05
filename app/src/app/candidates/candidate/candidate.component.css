@@ -3,3 +3,10 @@
     padding: 10px;
     margin: 10px;
 }
+.associated-job {
+    background-color: lightgreen;
+}
+.associated-job__list{
+    background-color: lightcoral;
+    margin: 10px;
+}

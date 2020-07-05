@@ -6,16 +6,16 @@ import { AuthenticationService } from '../authentication/authentication.service'
 @Injectable()
 export class ApiInterceptor implements HttpInterceptor {
 
-	constructor(private authService: AuthenticationService) {}
+	constructor(private authService: AuthenticationService) { }
 
-	intercept( req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-		if (this.authService.isAuthenticated()){
+	intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+		if (this.authService.isAuthenticated()) {
+			debugger
 			const auth = this.authService.getAuthorization();
-			const dupReq = req.clone({ 
-				headers: req.headers
-					.set('Authorization', "Basic " + auth)
-					.set("Content-Type", "application/json")
-			});
+			let headers = !req.headers.get('Content-Type')
+				? req.headers.set('Authorization', "Basic " + auth).set("Content-Type", "application/json")
+				: req.headers.set('Authorization', "Basic " + auth).set('Content-Type', req.headers.get('Content-Type'));
+			const dupReq = req.clone({ headers });
 			return next.handle(dupReq);
 		}
 		return next.handle(req);
