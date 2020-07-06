@@ -1,0 +1,10 @@
+<div>
+<form class="new-stage" [formGroup]="stageForm" (ngSubmit)="add(stageForm.value)">
+  <input type="text" formControlName="name" placeholder="Nome da Etapa">
+  <input type="text" formControlName="description" placeholder="Descrição da Etapa">
+  <select formControlName="skills" multiple>
+    <option *ngFor="let skill of skills" [value]="skill._id">{{ skill.name }}</option>
+  </select>
+  <button mat-raised-button class="primary" type="submit">Adiccionar Etapa</button>
+</form>
+</div>

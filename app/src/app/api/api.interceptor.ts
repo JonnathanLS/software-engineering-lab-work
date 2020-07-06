@@ -10,7 +10,6 @@ export class ApiInterceptor implements HttpInterceptor {
 
 	intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 		if (this.authService.isAuthenticated()) {
-			debugger
 			const auth = this.authService.getAuthorization();
 			let headers = !req.headers.get('Content-Type')
 				? req.headers.set('Authorization', "Basic " + auth).set("Content-Type", "application/json")

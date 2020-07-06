@@ -1,33 +1,14 @@
-
-<form class="new-job" [formGroup]="jobForm" (ngSubmit)="create(jobForm.value)">
-    <div class="new-job__title">Nova Vaga</div>
-    <input formControlName="name" placeholder="Nome da Vaga">
-    <input formControlName="description" placeholder="Descrição da Vaga">
-    <select formControlName="department">
-        <option *ngFor="let department of departments" [value]="department">{{ department }}</option>
-    </select>
-    <button type="submit">Cadastrar Vaga</button>
-</form>
-
-
-<div class="jobs">
-    <span class="jobs__title">Lista de Vagas</span>
-    <div class="job" *ngFor="let job of jobs.reverse()" [id]="job._id">
-        <button (click)="delete(job)">Deletar</button>
-        <input [(ngModel)]="job.name" disabled/>
-        <input [(ngModel)]="job.description" disabled/>
-        <select disabled [(ngModel)]="job.department">
-            <option 
-                *ngFor="let department of departments" 
-                [selected]="department === job.department" 
-                >
-                    {{ department }}
-            </option>
-        </select>
-        <button *ngIf="!(showButtonUpdateJobID === job._id); else updateButton" (click)="edit(job)"> Editar </button>
-        <ng-template #updateButton>
-            <button (click)="update(job)"> Atualizar </button>
-        </ng-template>
-        <app-stages [job]="job"></app-stages>
-    </div>
+<div class="container">
+    <app-new-job (jobCreated)="addJob($event)" [departments]="departments"></app-new-job>
+    <h1 class="jobs-title">Vagas Cadastradas</h1>
+    <mat-accordion>
+        <app-job class="job"
+            *ngFor="let job of jobs.reverse()"
+            [job]="job"
+            [skills]="skills"
+            [departments]="departments"
+            (jobDeleted)="removeJob($event)">
+        </app-job>
+    </mat-accordion>
 </div>
+

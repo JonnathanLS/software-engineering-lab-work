@@ -1,0 +1,10 @@
+.new-job-menu{
+  display: flex;
+  justify-content: flex-end;
+}
+.new-job-menu button{
+  margin-left: 1rem;
+}
+.container-new-job{
+  padding: 0.8rem 0;
+}

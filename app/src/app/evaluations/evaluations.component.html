@@ -1,6 +1,7 @@
-<!-- <div class="evaluations">
-    <div *ngFor="let evaluation of evaluations" [id]="evaluation._id">
-        
+<div class="evaluations">
+    <div class="evaluations__title">Avaliações</div>
+    <div *ngFor="let evaluation of evaluations">
+        {{ evaluation.stage.name }}
     </div>
 
-</div> -->
+</div>

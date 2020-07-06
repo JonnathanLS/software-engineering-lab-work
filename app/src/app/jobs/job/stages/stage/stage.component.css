@@ -1,0 +1,16 @@
+.mat-expansion-panel-header-description {
+  flex-grow: 0;
+}
+.stage-menu{
+  display: flex;
+  justify-content: flex-end
+}
+.stage-info input, .stage-info select{
+  width: 90%;
+}
+.skill-title{
+  padding: 0.5rem;
+  font-weight: bold;
+  border-bottom: 1px solid slateblue;
+  margin-bottom: 1rem;
+}

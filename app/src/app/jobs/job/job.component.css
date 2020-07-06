@@ -1,0 +1,16 @@
+.mat-expansion-panel-header-description {
+  flex-grow: 0;
+}
+.job-menu{
+  display: flex;
+  justify-content: flex-end
+}
+.job-info input, .job-info select{
+  width: 90%;
+}
+.stages-title{
+  padding: 1rem;
+  font-weight: bold;
+  border-bottom: 1px solid steelblue;
+  margin-bottom: 1.5rem;
+}

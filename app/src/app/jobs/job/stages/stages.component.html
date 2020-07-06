@@ -1,0 +1,7 @@
+
+<div *ngIf="stages?.length" class="stages">
+    <div class="stage" *ngFor="let stage of stages.reverse()" [id]="stage._id">
+        <app-stage [stage]="stage" [skills]="skills" stageDeleted="removeStage($event)"></app-stage>
+    </div>
+</div>
+

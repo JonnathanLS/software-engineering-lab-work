@@ -1,45 +1,26 @@
-.menu{
-    display: flex;
-    height: 100%;
-    background-color: rgb(22, 89, 145);
-    grid-area: header;
-    padding: 0;
-    flex-direction: column;
-    
+.header {
+    background-color: rgb(43, 43, 153);
+    padding: 0 1rem ;
 }
-.menu li {
-    padding: 15px 0px;
-    border: 1px solid lightcyan;
-    height: 100%;
-    width: 100%;
-    transition: font 0.5s, color 0.5s;
-    cursor: pointer;
+.header li {
+    border-bottom: 1px solid white;
+    padding: 0.7rem 0;
 }
-.menu li:hover{
-    background: lightsteelblue
-}
-.menu a{
-    text-decoration: none;
+.header a {
     color: white;
-    height: 100%;
-    display: flex;
-    padding: 5px;
-    align-items: center;
+    text-decoration: none;
 }
-.menu li:hover a{
-    font-size: 1rem;
-    color: black    ;
-    background: lightsteelblue
+.header a:hover {
+    color: yellow;
 }
+
 @media screen and (min-width: 600px) {
-    .menu {
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
+    .header {
+        display: flex;
+        justify-content: flex-start;
     }
-    .menu li {
-        width: auto;
+    .header li {
         border: 0;
-        padding: 0 10px;
+        padding: 0.7rem;
     }
 }

@@ -1,4 +1,4 @@
-<button mat-button [matMenuTriggerFor]="menu"> {{ content }} </button>
+<button mat-button [matMenuTriggerFor]="menu"> {{ text }} </button>
 <mat-menu #menu="matMenu">
   <button mat-menu-item *ngFor="let item of items" (click)="emitEvent(item)">{{ item }}</button>
 </mat-menu>

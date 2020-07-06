@@ -12,7 +12,6 @@ import { UserConfigComponent } from './user-config/user-config.component';
 import { HomeModule } from './home/home.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { JobsComponent } from './jobs/jobs.component';
-import { StagesComponent } from './jobs/stages/stages.component';
 import { SkillsComponent } from './skills/skills.component';
 import { AngularMaterialModule } from './angular-material/angular-material.module';
 import { CandidatesComponent } from './candidates/candidates.component';
@@ -21,11 +20,24 @@ import { UploadFileComponent } from './candidates/candidate/upload-file/upload-f
 import { CandidateComponent } from './candidates/candidate/candidate.component';
 import { StageEvaluatorComponent } from './candidates/candidate/associate-job/stage-evaluator/stage-evaluator.component';
 import { AssociateJobComponent } from './candidates/candidate/associate-job/associate-job.component';
+import { EvaluateComponent } from './evaluations/evaluate/evaluate.component';
+import { NewJobComponent } from './jobs/new-job/new-job.component';
+import { MatButtonModule } from '@angular/material/button';
+
+
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { JobComponent } from './jobs/job/job.component';
+import { NewStageComponent } from './jobs/job/new-stage/new-stage.component';
+import { StagesComponent } from './jobs/job/stages/stages.component';
+import { StageComponent } from './jobs/job/stages/stage/stage.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
+    StageComponent,
     StagesComponent,
     JobsComponent,
     UserConfigComponent,
@@ -36,6 +48,10 @@ import { AssociateJobComponent } from './candidates/candidate/associate-job/asso
     CandidateComponent,
     AssociateJobComponent,
     StageEvaluatorComponent,
+    EvaluateComponent,
+    NewJobComponent,
+    JobComponent,
+    NewStageComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,7 +62,13 @@ import { AssociateJobComponent } from './candidates/candidate/associate-job/asso
     AuthenticationModule,
     HomeModule,
     BrowserAnimationsModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    MatButtonModule,
+
+    MatFormFieldModule,
+    MatInputModule,
+    MatExpansionModule
+
   ],
   providers: [HttpClientModule],
   bootstrap: [AppComponent]

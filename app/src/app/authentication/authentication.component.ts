@@ -31,7 +31,7 @@ export class AuthenticationComponent implements OnInit {
     const user: User = { _id: '', username: userData.username, password: userData.password, department: null, role: null };
     this.service
       .authenticate(user)
-      .then(response => this.router.navigate(['/home']))
+      .then(response => this.router.navigate(['/evaluations']))
       .catch(error => console.log(error));
   }
 

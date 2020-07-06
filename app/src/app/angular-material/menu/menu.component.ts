@@ -7,7 +7,7 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  @Input() content: string = '';
+  @Input() text: string = '';
   @Input() items: string[] = [];
   @Output() clicked = new EventEmitter();
 
@@ -15,6 +15,6 @@ export class MenuComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  emitEvent = (content: string) => this.clicked.emit(content);
+  emitEvent = (item: string) => this.clicked.emit(item);
 
 }

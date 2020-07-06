@@ -5,19 +5,11 @@ import { FormGroup } from '@angular/forms';
 
 export const toggleDisabledInputsAndSelect = (idElement: string) => {
   const element = document.getElementById(idElement);
-  element.childNodes.forEach(node => {
-    if (node.nodeName === 'INPUT' || node.nodeName === 'SELECT')
-      node['disabled'] = !node['disabled'];
-    else if (node.nodeName === 'DIV') {
-      if (node.childNodes.length) {
-        node.childNodes.forEach(n => {
-          if (n.nodeName === 'INPUT' || n.nodeName === 'SELECT')
-            n['disabled'] = !n['disabled'];
-        });
-      }
-    }
-
-  });
+  const inputs = element.getElementsByTagName('INPUT');
+  const selects = element.getElementsByTagName('SELECT');
+  const changeDisable = (el: Element) => el['disabled'] = !el['disabled'];
+  for (var i = 0; i < inputs.length; i++) changeDisable(inputs[i]);
+  for (var i = 0; i < selects.length; i++) changeDisable(selects[i]);
 }
 
 export const hasPropertyWithValueNullOrEmpty = (object: Object, ...props: string[]): boolean => {
@@ -45,3 +37,10 @@ export const builderObject = (object: Object, properties: string[]) => {
 
 export const fbGetValue = (form: FormGroup, key: string) => form.get(key).value;
 export const fbSetValue = (form: FormGroup, key: string, value: any) => form.get(key).setValue(value);
+
+export const propertiesInputAngularInvalid = (nameComponent: string, ...props: any[]) => {
+  props.map(prop => {
+    if (!prop)
+      throw new Error(nameComponent + " : há propriedades que precisam sere informadas.")
+  })
+}
