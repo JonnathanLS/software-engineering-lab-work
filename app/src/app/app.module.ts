@@ -64,6 +64,7 @@ import { LoaderModule } from './loader/loader.module';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
     LoaderModule,
     AuthenticationModule,
     HomeModule,

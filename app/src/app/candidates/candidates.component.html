@@ -1,8 +1,11 @@
-<app-new-candidate (candidateCreated)="addCandidate($event)"></app-new-candidate>
-<div class="candidates">
-    <app-candidate 
-        *ngFor="let candidate of candidates"
-        [candidate]="candidate" 
-        (candidateRemoved)="removeCandidate($event)">
-    </app-candidate>
+<div class="container">
+    <app-new-candidate (candidateCreated)="addCandidate($event)"></app-new-candidate>
+    <h1 class="candidates-title">Candidatos Cadastrados</h1>
+    <mat-accordion>
+        <app-candidate 
+            *ngFor="let candidate of candidates"
+            [candidate]="candidate" 
+            (candidateRemoved)="removeCandidate($event)">
+        </app-candidate>
+    </mat-accordion>
 </div>

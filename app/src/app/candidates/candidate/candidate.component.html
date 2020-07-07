@@ -1,42 +1,60 @@
-<div class="candidate" [id]="candidate._id">
-    <app-menu *ngIf="hasCurriculum; else uploadCurriculo" content="Currículo" [items]="curriculumActions" (clicked)="curriculumClicked($event)"></app-menu>
-    <ng-template #uploadCurriculo>
-        <app-upload-file [candidateId]="candidate._id" (curriculumAdded)="curriculumAdded($event)"></app-upload-file>
-    </ng-template>
-    <button type="button" (click)="delete()"> Deletar </button>
-    <input [(ngModel)]="candidate.name" disabled/>
-    <input [(ngModel)]="candidate.cpf" disabled/>
-    <input [(ngModel)]="candidate.address" disabled/>
-    <div class="candidate-links-content">
-        <div *ngIf="uploadCandidate" class="candidate__new-link">
-            <input placeholder="Perfil Social" [(ngModel)]="newLink" [ngModelOptions]="{standalone: true}">
-            <button type="button" (click)="addLinkToCandidate()">Adicionar</button>
-        </div>
-        <div class="candidate__links">
-            <div *ngFor="let link of candidate.links">
-                {{link}}
-                <button type="button" *ngIf="uploadCandidate" (click)="removeLinkOfCandidate(link)">Remover</button>
-            </div>
-        </div>
+<mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+        {{ candidate.name }}
+        </mat-panel-title>
+        <mat-panel-description>
+        {{ panelOpenState ? 'Ocultar' : 'Expandir'}}
+        </mat-panel-description>
+    </mat-expansion-panel-header>
+    
+    <div class="candidate-menu">
+        <button mat-flat-button color="warn" *ngIf="!uploadCandidate; else updateButton" (click)="edit()"> Editar </button>
+        <ng-template #updateButton>
+        <button mat-flat-button color="primary" (click)="update()"> Atualizar </button>
+        </ng-template>
+        <button mat-flat-button color="accent" (click)="delete()">Deletar</button>
     </div>
-    <button type="button" *ngIf="!uploadCandidate; else updateCandidate" (click)="edit()"> Editar </button>
-    <ng-template #updateCandidate>
-        <button (click)="update()"> Atualizar </button>
-    </ng-template>
-    <app-associate-job [candidate]="candidate"
-        (associatedJobs)="newAssociatedJobs($event)"
-        *ngIf="thereAreJobOpportunitiesToAssociate">
-    </app-associate-job>
-    <div associated-jobs>
-        <div class="associated-job" *ngFor="let associate of candidate.jobOpportunities">
-            <button type="button" (click)="disassociateJob(associate._id)"> Desvincular </button>
-            <div class="associated-job__list">
-                {{ associate.jobOpportunity.name }}
-                <div class="associated-job__stage-evaluator" *ngFor="let stageEvaluator of associate.stageEvaluatorList">
-                    <p>Etapa: {{ stageEvaluator.stage.name }}</p>
-                    <p>Avaliador: {{ stageEvaluator.evaluator.username }}</p>
+    <div class="candidate-info" [id]="candidate._id">
+        <app-menu *ngIf="hasCurriculum; else uploadCurriculo" content="Currículo" [items]="curriculumActions" (clicked)="curriculumClicked($event)"></app-menu>
+        <ng-template #uploadCurriculo>
+            <app-upload-file [candidateId]="candidate._id" (curriculumAdded)="curriculumAdded($event)"></app-upload-file>
+        </ng-template>
+        <input [(ngModel)]="candidate.name" disabled/>
+        <input [(ngModel)]="candidate.cpf" disabled/>
+        <input [(ngModel)]="candidate.address" disabled/>
+
+        <!-- Gerenciamento de Links do Candidato -->
+        <h1 class="candidates-title">Perfis Sociais</h1>
+        <div *ngIf="!uploadCandidate; else newLinks" >
+            <input class="link-item" *ngFor="let link of candidate.links" [value]="link" disabled/>
+        </div>
+        
+        <ng-template class="candidate-new-links" #newLinks>
+            <input placeholder="Perfil Social" [(ngModel)]="newLink" [ngModelOptions]="{standalone: true}">
+            <button type="button" mat-raised-button color="primary" (click)="addLinkToCandidate()">Adicionar</button>
+            <div *ngFor="let link of candidate.links" class="candidate-links">
+                <input class="link-item" [value]="link" disabled/>
+                <button  class="link-item" mat-flat-button color="accent" type="button" (click)="removeLinkOfCandidate(link)">Remover</button>
+            </div>
+        </ng-template>
+        <!-- Gerenciamento de Links do Candidato -->            
+        <app-associate-job [candidate]="candidate"
+            (associatedJobs)="newAssociatedJobs($event)"
+            *ngIf="thereAreJobOpportunitiesToAssociate">
+        </app-associate-job>
+        <div associated-jobs>
+            <div class="associated-job" *ngFor="let associate of candidate.jobOpportunities">
+                <button type="button" (click)="disassociateJob(associate._id)"> Desvincular </button>
+                <div class="associated-job__list">
+                    {{ associate.jobOpportunity.name }}
+                    <div class="associated-job__stage-evaluator" *ngFor="let stageEvaluator of associate.stageEvaluatorList">
+                        <p>Etapa: {{ stageEvaluator.stage.name }}</p>
+                        <p>Avaliador: {{ stageEvaluator.evaluator.username }}</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</mat-expansion-panel>
+      

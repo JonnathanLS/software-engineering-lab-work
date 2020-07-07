@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Candidate } from 'src/app/model-interfaces/candidate';
 import { APIService } from 'src/app/api/api.service';
-import { toggleDisabledInputsAndSelect } from 'src/app/utils/utils';
+import { toggleDisabledInputsAndSelect, propertiesInputAngularInvalid } from 'src/app/utils/utils';
 import { CandidateJobOpportunity } from 'src/app/model-interfaces/candidate-job-opportunity';
 import { CandidatesService } from '../candidates.service';
 
@@ -15,23 +15,20 @@ export class CandidateComponent implements OnInit {
 	@Input() candidate: Candidate;
 	@Output() candidateRemoved = new EventEmitter();
 
-	// associatedJobs: CandidateJobOpportunity[] = [];
-
+	panelOpenState: boolean = false;
 	uploadCandidate = false;
 	newLink: string = '';
 	hasCurriculum = true;
 	curriculumActions: string[] = ['download', 'delete'];
 	thereAreJobOpportunitiesToAssociate: boolean;
 
-	// associatedJobs: Job
 	constructor(
 		private apiService: APIService,
 		private candidatesService: CandidatesService
 	) { }
 
 	ngOnInit(): void {
-		if (!this.candidate)
-			throw new Error('CandidateComponent : there are properties that have not been loaded.');
+		propertiesInputAngularInvalid('CandidateComponent', this.candidate);
 		this.hasCurriculum = this.candidate.hasResume;
 		this.updatePropJobOpportunitiesToAssociate();
 	}

@@ -1,0 +1,28 @@
+.new-candidate-menu{
+    display: flex;
+    justify-content: flex-end;
+}
+.new-candidate-menu button{
+    margin-left: 1rem;
+}
+.container-new-candidate{
+    padding: 0.8rem 0;
+}
+.new-candidate__links-container{
+    display: flex;
+    flex-direction: column;
+}
+.new-candidate__links-container > button{
+    margin: 0.75rem 0;
+}
+.new-candidate__link {
+    display: flex;
+}
+.new-candidate__link > input,.new-candidate__link > button {
+    margin: 0;
+    border-radius: 0;
+}
+.link-item{
+    flex-grow: 1;
+    flex-basis: 1;
+}

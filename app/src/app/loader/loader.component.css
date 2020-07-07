@@ -1,15 +1,15 @@
 .loader-loading, .loader-ending {
    margin: 0;
-   background: linear-gradient(270deg, green,steelblue, slategray);
-   height: 0.3em;  
-   width: 95%;   
+   background: linear-gradient(270deg, darkgreen ,green, lightgreen);
+   height: 0.4em;  
+   width: 99%;   
 }
 .loader-loading{
-   animation: progress-loading 5s ease-out;
+   animation: progress-loading 7.5s ease-out;
 }
 @keyframes progress-loading {
    0% { width: 0; }
-   95% { width: 95%; }
+   99% { width: 99%; }
 }
 .loader-ending {
    /* '1s' is related to the time configured on the interceptor */
@@ -20,6 +20,6 @@
    100% { opacity: 0; }
 }
 .loader-stopped{
-   height: 0.3em;  
+   height: 0.4em;  
    width: 100%;
 }

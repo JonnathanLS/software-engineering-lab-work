@@ -1,12 +1,29 @@
-.candidate{
-    background-color:cadetblue;
-    padding: 10px;
-    margin: 10px;
+.mat-expansion-panel-header-description {
+    flex-grow: 0;
 }
-.associated-job {
-    background-color: lightgreen;
+.candidate-menu{
+    display: flex;
+    justify-content: flex-end
 }
-.associated-job__list{
-    background-color: lightcoral;
-    margin: 10px;
+.candidate-info{
+    padding: 1rem 0;
+}
+.candidate-info input, .candidate-info select{
+    width: 92%;
+}
+.stages-title{
+    padding: 1rem;
+    font-weight: bold;
+    border-bottom: 1px solid steelblue;
+    margin-bottom: 1.5rem;
+}
+
+.candidate-links {
+    display: flex;
+}
+.link-item{
+    flex-grow: 1;
+    flex-basis: 1;
+    margin: 0.3rem 0;
+    border-radius: 0;
 }

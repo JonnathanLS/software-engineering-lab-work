@@ -18,8 +18,10 @@ input, select{
     margin: 0.25rem 0;
     border-bottom: 1px solid lightgray;
 }
+input:disabled, select:disabled {
+    background-color: rgb(224, 224, 224, 0.4);
+}
 input:hover, select:hover{
-    background-color: whitesmoke;
     border-bottom: 1px solid blue;
 }
 .mat-expansion-panel-header-description {
