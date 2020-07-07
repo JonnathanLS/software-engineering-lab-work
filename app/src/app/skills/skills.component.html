@@ -1,20 +1,12 @@
-<form class="new-skill" [formGroup]="skillForm" (ngSubmit)="create(skillForm.value)">
-    <div class="new-skill__title">Adicionar Nova Competência</div>
-    <input formControlName="name" placeholder="Nome da Competência">
-    <input formControlName="description" placeholder="Descrição da Competência">
-    <button type="submit">Cadastrar</button>
-</form>
-
-
-<div class="skills">
-    <span class="skills__title">Lista de Vagas</span>
-    <div class="skill" *ngFor="let skill of skills.reverse()" [id]="skill._id">
-        <button (click)="delete(skill)">Deletar</button>
-        <input [(ngModel)]="skill.name" disabled/>
-        <input [(ngModel)]="skill.description" disabled/>
-        <button *ngIf="!(showButtonUpdateSkillID === skill._id); else updateButton" (click)="edit(skill)"> Editar </button>
-        <ng-template #updateButton>
-            <button (click)="update(skill)">Atualizar</button>
-        </ng-template>
-    </div>
+<div class="container">
+    <app-new-skill (skillCreated)="addSkill($event)" [skills]="skills"></app-new-skill>
+    <h1 class="skills-title">Competências Cadastradas</h1>
+    <!-- <app-loader message="Estamos buscando as competências cadastradas, por favor aguarde ..."></app-loader> -->
+    <mat-accordion>
+        <app-skill class="skill"
+            *ngFor="let skill of skills.reverse()"
+            [skill]="skill"
+            (skillDeleted)="removeSkill($event)">
+        </app-skill>
+    </mat-accordion>
 </div>

@@ -1,0 +1,10 @@
+.new-skill-menu{
+    display: flex;
+    justify-content: flex-end;
+  }
+  .new-skill-menu button{
+    margin-left: 1rem;
+  }
+  .container-new-skill{
+    padding: 0.8rem 0;
+  }

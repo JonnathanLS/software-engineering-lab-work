@@ -17,8 +17,7 @@ export class JobsComponent implements OnInit {
   jobs: JobOpportunity[] = [];
   skills: Skill[] = []
 
-  constructor(
-    private apiService: APIService) { }
+  constructor( private apiService: APIService ) { }
 
   ngOnInit(): void {
     this.apiService.get.departments().subscribe((departments: string[]) => this.departments = departments);

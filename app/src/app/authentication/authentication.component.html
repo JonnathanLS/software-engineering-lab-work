@@ -1,6 +1,7 @@
-
-<form class="authentication" [formGroup]="authForm" (ngSubmit)="onSubmit(authForm.value)">
-    <input type="text" formControlName="username" placeholder="Usuário">
-    <input type="password" formControlName="password" placeholder="Senha de Acesso">
-    <button type="submit">Acessar</button>
-</form>
+<div class="container">
+    <form class="authentication" [formGroup]="authForm" (ngSubmit)="onSubmit(authForm.value)">
+        <input type="text" formControlName="username" placeholder="Usuário">
+        <input type="password" formControlName="password" placeholder="Senha de Acesso">
+        <button mat-button color="primary" type="submit">Acessar</button>
+    </form>
+</div>

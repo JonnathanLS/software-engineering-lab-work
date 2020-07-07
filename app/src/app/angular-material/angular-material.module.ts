@@ -12,9 +12,10 @@ import { MultiSelectComponent } from './multi-select/multi-select.component';
 import { MenuComponent } from './menu/menu.component';
 import { ButtonComponent } from './button/button.component';
 import { InputComponent } from './input/input.component';
+import { ExpansionPainelComponent } from './expansion-painel/expansion-painel.component';
 
 @NgModule({
-  declarations: [MultiSelectComponent, MenuComponent, ButtonComponent, InputComponent],
+  declarations: [MultiSelectComponent, MenuComponent, ButtonComponent, InputComponent, ExpansionPainelComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,

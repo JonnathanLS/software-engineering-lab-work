@@ -1,0 +1,10 @@
+<form class="new-skill" [formGroup]="skillForm" (ngSubmit)="create(skillForm.value)">
+    <div class="new-skill-menu">
+        <button type="button" (click)="toogleContainerNewSkill()" mat-stroked-button color="primary"> {{ textButtonNewSkill }}</button>
+        <button *ngIf="displayContainerNewSkill" class="new-skill__submit" mat-stroked-button color="primary" type="submit"> Cadastrar </button>
+    </div>
+    <div *ngIf="displayContainerNewSkill" class="container-new-skill">
+        <input formControlName="name" placeholder="Nome">
+        <input formControlName="description" placeholder="Descrição ">
+      </div>
+</form>

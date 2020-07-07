@@ -5,16 +5,18 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .container{
-    padding: 1rem;
+    padding: 1.2rem;
 }
 input, select{
     width: 100%;
     border: 0;
     font-size: 1rem;
     background-color: rgb(224, 224, 224, 0.2);
-    padding: 1rem;
+    padding: 0.75rem;
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;    
     margin: 0.25rem 0;
-    border-bottom: 1px solid slategray;
+    border-bottom: 1px solid lightgray;
 }
 input:hover, select:hover{
     background-color: whitesmoke;

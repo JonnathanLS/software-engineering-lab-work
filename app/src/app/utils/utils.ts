@@ -41,6 +41,6 @@ export const fbSetValue = (form: FormGroup, key: string, value: any) => form.get
 export const propertiesInputAngularInvalid = (nameComponent: string, ...props: any[]) => {
   props.map(prop => {
     if (!prop)
-      throw new Error(nameComponent + " : há propriedades que precisam sere informadas.")
+      throw new Error(nameComponent + " : there are properties that need to be passed on")
   })
 }

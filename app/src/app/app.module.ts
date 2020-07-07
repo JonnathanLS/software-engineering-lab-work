@@ -32,6 +32,9 @@ import { JobComponent } from './jobs/job/job.component';
 import { NewStageComponent } from './jobs/job/new-stage/new-stage.component';
 import { StagesComponent } from './jobs/job/stages/stages.component';
 import { StageComponent } from './jobs/job/stages/stage/stage.component';
+import { NewSkillComponent } from './skills/new-skill/new-skill.component';
+import { SkillComponent } from './skills/skill/skill.component';
+import { LoaderModule } from './loader/loader.module';
 
 @NgModule({
   declarations: [
@@ -52,6 +55,8 @@ import { StageComponent } from './jobs/job/stages/stage/stage.component';
     NewJobComponent,
     JobComponent,
     NewStageComponent,
+    NewSkillComponent,
+    SkillComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,6 +64,7 @@ import { StageComponent } from './jobs/job/stages/stage/stage.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    LoaderModule,
     AuthenticationModule,
     HomeModule,
     BrowserAnimationsModule,
@@ -71,6 +77,6 @@ import { StageComponent } from './jobs/job/stages/stage/stage.component';
 
   ],
   providers: [HttpClientModule],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

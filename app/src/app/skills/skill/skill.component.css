@@ -1,0 +1,10 @@
+.mat-expansion-panel-header-description {
+    flex-grow: 0;
+}
+.skill-menu{
+    display: flex;
+    justify-content: flex-end
+}
+.skill-info input, .skill-info select{
+    width: 90%;
+}
