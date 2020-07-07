@@ -27,9 +27,8 @@ export class NewStageComponent implements OnInit {
   }
   add(stageData: Stage) {
     this.apiService.add_estages_to_job_opportunity(stageData, this.jobID).subscribe(
-      (jobStages: Stage[]) => {
-        console.log(jobStages);
-        this.stageCreated.emit(stageData);
+      (jobStages: Stage) => {
+        this.stageCreated.emit(jobStages);
         this.stageForm.reset();
       },
       error => console.log(error)
