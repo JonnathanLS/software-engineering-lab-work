@@ -8,5 +8,6 @@ export interface Candidate {
 	links: string[],
 	hasResume: boolean,
 	curriculum: FormData,
-	jobOpportunities: CandidateJobOpportunity[]
+	jobOpportunities: CandidateJobOpportunity[],
+	deleted: boolean
 }

@@ -3,7 +3,11 @@ import { Candidate } from 'src/app/model-interfaces/candidate';
 import { APIService } from 'src/app/api/api.service';
 import { toggleDisabledInputsAndSelect, propertiesInputAngularInvalid } from 'src/app/utils/utils';
 import { CandidateJobOpportunity } from 'src/app/model-interfaces/candidate-job-opportunity';
-import { CandidatesService } from '../candidates.service';
+import { JobOpportunity } from 'src/app/model-interfaces/job-opportunity';
+import { User } from 'src/app/model-interfaces/user';
+
+interface TextNewCurriculum { Show: string, Hide: string };
+const TXT_NEW_CURRICULUM: TextNewCurriculum = { Show: 'Anexar Currículo', Hide: 'Ocultar' };
 
 @Component({
 	selector: 'app-candidate',
@@ -18,19 +22,27 @@ export class CandidateComponent implements OnInit {
 	panelOpenState: boolean = false;
 	uploadCandidate = false;
 	newLink: string = '';
+	showUploadFile = false;
 	hasCurriculum = true;
 	curriculumActions: string[] = ['download', 'delete'];
 	thereAreJobOpportunitiesToAssociate: boolean;
+	textCurriculum = 'Anexar Currículo';
+
+	jobs: JobOpportunity[];
 
 	constructor(
-		private apiService: APIService,
-		private candidatesService: CandidatesService
-	) { }
+		private apiService: APIService ) { }
 
 	ngOnInit(): void {
 		propertiesInputAngularInvalid('CandidateComponent', this.candidate);
 		this.hasCurriculum = this.candidate.hasResume;
-		this.updatePropJobOpportunitiesToAssociate();
+		this.apiService.get.job_opportunities().subscribe(
+			(jobs: JobOpportunity[]) => {
+			  this.jobs = jobs;
+			  this.updatePropJobOpportunitiesToAssociate();
+			},
+			error => console.error(error)
+		  )
 	}
 
 	delete() {
@@ -51,6 +63,7 @@ export class CandidateComponent implements OnInit {
 	update() {
 		this.apiService.update.candidate(this.candidate).subscribe(
 			(candidateUpdated: Candidate) => {
+				console.log('Candidato Atualizado com Sucesso')
 				toggleDisabledInputsAndSelect(candidateUpdated._id);
 				this.uploadCandidate = false;
 			},
@@ -64,8 +77,14 @@ export class CandidateComponent implements OnInit {
 			this.newLink = '';
 		}
 	}
-	removeLinkOfCandidate = (url: string) =>
-		this.candidate.links = this.candidate.links.filter(link => !(link === url));
+	removeLinkOfCandidate = (url: string) => {
+		this.candidate.links = this.candidate.links.filter(link => link !== url);
+	}
+
+	toggleUploadFileContainer = () => {
+		this.textCurriculum = this.textCurriculum === TXT_NEW_CURRICULUM.Show ? TXT_NEW_CURRICULUM.Hide : TXT_NEW_CURRICULUM.Show;
+		this.showUploadFile = !this.showUploadFile;		
+	}
 
 	curriculumClicked = (action: 'download' | 'delete') => {
 		if (action === 'download') {
@@ -93,6 +112,7 @@ export class CandidateComponent implements OnInit {
 			error => console.error(error)
 		);
 	}
+
 	curriculumAdded = (result: boolean) => this.hasCurriculum = result;
 
 	newAssociatedJobs = (newData: CandidateJobOpportunity[]) => {
@@ -114,5 +134,6 @@ export class CandidateComponent implements OnInit {
 	}
 
 	updatePropJobOpportunitiesToAssociate = () =>
-		this.thereAreJobOpportunitiesToAssociate = this.candidate.jobOpportunities.length < this.candidatesService.jobs.length;
+		this.thereAreJobOpportunitiesToAssociate = this.candidate.jobOpportunities.length < this.jobs.length;
+
 }

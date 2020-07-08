@@ -23,6 +23,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 
 
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -58,7 +59,6 @@ import { SkillResultComponent } from './jobs/job/result/candidate-result/stage-r
     UploadFileComponent,
     CandidateComponent,
     AssociateJobComponent,
-    StageEvaluatorComponent,
     NewJobComponent,
     JobComponent,
     NewStageComponent,
@@ -74,6 +74,7 @@ import { SkillResultComponent } from './jobs/job/result/candidate-result/stage-r
     CandidateResultComponent,
     StageResultComponent,
     SkillResultComponent,
+    StageEvaluatorComponent
   ],
   imports: [
     BrowserModule,
@@ -86,11 +87,13 @@ import { SkillResultComponent } from './jobs/job/result/candidate-result/stage-r
     AuthenticationModule,
     BrowserAnimationsModule,
     AngularMaterialModule,
+    MatMenuModule,
     MatButtonModule,
     MatTabsModule,
     MatRadioModule,
     MatIconModule,
     MatListModule,
+    
 
     MatFormFieldModule,
     MatInputModule,

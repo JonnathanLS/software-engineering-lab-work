@@ -6,5 +6,8 @@
   <div class="associate-job__stages">
     <app-stage-evaluator *ngFor="let stage of selectedJob?.stages" [form]="associateJobForm" [stage]="stage"></app-stage-evaluator>
   </div>
-  <button type="submit">Associar</button>
+  <div style="display: flex; justify-content: flex-end; width: 100%;"> 
+      <button mat-stroked-button mat-stroked- type="submit">Vincular Vaga ao Candito</button>
+  </div>
+
 </form>

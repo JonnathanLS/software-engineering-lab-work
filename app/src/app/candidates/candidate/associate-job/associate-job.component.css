@@ -1,0 +1,17 @@
+.associate-job{
+    display: flex;
+    flex-wrap: wrap;
+}
+.associate-job__title{
+    width: 100%;
+    padding: 1rem 0 0.5rem 0;
+    font-weight: bold;
+    border-bottom: 1px solid lightslategray;
+    margin-bottom: 1rem;
+}
+.associate-job button{
+    margin: 0;
+    border-radius: 0;
+    flex-grow: 1;
+    flex-basis: 1;
+}

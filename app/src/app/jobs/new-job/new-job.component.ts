@@ -32,7 +32,7 @@ export class NewJobComponent implements OnInit {
 
     const job: JobOpportunity = {
       _id: null, name: '', stages: null,
-      department: '', description: ''
+      department: '', description: '', deleted: null, deleteReason: null
     };
     this.jobForm = this.formBuilder.group(job);
 

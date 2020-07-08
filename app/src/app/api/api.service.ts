@@ -9,6 +9,7 @@ import { User } from '../model-interfaces/user';
 import { Evaluate } from '../model-interfaces/evaluate';
 import { builderObject, hasPropertyWithValueNullOrEmpty } from '../utils/utils';
 import { CandidateJobOpportunity } from '../model-interfaces/candidate-job-opportunity';
+import { of } from 'rxjs';
 
 const json = (object: Object) => JSON.stringify(object);
 
@@ -100,6 +101,11 @@ export class APIService {
 		const newStage = builderObject(stage, ['name', 'description', 'skills']);
 		return this.httpClient.post(`${API.job_opportunities}${job_id}${STAGES_PATH}`, json(newStage));
 	}
-	associate_candidate_with_job_opportunity = (candidate_id: string, associate: CandidateJobOpportunity) => this.httpClient.post(`${API.candidates}${candidate_id}${JOBS_PATH}`, json(associate));
+	associate_candidate_with_job_opportunity = (candidate_id: string, associate: CandidateJobOpportunity) => {
+		associate.stageEvaluatorList.map(stageEvaluator => delete stageEvaluator.done);
+		const newValue = builderObject(associate, ['jobOpportunityId', 'stageEvaluatorList']);
+		
+		return this.httpClient.post(`${API.candidates}${candidate_id}${JOBS_PATH}`, json(newValue));
+	}
 	disassociate_candidate_with_job_opportunity = (associate_id: string) => this.httpClient.delete(`${API.candidates}job-opportunities/${associate_id}`, { observe: 'response' });
 }

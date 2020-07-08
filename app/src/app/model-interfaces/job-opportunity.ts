@@ -6,4 +6,6 @@ export interface JobOpportunity {
     stages: Stage[]
     description: string,
     department: string,
+    deleted: boolean,
+    deleteReason: string,
 }

@@ -19,12 +19,9 @@
 .score {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-start;
 }
 .score-item{
     flex-grow: 1;
-    width: 6rem;
 }
 .evaluate__submit {
     display: flex;

@@ -1,7 +1,7 @@
 <form class="evaluate-container" [formGroup]="evaluateForm" (ngSubmit)="evaluate(evaluateForm.value)">
     <div class="evaluate" *ngFor="let skill of skills">
         <div class="evaluate__skill">
-            <strong>{{ skill.name.toUpperCase() }}</strong> : {{ skill.description }} => 
+            <strong>{{ skill.name }}</strong> : {{ skill.description }}
         </div>
         <section class="evaluate__score">
             <!-- <mat-radio-group [(ngModel)]="labelPosition"> -->

@@ -43,7 +43,7 @@ export class NewCandidateComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private apiService: APIService) { }
 
   ngOnInit(): void {
-    const newCandidate: Candidate = { _id: null, name: '', cpf: '', address: '', links: null, curriculum: null, jobOpportunities: null, hasResume: null };
+    const newCandidate: Candidate = { _id: null, name: '', cpf: '', address: '', links: null, curriculum: null, jobOpportunities: null, hasResume: null, deleted: null };
     this.candidateForm = this.formBuilder.group(newCandidate);
     fbSetValue(this.candidateForm, 'links', []);
   }

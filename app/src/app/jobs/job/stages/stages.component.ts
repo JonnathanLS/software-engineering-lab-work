@@ -21,6 +21,8 @@ export class StagesComponent implements OnInit {
   ngOnInit(): void {
     propertiesInputAngularInvalid('StagesComponent', this.stages, this.skills);
   }
-  removeStage = (id: string) => this.stages = this.stages.filter(stage => stage._id !== id);
-
+  removeStage = (id: string) => {
+    debugger
+    this.stages = this.stages.filter(stage => stage._id !== id);
+  } 
 }

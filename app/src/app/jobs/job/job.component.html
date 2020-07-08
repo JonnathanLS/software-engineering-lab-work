@@ -5,12 +5,10 @@
 >
   <mat-expansion-panel-header>
     <mat-panel-title>
-      {{ job.name }}
+      {{ job.name.toUpperCase() }}
     </mat-panel-title>
     <mat-panel-description>
-      <button mat-stroked-button color="primary" (click)="seeResults()">
-        Ver resultados
-      </button>
+      
     </mat-panel-description>
     <mat-panel-description>
       {{ panelOpenState ? "Ocultar" : "Expandir" }}
@@ -36,6 +34,10 @@
     </ng-template>
     <button mat-stroked-button color="accent" (click)="delete()">
       Deletar
+    </button>
+    <button mat-stroked-button color="primary" (click)="seeResults()">
+      <!-- <mat-icon class="icon" aria-hidden="false">remove_red_eye</mat-icon> -->
+      Resultados
     </button>
   </div>
   <div class="container-new-stage">

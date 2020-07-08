@@ -1,4 +1,4 @@
 <form class="upload-file" [formGroup]="uploadForm" (ngSubmit)="onSubmit()">      
         <input class="upload-file__item" type="file" name="file" (change)="onFileSelect($event)" accept="application/pdf"/>
-        <button class="upload-file__item" mat-flat-button color="primary" type="submit">Enviar</button>
+        <button class="upload-file__item" mat-stroked-button color="primary" type="submit">Enviar</button>
 </form>

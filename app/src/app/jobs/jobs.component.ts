@@ -24,6 +24,6 @@ export class JobsComponent implements OnInit {
   }
 
   addJob = (job: JobOpportunity) => this.jobs.push(job);
-  removeJob = (id: string) => this.jobs = this.jobs.filter(job => !(job._id === id));
+  removeJob = (id: string) => this.jobs = this.jobs.filter(job => job._id !== id);
 
 }

@@ -12,7 +12,7 @@ input, select{
     width: -webkit-fill-available;
     border: 0;
     font-size: 1rem;
-    background-color: rgb(224, 224, 224, 0.2);
+    background-color: rgb(224, 224, 224, 0.3);
     padding: 0.75rem;
     border-top-left-radius: 0.25rem;
     border-top-right-radius: 0.25rem;    

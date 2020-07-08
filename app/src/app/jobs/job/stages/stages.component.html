@@ -1,12 +1,8 @@
 
 <div *ngIf="stages?.length" class="stages">
-    <!-- <div class="stage" *ngFor="let stage of stages.reverse()" [id]="stage._id">
-        <app-stage [stage]="stage" [skills]="skills" stageDeleted="removeStage($event)"></app-stage>
-    </div> -->
-    
     <mat-tab-group >
         <mat-tab class="stage-tab" *ngFor="let stage of stages.reverse()" [label]="stage.name">
-            <app-stage [stage]="stage" [skills]="skills" stageDeleted="removeStage($event)"></app-stage>
+            <app-stage [stage]="stage" [skills]="skills" (stageDeleted)="removeStage($event)"></app-stage>
         </mat-tab>
     </mat-tab-group>
 </div>

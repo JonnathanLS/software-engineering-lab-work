@@ -23,6 +23,7 @@ export class ResultComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.jobId = params['id']; 
    });
+   debugger
     this.apiService.get.job_opportunity_result(this.jobId).subscribe(
       (jobOpportunityResult: JobOpportunityResultPresenter) => {
         this.jobOpportunityResult = jobOpportunityResult;

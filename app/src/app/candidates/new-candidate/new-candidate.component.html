@@ -9,14 +9,11 @@
             <input formControlName="address" placeholder="Endereço">
             <div class="new-candidate__new-link">
                 <input placeholder="Perfil Social" [(ngModel)]="newLink" [ngModelOptions]="{standalone: true}">
-                <div class="new-candidate__links-container">
-                    <button mat-raised-button color="primary" type="button" (click)="addLink()">Adicionar Link</button>
-                    <div [@myInsertRemoveTrigger]="displayContainerNewCandidate ? 'open' : 'closed'" class="new-candidate__link" *ngFor="let link of getLinks()">
-                        <input class="link-item" [value]="link" disabled/>
-                        <button type="button" class="link-item" mat-stroked-button color="accent" (click)="removeLink(link)">Remover</button>
-                    </div>
-                </div>
-                
+                <button mat-raised-button color="primary" type="button" (click)="addLink()">Adicionar Perfil</button>
             </div>
+            <li [@myInsertRemoveTrigger]="displayContainerNewCandidate ? 'open' : 'closed'" class="new-candidate__link" *ngFor="let link of getLinks()">
+                <input class="link-item" [value]="link" disabled/>
+                <button type="button" class="link-item" mat-stroked-button color="accent" (click)="removeLink(link)">Remover</button>
+            </li>
     </div>
 </form>
