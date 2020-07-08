@@ -39,7 +39,8 @@ export class APIService {
 		job_opportunity_by_evaluation: (id: string) => this.httpClient.get(`${API.evaluations}${id}/job-opportunity`),
 		candidate_by_evaluation: (id: string) => this.httpClient.get(`${API.evaluations}${id}/candidate`),
 		skills_by_evaluation: (id: string) => this.httpClient.get(`${API.evaluations}${id}/skills`),
-		candidate_curriculum: (id: string) => this.httpClient.get(`${API.candidates}${id}/resume`, { responseType: 'blob' })  
+		candidate_curriculum: (id: string) => this.httpClient.get(`${API.candidates}${id}/resume`, { responseType: 'blob' }),
+		job_opportunity_result: (id: string) => this.httpClient.get(`${API.job_opportunities}${id}/results`),
 	}
 	post = {
 		user: (user: User) => this.httpClient.post(API.users, json(user)),

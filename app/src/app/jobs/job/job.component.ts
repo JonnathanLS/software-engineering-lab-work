@@ -4,6 +4,7 @@ import { APIService } from 'src/app/api/api.service';
 import { toggleDisabledInputsAndSelect, propertiesInputAngularInvalid } from 'src/app/utils/utils';
 import { Skill } from 'src/app/model-interfaces/skill';
 import { Stage } from 'src/app/model-interfaces/stage';
+import { Router } from '@angular/router';
 
 interface TextNewStage { Show: string, Hide: string };
 const TXT_NEW_STAGE: TextNewStage = { Show: 'Nova Etapa', Hide: 'Ocultar' };
@@ -23,7 +24,8 @@ export class JobComponent implements OnInit {
   displayContainerNewStage: boolean = false;
   textButtonNewStage: string = TXT_NEW_STAGE.Show;
 
-  constructor(private apiService: APIService) { }
+  constructor(private apiService: APIService,
+    private router: Router,) { }
 
   ngOnInit(): void {
     propertiesInputAngularInvalid("JobComponent", this.job, this.departments, this.skills);
@@ -65,4 +67,7 @@ export class JobComponent implements OnInit {
     this.toogleContainerNewStage();
   }
 
+  seeResults() {
+    this.router.navigate(['/jobs/' + this.job._id + '/results']);
+  }
 }

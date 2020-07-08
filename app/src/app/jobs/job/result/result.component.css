@@ -1,0 +1,9 @@
+.mat-expansion-panel-header-description {
+  flex-grow: 0;
+}
+.result-title {
+  padding: 1rem;
+  font-weight: bold;
+  border-bottom: 1px solid lightslategray;
+  margin-bottom: 1.5rem;
+}

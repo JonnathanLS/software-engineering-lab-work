@@ -1,0 +1,11 @@
+<div class="container">
+  <h1 class="result-title">Resultados por candidato</h1>
+  <mat-accordion>
+    <app-candidate-result
+      class="candidate"
+      *ngFor="let candidate of candidates.reverse()"
+      [candidate]="candidate"
+    >
+    </app-candidate-result>
+  </mat-accordion>
+</div>

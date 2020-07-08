@@ -1,0 +1,26 @@
+<mat-expansion-panel
+  class="expansion-painel"
+  (opened)="panelOpenState = true"
+  (closed)="panelOpenState = false"
+>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      {{ stage.stage.name }}
+    </mat-panel-title>
+    <mat-panel-description>
+      {{ panelOpenState ? "Ocultar" : "Expandir" }}
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+  <label>Nome: </label>
+  <input [(ngModel)]="stage.stage.name" />
+  <label>Descrição: </label>
+  <input [(ngModel)]="stage.stage.description" disabled />
+  <h2 class="result-title">Competências</h2>
+  <mat-list>
+    <app-skill-result
+      class="skill-result"
+      *ngFor="let skill of stage.skillEvaluations"
+      [skillEvaluation]="skill"
+    ></app-skill-result>
+  </mat-list>
+</mat-expansion-panel>

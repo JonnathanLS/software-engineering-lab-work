@@ -28,6 +28,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatListModule } from '@angular/material/list';
 import { JobComponent } from './jobs/job/job.component';
 import { NewStageComponent } from './jobs/job/new-stage/new-stage.component';
 import { StagesComponent } from './jobs/job/stages/stages.component';
@@ -40,6 +41,10 @@ import { EvaluationComponent } from './evaluations/evaluation/evaluation.compone
 import { EvaluateComponent } from './evaluations/evaluation/evaluate/evaluate.component';
 import { UserComponent } from './user/user.component';
 import { NewUserComponent } from './user/new-user/new-user.component';
+import { ResultComponent } from './jobs/job/result/result.component';
+import { CandidateResultComponent } from './jobs/job/result/candidate-result/candidate-result.component';
+import { StageResultComponent } from './jobs/job/result/candidate-result/stage-result/stage-result.component';
+import { SkillResultComponent } from './jobs/job/result/candidate-result/stage-result/skill-result/skill-result.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +70,10 @@ import { NewUserComponent } from './user/new-user/new-user.component';
     UserComponent,
     NewUserComponent,
     HeaderComponent,
+    ResultComponent,
+    CandidateResultComponent,
+    StageResultComponent,
+    SkillResultComponent,
   ],
   imports: [
     BrowserModule,
@@ -81,6 +90,7 @@ import { NewUserComponent } from './user/new-user/new-user.component';
     MatTabsModule,
     MatRadioModule,
     MatIconModule,
+    MatListModule,
 
     MatFormFieldModule,
     MatInputModule,
