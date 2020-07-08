@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter, Output } from '@angular/core';
 import { User } from '../model-interfaces/user';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { API } from '../api/api-endpoint';
@@ -10,6 +10,8 @@ const TOKEN = "token";
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
+
+	@Output() getLoggedIn: EventEmitter<any> = new EventEmitter();
 
 	constructor(
 		private http: HttpClient, 
@@ -39,6 +41,7 @@ export class AuthenticationService {
 						(userInfo: User) => {
 							sessionStorage.setItem('user', userInfo.username);
 							sessionStorage.setItem('role', userInfo.role);
+							this.getLoggedIn.emit('Sign In');
 							resolve(ErrorMessages.authenticate.valid);
 						},
 						error => console.warn(error)

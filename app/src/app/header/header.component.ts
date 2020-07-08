@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user/user.service';
-import { User } from '../model-interfaces/user';
+import { AuthenticationService } from '../authentication/authentication.service';
 
 @Component({
   selector: 'app-header',
@@ -9,12 +9,15 @@ import { User } from '../model-interfaces/user';
 })
 export class HeaderComponent implements OnInit {
 
+  hasPermission: boolean = false;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService,
+    private authenticationService: AuthenticationService) {
+    authenticationService.getLoggedIn.subscribe(name => this.ngOnInit());
+   }
 
-  ngOnInit(): void {}
-
-  hasPermission = () => this.userService.getUserPermission();
-  
+  ngOnInit(): void {
+    this.hasPermission = this.userService.getUserPermission();
+  }
 
 }

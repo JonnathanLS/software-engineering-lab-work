@@ -1,7 +1,18 @@
 <ul class="header">
-    <li><a routerLink="/evaluations" routerLinkActive="active">Avaliações</a></li>
-    <li *ngIf="hasPermission"><a routerLink="/jobs" routerLinkActive="active">Vagas</a></li>
-    <li *ngIf="hasPermission"><a routerLink="/skills" routerLinkActive="active">Competências</a></li>
-    <li *ngIf="hasPermission"><a routerLink="/candidates" routerLinkActive="active">Candidatos</a></li>
-    <li><a routerLink="/user" routerLinkActive="active">Configurações</a></li>
+  <li><a routerLink="/evaluations" routerLinkActive="active">Avaliações</a></li>
+
+  <li *ngIf="hasPermission">
+    <a routerLink="/jobs" routerLinkActive="active">Vagas</a>
+  </li>
+
+  <li *ngIf="hasPermission">
+    <a routerLink="/skills" routerLinkActive="active">Competências</a>
+  </li>
+  <li *ngIf="hasPermission">
+    <a routerLink="/candidates" routerLinkActive="active">Candidatos</a>
+  </li>
+  <li *ngIf="hasPermission">
+    <a routerLink="/user" routerLinkActive="active">Configurações</a>
+  </li>
+  <li><a routerLink="/logout" routerLinkActive="active">Sair</a></li>
 </ul>

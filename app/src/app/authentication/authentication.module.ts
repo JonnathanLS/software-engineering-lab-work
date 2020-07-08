@@ -6,10 +6,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { ApiModule } from '../api/api.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AuthenticationGuardService } from './authentication-guard.service';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [
-    AuthenticationComponent
+    AuthenticationComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,

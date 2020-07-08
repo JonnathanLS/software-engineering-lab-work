@@ -7,6 +7,8 @@ import { SkillsComponent } from './skills/skills.component';
 import { CandidatesComponent } from './candidates/candidates.component';
 import { EvaluationsComponent } from './evaluations/evaluations.component';
 import { UserComponent } from './user/user.component';
+import { LogoutComponent } from './authentication/logout/logout.component';
+import { HeaderComponent } from './header/header.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'auth', pathMatch: 'full' },
@@ -16,6 +18,7 @@ const routes: Routes = [
   { path: 'skills', canActivate: [AuthenticationGuardService], component: SkillsComponent },
   { path: 'candidates', canActivate: [AuthenticationGuardService], component: CandidatesComponent },
   { path: 'evaluations', canActivate: [AuthenticationGuardService], component: EvaluationsComponent },
+  { path: 'logout', canActivate: [AuthenticationGuardService], component: LogoutComponent },
 ];
 
 @NgModule({

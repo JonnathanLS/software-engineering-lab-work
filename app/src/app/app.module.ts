@@ -44,7 +44,6 @@ import { NewUserComponent } from './user/new-user/new-user.component';
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
     StageComponent,
     StagesComponent,
     JobsComponent,
@@ -65,6 +64,7 @@ import { NewUserComponent } from './user/new-user/new-user.component';
     EvaluationsComponent,
     UserComponent,
     NewUserComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
