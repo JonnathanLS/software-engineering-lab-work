@@ -51,7 +51,7 @@ export class APIService {
 		job_opportunity_by_evaluation: (id: string) => this.httpClient.get(`${API.evaluations}${id}/job-opportunity`),
 		candidate_by_evaluation: (id: string) => this.httpClient.get(`${API.evaluations}${id}/candidate`),
 		skills_by_evaluation: (id: string) => this.httpClient.get(`${API.evaluations}${id}/skills`),
-		candidate_curriculum: (id: string) => this.httpClient.get(`${API.candidates}${id}/resume`)
+		candidate_curriculum: (id: string) => this.httpClient.get(`${API.candidates}${id}/resume`, { responseType: 'blob' })  
 	}
 	post = {
 		user: (user: User) => this.httpClient.post(API.users, json(user)),
@@ -70,7 +70,7 @@ export class APIService {
 		candidate_curriculum: (candidate_id: string, file: FormData) => {
 			const empty = file.get('resume') === 'null';
 			if (empty) throw new Error('You must attach a resume to the candidate!');
-			const headers = new HttpHeaders().set("Content-Type", "multipart/form-data");
+			const headers = new HttpHeaders().set("FormData", "sera-removido-pelo-interceptor");
 			return this.httpClient.post(`${API.candidates}${candidate_id}/resume`, file, { observe: 'response', headers });
 		},
 		evaluate: (evaluate: Evaluate) => {
@@ -81,12 +81,12 @@ export class APIService {
 	}
 	update = {
 		job_opportunity: (job: JobOpportunity) => {
-			const newData = { name: job.name, description: job.description, department: job.department };
+			const newData = builderObject(job, ['name', 'description', 'department']);
 			return this.httpClient.put(`${API.job_opportunities}${job._id}`, json(newData));
 		},
 		skill: (skill: Skill) => {
 			const newData = builderObject(skill, ['name', 'description']);
-			return this.httpClient.put(`${API.skills}${skill._id}`, json(skill));
+			return this.httpClient.put(`${API.skills}${skill._id}`, json(newData));
 		},
 		stage: (stage: Stage) => {
 			const newData = builderObject(stage, ['name', 'description', 'skills']);

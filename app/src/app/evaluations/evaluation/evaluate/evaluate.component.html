@@ -1,0 +1,20 @@
+<form class="evaluate-container" [formGroup]="evaluateForm" (ngSubmit)="evaluate(evaluateForm.value)">
+    <div class="evaluate" *ngFor="let skill of skills">
+        <div class="evaluate__skill">
+            <strong>{{ skill.name.toUpperCase() }}</strong> : {{ skill.description }} => 
+        </div>
+        <section class="evaluate__score">
+            <!-- <mat-radio-group [(ngModel)]="labelPosition"> -->
+            <mat-radio-group aria-labelledby="score-label" class="score" [(ngModel)]="scoreSelected" [ngModelOptions]="{standalone: true}" (change)="setSkillSkore(skill._id)">
+                <mat-radio-button class="score-item" value="1">Péssimo</mat-radio-button>
+                <mat-radio-button class="score-item" value="2">Ruim</mat-radio-button>
+                <mat-radio-button class="score-item" value="3">Normal</mat-radio-button>
+                <mat-radio-button class="score-item" value="4">Bom</mat-radio-button>
+                <mat-radio-button class="score-item" value="5">Ótimo</mat-radio-button>
+            </mat-radio-group>
+        </section>
+    </div>
+    <div class="evaluate__submit">
+        <button mat-raised-button color="primary" type="submit"> Avaliar </button>
+    </div>
+</form>

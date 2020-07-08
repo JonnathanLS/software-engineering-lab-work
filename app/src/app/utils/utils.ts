@@ -18,8 +18,13 @@ export const hasPropertyWithValueNullOrEmpty = (object: Object, ...props: string
     if (!result) {
       if (object.hasOwnProperty(prop)) {
         const value = object[prop];
+        delete object['_id'];
         if (!value) result = true;
-        else if (Array.isArray(value) && !value["length"]) result = true;
+        else if (Array.isArray(value)){
+          value.forEach(obj => delete obj['_id']);
+          if (!value["length"]) result = true;
+        }
+
       }
     }
   });

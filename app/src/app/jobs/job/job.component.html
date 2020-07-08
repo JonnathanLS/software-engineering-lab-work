@@ -9,8 +9,8 @@
   </mat-expansion-panel-header>
 
   <div class="job-menu">
-    <button mat-flat-button (click)="toogleContainerNewStage()"> {{ textButtonNewStage }} </button>
-    <button mat-flat-button color="warn" *ngIf="!uploadJob; else updateButton" (click)="edit()"> Editar </button>
+    <button mat-raised-button (click)="toogleContainerNewStage()"> {{ textButtonNewStage }} </button>
+    <button mat-raised-button color="warn" *ngIf="!uploadJob; else updateButton" (click)="edit()"> Editar </button>
     <ng-template #updateButton>
       <button mat-flat-button color="primary" (click)="update()"> Atualizar </button>
     </ng-template>

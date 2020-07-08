@@ -20,9 +20,10 @@ import { UploadFileComponent } from './candidates/candidate/upload-file/upload-f
 import { CandidateComponent } from './candidates/candidate/candidate.component';
 import { StageEvaluatorComponent } from './candidates/candidate/associate-job/stage-evaluator/stage-evaluator.component';
 import { AssociateJobComponent } from './candidates/candidate/associate-job/associate-job.component';
-import { EvaluateComponent } from './evaluations/evaluate/evaluate.component';
 import { NewJobComponent } from './jobs/new-job/new-job.component';
 import { MatButtonModule } from '@angular/material/button';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatRadioModule } from '@angular/material/radio';
 
 
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -35,6 +36,9 @@ import { StageComponent } from './jobs/job/stages/stage/stage.component';
 import { NewSkillComponent } from './skills/new-skill/new-skill.component';
 import { SkillComponent } from './skills/skill/skill.component';
 import { LoaderModule } from './loader/loader.module';
+import { EvaluationsComponent } from './evaluations/evaluations.component';
+import { EvaluationComponent } from './evaluations/evaluation/evaluation.component';
+import { EvaluateComponent } from './evaluations/evaluation/evaluate/evaluate.component';
 
 @NgModule({
   declarations: [
@@ -51,12 +55,14 @@ import { LoaderModule } from './loader/loader.module';
     CandidateComponent,
     AssociateJobComponent,
     StageEvaluatorComponent,
-    EvaluateComponent,
     NewJobComponent,
     JobComponent,
     NewStageComponent,
     NewSkillComponent,
     SkillComponent,
+    EvaluateComponent,
+    EvaluationComponent,
+    EvaluationsComponent,
   ],
   imports: [
     BrowserModule,
@@ -71,6 +77,8 @@ import { LoaderModule } from './loader/loader.module';
     BrowserAnimationsModule,
     AngularMaterialModule,
     MatButtonModule,
+    MatTabsModule,
+    MatRadioModule,
 
     MatFormFieldModule,
     MatInputModule,

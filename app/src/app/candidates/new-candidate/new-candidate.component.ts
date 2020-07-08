@@ -13,7 +13,7 @@ import {
 } from '@angular/animations';
 
 interface TextNewCandidate { Show: string, Hide: string };
-const TXT_NEW_CANDIDATE: TextNewCandidate = { Show: 'Novo Candidato', Hide: 'Ocultar' };
+const TXT_NEW_CANDIDATE: TextNewCandidate = { Show: 'Adicionar', Hide: 'Ocultar' };
 
 @Component({
   selector: 'app-new-candidate',

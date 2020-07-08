@@ -16,7 +16,14 @@
     margin: 0.75rem 0;
 }
 .new-candidate__link {
+    margin: 0.4rem 0;
     display: flex;
+}
+.new-candidate__link button {
+    padding: 0.75rem;
+}
+.new-candidate__link input {
+    width: auto;
 }
 .new-candidate__link > input,.new-candidate__link > button {
     margin: 0;

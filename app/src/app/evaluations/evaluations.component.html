@@ -1,7 +1,6 @@
-<div class="evaluations">
-    <div class="evaluations__title">Avaliações</div>
-    <div *ngFor="let evaluation of evaluations">
-        {{ evaluation.stage.name }}
-    </div>
-
+<div class="container">
+    <h1 class="evaluations-title">Avaliações para Pontuar</h1>
+    <mat-accordion class="evaluations">
+        <app-evaluation *ngFor="let evaluation of evaluations" [evaluation]="evaluation"></app-evaluation>
+    </mat-accordion>
 </div>

@@ -9,14 +9,14 @@
     </mat-expansion-panel-header>
     
     <div class="candidate-menu">
-        <button mat-flat-button color="warn" *ngIf="!uploadCandidate; else updateButton" (click)="edit()"> Editar </button>
+        <button mat-stroked-button color="warn" *ngIf="!uploadCandidate; else updateButton" (click)="edit()"> Editar </button>
         <ng-template #updateButton>
-        <button mat-flat-button color="primary" (click)="update()"> Atualizar </button>
+        <button mat-stroked-button color="primary" (click)="update()"> Atualizar </button>
         </ng-template>
-        <button mat-flat-button color="accent" (click)="delete()">Deletar</button>
+        <button mat-stroked-button color="accent" (click)="delete()">Deletar</button>
     </div>
     <div class="candidate-info" [id]="candidate._id">
-        <app-menu *ngIf="hasCurriculum; else uploadCurriculo" content="Currículo" [items]="curriculumActions" (clicked)="curriculumClicked($event)"></app-menu>
+        <app-menu *ngIf="hasCurriculum; else uploadCurriculo" text="Currículo" [items]="curriculumActions" (clicked)="curriculumClicked($event)"></app-menu>
         <ng-template #uploadCurriculo>
             <app-upload-file [candidateId]="candidate._id" (curriculumAdded)="curriculumAdded($event)"></app-upload-file>
         </ng-template>
@@ -32,10 +32,10 @@
         
         <ng-template class="candidate-new-links" #newLinks>
             <input placeholder="Perfil Social" [(ngModel)]="newLink" [ngModelOptions]="{standalone: true}">
-            <button type="button" mat-raised-button color="primary" (click)="addLinkToCandidate()">Adicionar</button>
+            <button type="button" mat-stroked-button color="primary" (click)="addLinkToCandidate()">Adicionar</button>
             <div *ngFor="let link of candidate.links" class="candidate-links">
                 <input class="link-item" [value]="link" disabled/>
-                <button  class="link-item" mat-flat-button color="accent" type="button" (click)="removeLinkOfCandidate(link)">Remover</button>
+                <button  class="link-item" mat-stroked-button color="accent" type="button" (click)="removeLinkOfCandidate(link)">Remover</button>
             </div>
         </ng-template>
         <!-- Gerenciamento de Links do Candidato -->            

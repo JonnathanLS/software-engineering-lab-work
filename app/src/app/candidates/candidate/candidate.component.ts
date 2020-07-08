@@ -68,11 +68,17 @@ export class CandidateComponent implements OnInit {
 		this.candidate.links = this.candidate.links.filter(link => !(link === url));
 
 	curriculumClicked = (action: 'download' | 'delete') => {
-		debugger
 		if (action === 'download') {
 			this.apiService.get.candidate_curriculum(this.candidate._id).subscribe(
 				curriculum => {
-					console.log(curriculum);
+					console.log("Download do currículo do candidato concluído.", curriculum);
+					const url = window.URL.createObjectURL(new Blob([curriculum as BlobPart], { type: 'application/pdf' }));
+					var link = document.createElement('a');
+					document.body.appendChild(link);
+					link.setAttribute('style', 'display: none');
+					link.href = url;
+					link.download = `Curriculo-${this.candidate.name}.pdf`;
+					link.click();
 				},
 				error => console.error(error)
 			);
@@ -90,7 +96,6 @@ export class CandidateComponent implements OnInit {
 	curriculumAdded = (result: boolean) => this.hasCurriculum = result;
 
 	newAssociatedJobs = (newData: CandidateJobOpportunity[]) => {
-		debugger
 		this.candidate.jobOpportunities = newData;
 		this.updatePropJobOpportunitiesToAssociate();
 	}

@@ -24,10 +24,6 @@ input:disabled, select:disabled {
 input:hover, select:hover{
     border-bottom: 1px solid blue;
 }
-.mat-expansion-panel-header-description {
-  flex-grow: 0;
-}
-
 /* .app {
     margin: 0;
     display: grid;
