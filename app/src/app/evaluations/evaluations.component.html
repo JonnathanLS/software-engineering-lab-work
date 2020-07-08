@@ -1,6 +1,12 @@
-<div class="container">
-    <h1 class="evaluations-title">Avaliações para Pontuar</h1>
-    <mat-accordion class="evaluations">
-        <app-evaluation *ngFor="let evaluation of evaluations" [evaluation]="evaluation"></app-evaluation>
-    </mat-accordion>
+<div class="container" *ngIf="evaluations.length > 0; else empty">
+  <h1 class="evaluations-title">Avaliações para Pontuar</h1>
+  <mat-accordion class="evaluations">
+    <app-evaluation
+      *ngFor="let evaluation of evaluations"
+      [evaluation]="evaluation"
+      (evaluationDoneParent)="removeEvaluation($event)"
+    ></app-evaluation>
+  </mat-accordion>
 </div>
+
+<ng-template #empty><app-user></app-user></ng-template>

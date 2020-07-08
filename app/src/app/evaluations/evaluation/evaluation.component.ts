@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Evaluation } from 'src/app/model-interfaces/evaluation';
 import { Candidate } from 'src/app/model-interfaces/candidate';
 import { JobOpportunity } from 'src/app/model-interfaces/job-opportunity';
@@ -13,6 +13,7 @@ import { propertiesInputAngularInvalid } from 'src/app/utils/utils';
 export class EvaluationComponent implements OnInit {
 
   @Input() evaluation: Evaluation;
+  @Output() evaluationDoneParent = new EventEmitter<string>();
   candidate: Candidate;
   job: JobOpportunity;
   stage: Stage;
@@ -27,4 +28,8 @@ export class EvaluationComponent implements OnInit {
     this.job = this.evaluation.jobOpportunity;
     this.stage = this.evaluation.stage;    
   }
+
+  receivedEvaluationDone = (id: string) => this.emitEvaluationDoneParent(id);
+
+  emitEvaluationDoneParent = (id: string) => this.evaluationDoneParent.emit(id);
 }

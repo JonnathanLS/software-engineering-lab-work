@@ -1,30 +1,37 @@
-<mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-    <mat-expansion-panel-header>
+<mat-expansion-panel
+  (opened)="panelOpenState = true"
+  (closed)="panelOpenState = false"
+>
+  <mat-expansion-panel-header>
     <mat-panel-title>
-        {{ candidate.name }}  
+      Candidato: {{ candidate.name }} - Etapa: {{ stage.name }} - Vaga:
+      {{ job.name }}
     </mat-panel-title>
     <mat-panel-description>
-        {{panelOpenState ? 'Ocultar' : 'Avaliar'}}
+      {{ panelOpenState ? "Ocultar" : "Avaliar" }}
     </mat-panel-description>
-    </mat-expansion-panel-header>
-    <mat-tab-group >
-        <mat-tab class="evaluation__info" label="Informações">
-            <ul class="evaluation__candidate-info">
-                <li><strong>CPF: </strong>{{ candidate.cpf }}</li>
-                <li><strong>Endereço: </strong>{{ candidate.address }}</li>
-                <li><strong>Perfis Sociais: </strong>{{ candidate.links }}</li>
-            </ul>
-            <ul class="evaluation__job-info">
-                <li><strong>Vaga: </strong>{{ job.name }}</li>
-                <li><strong>Descrição: </strong>{{ job.description }}</li>
-                <li><strong>Departamento: </strong>{{ job.department }}</li>
-            </ul>
-        </mat-tab>
-        <mat-tab class="evaluation__candidate-curriculum" label="Currículo">
-
-        </mat-tab>
-        <mat-tab class="evaluation__candidate-skills" label="Avaliação"> 
-            <app-evaluate [skills]="stage.skills" [evaluationID]="evaluation._id"></app-evaluate>
-        </mat-tab>
-    </mat-tab-group>
+  </mat-expansion-panel-header>
+  <mat-tab-group>
+    <mat-tab class="evaluation__info" label="Informações">
+      <ul class="evaluation__candidate-info">
+        <li><strong>CPF: </strong>{{ candidate.cpf }}</li>
+        <li><strong>Endereço: </strong>{{ candidate.address }}</li>
+        <li><strong>Perfis Sociais: </strong>{{ candidate.links }}</li>
+      </ul>
+      <ul class="evaluation__job-info">
+        <li><strong>Vaga: </strong>{{ job.name }}</li>
+        <li><strong>Descrição: </strong>{{ job.description }}</li>
+        <li><strong>Departamento: </strong>{{ job.department }}</li>
+      </ul>
+    </mat-tab>
+    <mat-tab class="evaluation__candidate-curriculum" label="Currículo">
+    </mat-tab>
+    <mat-tab class="evaluation__candidate-skills" label="Avaliação">
+      <app-evaluate
+        [skills]="stage.skills"
+        [evaluationID]="evaluation._id"
+        (evaluationDone)="receivedEvaluationDone($event)"
+      ></app-evaluate>
+    </mat-tab>
+  </mat-tab-group>
 </mat-expansion-panel>

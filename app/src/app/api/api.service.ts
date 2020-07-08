@@ -69,7 +69,9 @@ export class APIService {
 	}
 	update = {
 		job_opportunity: (job: JobOpportunity) => {
+			console.log(job._id);
 			const newData = builderObject(job, ['name', 'description', 'department']);
+			console.log(job._id);
 			return this.httpClient.put(`${API.job_opportunities}${job._id}`, json(newData));
 		},
 		skill: (skill: Skill) => {

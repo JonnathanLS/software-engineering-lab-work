@@ -20,4 +20,5 @@ export class EvaluationsComponent implements OnInit {
     )
   }
 
+  removeEvaluation = (id: string) => this.evaluations = this.evaluations.filter(evaluation => !(evaluation._id === id));
 }

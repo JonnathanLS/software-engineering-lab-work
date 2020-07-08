@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Skill } from 'src/app/model-interfaces/skill';
-import { propertiesInputAngularInvalid, fbSetValue, fbGetValue } from 'src/app/utils/utils';
+import { propertiesInputAngularInvalid, fbSetValue } from 'src/app/utils/utils';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { APIService } from 'src/app/api/api.service';
 import { Evaluate } from 'src/app/model-interfaces/evaluate';
@@ -15,6 +15,7 @@ export class EvaluateComponent implements OnInit {
 
   @Input() skills: Skill[];
   @Input() evaluationID: string;
+  @Output() evaluationDone = new EventEmitter<string>();
 
   skillScoreList: SKillScore[] = [];
   scoreSelected: string = '';
@@ -44,7 +45,8 @@ export class EvaluateComponent implements OnInit {
       this.apiService.post.evaluate(evaluate).subscribe(
         (evaluateCreated: Evaluate) => {
           console.log('Avaliação Registrada Com Sucesso', evaluateCreated);
-          this.evaluateForm.reset(); 
+          this.emitEvaluationDone(this.evaluationID);
+          this.evaluateForm.reset();
         },
         error => console.error(error)
       );
@@ -59,5 +61,7 @@ export class EvaluateComponent implements OnInit {
       }
     });
   }
+
+  emitEvaluationDone = (id: string) => this.evaluationDone.emit(id);
 
 }

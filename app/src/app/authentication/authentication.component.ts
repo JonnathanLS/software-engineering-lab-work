@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from './authentication.service';
 import { User } from '../model-interfaces/user';
-import { APIService } from '../api/api.service';
-import { Stage } from '../model-interfaces/stage';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserService } from '../user/user.service';
 
 @Component({
   selector: 'app-authentication',
@@ -29,7 +26,7 @@ export class AuthenticationComponent implements OnInit {
     this.service
       .authenticate(user)
       .then(response => {
-        this.router.navigate(['/user']);
+        this.router.navigate(['/evaluations']);
       })
       .catch(error => console.log(error));
   }

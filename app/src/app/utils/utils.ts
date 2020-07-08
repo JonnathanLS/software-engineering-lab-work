@@ -15,6 +15,7 @@ export const toggleDisabledInputsAndSelect = (idElement: string) => {
 
 export const hasPropertyWithValueNullOrEmpty = (object: Object, ...props: string[]): boolean => {
   let result = false;
+  const id = object['_id'];
   props.forEach(prop => {
     if (!result) {
       if (object.hasOwnProperty(prop)) {
@@ -29,6 +30,7 @@ export const hasPropertyWithValueNullOrEmpty = (object: Object, ...props: string
       }
     }
   });
+  object['_id'] = id;
   return result;
 }
 

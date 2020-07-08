@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { JobOpportunity } from '../model-interfaces/job-opportunity';
 import { APIService } from '../api/api.service';
-import { toggleDisabledInputsAndSelect } from '../utils/utils';
 import { Skill } from '../model-interfaces/skill';
 
 
