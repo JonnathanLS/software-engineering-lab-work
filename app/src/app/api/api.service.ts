@@ -16,22 +16,10 @@ const json = (object: Object) => JSON.stringify(object);
 export class APIService {
 
 	constructor(private httpClient: HttpClient) { }
-
-	// delete = (data: any, interfaceName: string) => {
-	// 	switch (interfaceName) {
-	// 		case "job": return this.jobOpportunities.delete(data);
-	// 		case "stage": return this.stages.delete(data);
-	// 		case "skill": return this.skills.delete(data);
-	// 		default: throw new Error("API Service DELETE : the interface name is not configured");
-	// 	}
-	// }
-
-	user = {
-		create: (user: User) => this.httpClient.post(API.users, json(user)),
-		evaluators: () => this.httpClient.get(`${API.users}evaluators`),
-	}
+	
 	get = {
 		// Users
+		user_info: () => this.httpClient.get(`${API.users}login`),
 		evaluators: () => this.httpClient.get(`${API.users}evaluators`),
 		// Departments
 		departments: () => this.httpClient.get(API.departments),

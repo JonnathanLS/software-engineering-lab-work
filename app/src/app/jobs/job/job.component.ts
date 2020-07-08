@@ -30,6 +30,7 @@ export class JobComponent implements OnInit {
   }
 
   delete() {
+    debugger
     this.apiService.delete.job_opportunity(this.job._id).subscribe(
       response => {
         if (response.status === 204) {

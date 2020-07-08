@@ -1,7 +1,7 @@
 
 <form class="new-job" [formGroup]="jobForm" (ngSubmit)="create(jobForm.value)">
   <div class="new-job-menu">
-    <button type="button" (click)="toogleContainerNewJob()" mat-stroked-button color="primary"> {{ textButtonNewJob }}</button>
+    <button type="button" (click)="toogleContainerNewJob()" mat-stroked-button> {{ textButtonNewJob }}</button>
     <button *ngIf="displayContainerNewJob" class="new-job__submit" mat-stroked-button color="primary" type="submit"> Cadastrar </button>
   </div>
   <div *ngIf="displayContainerNewJob" class="container-new-job">

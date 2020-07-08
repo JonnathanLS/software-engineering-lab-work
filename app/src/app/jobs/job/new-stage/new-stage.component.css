@@ -1,3 +1,10 @@
-.new-stage input, .new-stage select{
-  width: 90%;
+.new-stage {
+  margin: 0.7rem 0;
+}
+.new-stage button {
+  margin-top: 0.7rem;
+}
+.new-stage__button-container{
+  display: flex;
+  justify-content: flex-end;
 }

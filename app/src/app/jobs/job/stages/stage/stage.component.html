@@ -1,34 +1,20 @@
-
-<mat-accordion>
-    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-        <mat-expansion-panel-header>
-            <mat-panel-title>
-                {{ stage.name }}
-            </mat-panel-title>
-            <mat-panel-description>
-                {{panelOpenState ? 'Ocultar' : 'Expandir'}}
-            </mat-panel-description>
-        </mat-expansion-panel-header>
-        <div class="stage-menu">
-            <button mat-raised-button color="warn" *ngIf="!updateStage; else updateButton" (click)="edit()">Editar</button>
-            <ng-template #updateButton>
-                <button mat-raised-button color="primary" (click)="update()"> Atualizar </button>
-            </ng-template>
-            <button mat-raised-button color="accent" (click)="delete()">Deletar</button>
-        </div>
-        <div class="stage-info">
-            <input *ngIf="updateStage" [(ngModel)]="stage.name" />
-            <input [(ngModel)]="stage.description" disabled />
-            <h1 class="skill-title">Competências Necessárias</h1>
-            <div *ngIf="!updateStage; else selectSkills" class="stage__skills">
-                <input *ngFor="let skill of stage.skills" [value]="skill.name" disabled/>
-            </div>
-            <ng-template #selectSkills>
-                <select [(ngModel)]="stage.skills" multiple>
-                    <option *ngFor="let skill of skills" [value]="skill._id">{{ skill.name }}</option>
-                </select>
-            </ng-template>
-        </div>
-
-    </mat-expansion-panel>
-</mat-accordion>
+<div class="stage-menu">
+    <button mat-stroked-button color="warn" *ngIf="!updateStage; else updateButton" (click)="edit()">Editar</button>
+    <ng-template #updateButton>
+        <button mat-stroked-button color="primary" (click)="update()"> Atualizar </button>
+    </ng-template>
+    <button mat-stroked-button color="accent" (click)="delete()">Deletar</button>
+</div>
+<div class="stage-info" [id]="stage._id">
+    <input *ngIf="updateStage" [(ngModel)]="stage.name" />
+    <input [(ngModel)]="stage.description" disabled />
+    <h1 class="stages-title">Competências Necessárias</h1>
+    <div *ngIf="!updateStage; else selectSkills" class="stage__skills">
+        <input *ngFor="let skill of stage.skills" [value]="skill.name" disabled/>
+    </div>
+    <ng-template #selectSkills>
+        <select [(ngModel)]="stage.skills" multiple>
+            <option *ngFor="let skill of skills" [value]="skill._id">{{ skill.name }}</option>
+        </select>
+    </ng-template>
+</div>

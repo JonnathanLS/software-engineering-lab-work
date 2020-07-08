@@ -1,3 +1,6 @@
+.expansion-painel{
+    margin: 1rem 0;
+  }
 .mat-expansion-panel-header-description {
     flex-grow: 0;
 }
@@ -5,6 +8,8 @@
     display: flex;
     justify-content: flex-end
 }
-.skill-info input, .skill-info select{
-    width: 90%;
+.skill-menu button{
+    margin-left: 1rem;
+    margin-bottom: 1rem;
 }
+

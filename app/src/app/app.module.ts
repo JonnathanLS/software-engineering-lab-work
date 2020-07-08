@@ -8,8 +8,6 @@ import { HttpClientModule } from '@angular/common/http'
 import { AuthenticationModule } from './authentication/authentication.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
-import { UserConfigComponent } from './user-config/user-config.component';
-import { HomeModule } from './home/home.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { JobsComponent } from './jobs/jobs.component';
 import { SkillsComponent } from './skills/skills.component';
@@ -24,6 +22,7 @@ import { NewJobComponent } from './jobs/new-job/new-job.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatIconModule } from '@angular/material/icon';
 
 
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -39,6 +38,8 @@ import { LoaderModule } from './loader/loader.module';
 import { EvaluationsComponent } from './evaluations/evaluations.component';
 import { EvaluationComponent } from './evaluations/evaluation/evaluation.component';
 import { EvaluateComponent } from './evaluations/evaluation/evaluate/evaluate.component';
+import { UserComponent } from './user/user.component';
+import { NewUserComponent } from './user/new-user/new-user.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,6 @@ import { EvaluateComponent } from './evaluations/evaluation/evaluate/evaluate.co
     StageComponent,
     StagesComponent,
     JobsComponent,
-    UserConfigComponent,
     SkillsComponent,
     CandidatesComponent,
     NewCandidateComponent,
@@ -63,6 +63,8 @@ import { EvaluateComponent } from './evaluations/evaluation/evaluate/evaluate.co
     EvaluateComponent,
     EvaluationComponent,
     EvaluationsComponent,
+    UserComponent,
+    NewUserComponent,
   ],
   imports: [
     BrowserModule,
@@ -73,12 +75,12 @@ import { EvaluateComponent } from './evaluations/evaluation/evaluate/evaluate.co
     BrowserAnimationsModule,
     LoaderModule,
     AuthenticationModule,
-    HomeModule,
     BrowserAnimationsModule,
     AngularMaterialModule,
     MatButtonModule,
     MatTabsModule,
     MatRadioModule,
+    MatIconModule,
 
     MatFormFieldModule,
     MatInputModule,

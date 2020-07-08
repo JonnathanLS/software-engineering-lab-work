@@ -4,6 +4,7 @@ import { Skill } from '../model-interfaces/skill';
 import { FormGroup } from '@angular/forms';
 
 export const toggleDisabledInputsAndSelect = (idElement: string) => {
+  propertiesInputAngularInvalid('Util - toggleDisabledInputsAndSelect', idElement);
   const element = document.getElementById(idElement);
   const inputs = element.getElementsByTagName('INPUT');
   const selects = element.getElementsByTagName('SELECT');

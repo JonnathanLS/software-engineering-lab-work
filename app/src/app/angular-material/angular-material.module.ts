@@ -8,14 +8,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatInputModule } from '@angular/material/input';
 
-import { MultiSelectComponent } from './multi-select/multi-select.component';
 import { MenuComponent } from './menu/menu.component';
 import { ButtonComponent } from './button/button.component';
-import { InputComponent } from './input/input.component';
-import { ExpansionPainelComponent } from './expansion-painel/expansion-painel.component';
 
 @NgModule({
-  declarations: [MultiSelectComponent, MenuComponent, ButtonComponent, InputComponent, ExpansionPainelComponent],
+  declarations: [MenuComponent, ButtonComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -26,6 +23,6 @@ import { ExpansionPainelComponent } from './expansion-painel/expansion-painel.co
     MatSelectModule,
     MatMenuModule,
   ],
-  exports: [MultiSelectComponent, MenuComponent, ButtonComponent, InputComponent]
+  exports: [MenuComponent, ButtonComponent]
 })
 export class AngularMaterialModule { }

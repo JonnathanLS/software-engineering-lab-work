@@ -1,7 +1,45 @@
-.authentication{
+
+.authentication {
+    display: flex;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    height: 100%;
+}
+.authentication__data{
+    padding: 3rem;
     display: flex;
     flex-direction: column;
 }
 .authentication button{
-    margin: 0.5rem 0;
+    margin: 1rem 0;
+    background-color: rgb(38, 38, 141);
+    color: white;
+    border: 1px solid lightslategray;
+    padding: 1rem;
+    border-radius: 0.5rem;
+}
+.authentication button:hover{
+    margin: 1rem 0;
+    background-color: darkblue;
+    color: yellow;
+    border: 1px solid lightgray;
+    padding: 1rem;
+}
+.authentication__data {
+    background-color: rgba(198, 210, 226, 0.438);
+    width: 30%;
+}
+.authentication__data input {
+    margin: 0.75rem 0;
+    background-color: white;
+    border-bottom: 2px solid lightgray;
+}
+.authentication__data input:hover{
+    border-bottom: 2px solid blue;
+}
+.authentication__image {
+    width: 70%;
+    padding: 10rem;
+    background-image: url('https://miro.medium.com/max/3840/1*tO75phy4qIPz-S7sG0n7kQ.gif');
+    background-size: 100%;
 }

@@ -10,14 +10,10 @@ export class ApiInterceptor implements HttpInterceptor {
 
 	intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 		if (this.authService.isAuthenticated()) {
-			debugger
 			const auth = this.authService.getAuthorization();
-
 			let headers: HttpHeaders;
-			
 			if (req.url.includes('resume')) headers = req.headers.set('Authorization', "Basic " + auth);
 			else headers = req.headers.set('Authorization', "Basic " + auth).set("Content-Type", "application/json");
-
 			const dupReq = req.clone({ headers });
 			return next.handle(dupReq);
 		}

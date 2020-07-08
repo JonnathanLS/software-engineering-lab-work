@@ -1,0 +1,16 @@
+<div class="container">
+    <h1 class="user-title"><strong>Sistema de Avaliação de Candidatos</strong></h1>
+    <div class="user-info">
+        <div class="frame-icon">
+            <mat-icon class="icon" aria-hidden="false">sentiment_satisfied_alt</mat-icon>
+        </div>
+        <ul>
+            <li class="bem-vindo">Bem Vindo</li>
+            <li>{{ user }}</li>
+            <li>Você tem 0 candidatos para avaliar ...</li>
+        </ul>
+    </div>
+    <div *ngIf="hasPermission" class="container-new-user">
+        <app-new-user [departments]="departments"></app-new-user>
+    </div>
+</div>

@@ -15,7 +15,6 @@ export class StageComponent implements OnInit {
   @Input() stage: Stage;
   @Input() skills: Skill[];
   updateStage: boolean = false;
-  panelOpenState = false;
 
   @Output() stageDeleted = new EventEmitter<string>();
   constructor(private apiService: APIService) { }

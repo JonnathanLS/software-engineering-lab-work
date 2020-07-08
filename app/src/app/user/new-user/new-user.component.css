@@ -1,0 +1,7 @@
+.new-user__button-container{
+    display: flex;
+    justify-content: flex-end;
+}
+.new-user__button-container button {
+    margin: 1rem 0;
+}

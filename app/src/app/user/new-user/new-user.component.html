@@ -1,0 +1,16 @@
+<form class="new-user" [formGroup]="userForm" (ngSubmit)="create(userForm.value)">
+    <input type="text" formControlName="username" placeholder="Nome">
+    <input type="password" formControlName="password" placeholder="Senha">
+    <select formControlName="department">
+        <option value="">Departamento</option>
+        <option *ngFor="let department of departments" [value]="department">{{ department }}</option>
+    </select>
+    <select formControlName="role">
+        <option value="">Enquadramento</option>
+        <option value="HR">RH</option>
+        <option value="EVALUATOR">Avaliador</option>
+    </select>
+    <div class="new-user__button-container">
+        <button mat-stroked-button color="primary" type="submit">Cadastrar Candidato</button>
+    </div>
+</form>

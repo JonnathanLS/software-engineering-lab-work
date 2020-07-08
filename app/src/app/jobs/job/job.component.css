@@ -1,5 +1,5 @@
-.mat-accordion {
-  margin: 0.5rem 0;
+.expansion-painel{
+  margin: 1rem 0;
 }
 .mat-expansion-panel-header-description {
   flex-grow: 0;
@@ -8,12 +8,11 @@
   display: flex;
   justify-content: flex-end
 }
-.job-info input, .job-info select{
-  width: 90%;
+.job-menu button{
+  margin-left: 1rem;
+  margin-bottom: 1rem;
 }
-.stages-title{
-  padding: 1rem;
-  font-weight: bold;
-  border-bottom: 1px solid steelblue;
-  margin-bottom: 1.5rem;
+.job-info{
+  display: flex;
+  flex-direction: column;
 }

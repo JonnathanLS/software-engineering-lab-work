@@ -15,13 +15,6 @@ describe('AuthenticationComponent', () => {
 	let httpClient: HttpClient;
 	let authService : AuthenticationService;
 
-	// interface UserType { valid: User, invalid: User }
-
-	// const user: UserType = {
-	// 	valid: { username: "Felipe", password: "123456", department: "HR", role: "HR" },
-	// 	invalid: { username: "Jonnathan", password: "000000", department: "HR", role: "HR" },
-	// }
-
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			imports: [ HttpClientTestingModule ]

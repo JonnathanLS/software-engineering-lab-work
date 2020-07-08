@@ -4,37 +4,29 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+
 .container{
     padding: 1.2rem;
 }
 input, select{
-    width: 100%;
+    width: -webkit-fill-available;
     border: 0;
     font-size: 1rem;
     background-color: rgb(224, 224, 224, 0.2);
     padding: 0.75rem;
     border-top-left-radius: 0.25rem;
     border-top-right-radius: 0.25rem;    
-    margin: 0.25rem 0;
-    border-bottom: 1px solid lightgray;
+    margin: 0.25rem 0;  
+    border-bottom: 1px solid rgb(68, 68, 189);
 }
 input:disabled, select:disabled {
-    background-color: rgb(224, 224, 224, 0.4);
+    border-bottom: 1px solid lightgray;
 }
 input:hover, select:hover{
-    border-bottom: 1px solid blue;
+    border-bottom: 1px solid orange;
 }
-/* .app {
-    margin: 0;
-    display: grid;
-    grid-template-areas: "header" "main";
-    grid-template-columns: auto;
-    grid-template-rows: auto auto;
-}
-
-@media screen and (min-width: 600px) {
-    .app {
-        grid-template-rows: 75px auto;
-    }
-}
-*/
+/* 
+::-webkit-scrollbar {
+    width: 0px;
+    background: #F4F4F4;
+} */

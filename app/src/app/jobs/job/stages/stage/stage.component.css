@@ -3,14 +3,16 @@
 }
 .stage-menu{
   display: flex;
+  margin-top: 1.15rem;
+  margin-bottom: 1.0rem;
   justify-content: flex-end
 }
-.stage-info input, .stage-info select{
-  width: 90%;
+.stage-menu button {
+  margin-left: 1rem;
 }
-.skill-title{
-  padding: 0.5rem;
+.stages-title{
+  padding: 1rem;
   font-weight: bold;
-  border-bottom: 1px solid slateblue;
-  margin-bottom: 1rem;
+  border-bottom: 1px solid lightslategray;
+  margin-bottom: 1.5rem;
 }
