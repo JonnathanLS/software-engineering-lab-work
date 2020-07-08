@@ -25,6 +25,14 @@
       </ul>
     </mat-tab>
     <mat-tab class="evaluation__candidate-curriculum" label="Currículo">
+      <button
+        style="width: 100%;"
+        mat-stroked-button
+        color="primary"
+        (click)="downloadCurriculum()"
+      >
+        Download
+      </button>
     </mat-tab>
     <mat-tab class="evaluation__candidate-skills" label="Avaliação">
       <app-evaluate
