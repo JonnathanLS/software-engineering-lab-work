@@ -4,6 +4,7 @@
     border: 1px solid lightgray;
     border-radius: 5px;
     height: 100%;
+    padding-top: 2rem;
 }
 .authentication__data{
     padding: 3rem;

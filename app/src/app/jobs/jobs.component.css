@@ -3,4 +3,9 @@
     font-weight: bold;
     border-bottom: 1px solid lightslategray;
     margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+}
+.mat-radio-button {
+    margin-left: 1rem;
 }

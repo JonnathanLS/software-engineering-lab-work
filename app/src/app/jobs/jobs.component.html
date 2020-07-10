@@ -1,13 +1,21 @@
 <div class="container">
     <app-new-job (jobCreated)="addJob($event)" [departments]="departments"></app-new-job>
-    <h1 class="jobs-title">Vagas Cadastradas</h1>
+    <div class="jobs-title">
+        <p>VAGAS</p>
+        <mat-radio-group [(ngModel)]="jobStatusSelected"  
+        [ngModelOptions]="{standalone: true}" (change)="filterJobs()">
+            <mat-radio-button value="Ativas">Ativas</mat-radio-button>
+            <mat-radio-button value="Inativas">Inativas</mat-radio-button>
+            <mat-radio-button value="Encerradas">Encerradas</mat-radio-button>
+        </mat-radio-group>
+    </div>
     <mat-accordion>
         <app-job class="job"
-            *ngFor="let job of jobs.reverse()"
+            *ngFor="let job of filteredJobs"
             [job]="job"
             [skills]="skills"
             [departments]="departments"
-            (jobDeleted)="removeJob($event)">
+            (jobDeleted)="filterJobs()">
         </app-job>
     </mat-accordion>
 </div>

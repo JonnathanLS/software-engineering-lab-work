@@ -19,6 +19,7 @@ export class UserComponent implements OnInit {
     
   ngOnInit(): void {
     this.user = this.userService.getUserName();
+    this.hasPermission = this.userService.getUserPermission();
     this.apiService.get.departments().subscribe(
       (departments: string[]) => this.departments = departments,
       error => console.error(error)

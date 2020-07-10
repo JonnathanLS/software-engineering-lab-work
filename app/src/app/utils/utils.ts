@@ -2,6 +2,10 @@ import { JobOpportunity } from '../model-interfaces/job-opportunity';
 import { Stage } from '../model-interfaces/stage';
 import { Skill } from '../model-interfaces/skill';
 import { FormGroup } from '@angular/forms';
+import { NotifierService } from '../notifier/notifier.service';
+const notifierService = new NotifierService();
+
+
 
 export const toggleDisabledInputsAndSelect = (idElement: string) => {
   propertiesInputAngularInvalid('Util - toggleDisabledInputsAndSelect', idElement);
@@ -36,7 +40,11 @@ export const hasPropertyWithValueNullOrEmpty = (object: Object, ...props: string
 
 export const builderObject = (object: Object, properties: string[]) => {
   const invalid = hasPropertyWithValueNullOrEmpty(object, ...properties);
-  if (invalid) throw new Error(`Builder Object : the reported object contains properties with invalid values`);
+  const message = `Builder Object : the reported object contains properties with invalid values`;
+  if (invalid) {
+    notifierService.error(message);
+    throw new Error(message);
+  }
   return properties.reduce((newObject, prop) => {
     newObject[prop] = object[prop];
     return newObject;
@@ -48,7 +56,10 @@ export const fbSetValue = (form: FormGroup, key: string, value: any) => form.get
 
 export const propertiesInputAngularInvalid = (nameComponent: string, ...props: any[]) => {
   props.map(prop => {
-    if (!prop)
-      throw new Error(nameComponent + " : there are properties that need to be passed on")
+    if (!prop){
+      const message = nameComponent + " : there are properties that need to be passed on";
+      notifierService.error(message);
+      throw new Error(message);
+    }
   })
 }

@@ -1,8 +1,9 @@
 .container{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: flex-start;
     padding: 1.5rem;
+    padding-top: 5rem;
 }
 .user-title{
     padding: 1rem;

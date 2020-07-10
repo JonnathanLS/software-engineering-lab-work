@@ -7,13 +7,21 @@
             <input formControlName="name" placeholder="Nome">
             <input formControlName="cpf" maxlength="11" placeholder="CPF">
             <input formControlName="address" placeholder="Endereço">
-            <div class="new-candidate__new-link">
-                <input placeholder="Perfil Social" [(ngModel)]="newLink" [ngModelOptions]="{standalone: true}">
-                <button mat-raised-button color="primary" type="button" (click)="addLink()">Adicionar Perfil</button>
+            <div class="new-candidate__links">
+                <!-- <input placeholder="Perfil Social" [(ngModel)]="newLink" [ngModelOptions]="{standalone: true}">
+                <button mat-raised-button color="primary" type="button" (click)="addLink()">Adicionar Perfil</button> -->
+                <h1 class="new-candidate__links-title">Perfis Sociais</h1>
+                <div class="new-candidate__new-link">
+                    <input class="new-candidate-link__item" placeholder="Perfil Social" [(ngModel)]="newLink" [ngModelOptions]="{standalone: true}">
+                    <button class="new-candidate-link__item" type="button" mat-stroked-button color="primary" (click)="addLink()">Adicionar</button>
+                </div>
+                <li [@myInsertRemoveTrigger]="displayContainerNewCandidate ? 'open' : 'closed'" class="new-candidate__link" *ngFor="let link of getLinks()">
+                    ✔️ {{ link }} - <a class="new-candidate-link__remove" type="button" (click)="removeLink(link)">Remover</a>
+                </li>
             </div>
-            <li [@myInsertRemoveTrigger]="displayContainerNewCandidate ? 'open' : 'closed'" class="new-candidate__link" *ngFor="let link of getLinks()">
+            <!-- <li [@myInsertRemoveTrigger]="displayContainerNewCandidate ? 'open' : 'closed'" class="new-candidate__link" *ngFor="let link of getLinks()">
                 <input class="link-item" [value]="link" disabled/>
                 <button type="button" class="link-item" mat-stroked-button color="accent" (click)="removeLink(link)">Remover</button>
-            </li>
+            </li> -->
     </div>
 </form>

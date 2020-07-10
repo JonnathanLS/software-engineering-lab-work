@@ -30,13 +30,17 @@ export class AssociateJobComponent implements OnInit {
     const associate: CandidateJobOpportunity = { _id: null, stageEvaluatorList: null, jobOpportunityId: null, jobOpportunity: null };
     this.associateJobForm = this.formBuilder.group(associate);
     fbSetValue(this.associateJobForm, 'stageEvaluatorList', []);
-    this.apiService.get.job_opportunities().subscribe(
-      (jobs: JobOpportunity[]) => {
-        this.jobs = jobs;
-        this.jobs = this.jobsToBeDisplayed();
-      },
-      error => console.error(error)
-    )
+    //
+    
+    // MODIFICAR E ALTERAR POR UM JOBSERVICE QUE ira dispor das vagas
+
+    // this.apiService.get.job_opportunities().subscribe(
+    //   (jobs: JobOpportunity[]) => {
+    //     this.jobs = jobs;
+    //     this.jobs = this.jobsToBeDisplayed();
+    //   },
+    //   error => console.error(error)
+    // )
   }
   selectJob = () => {
     let jobResult: JobOpportunity;

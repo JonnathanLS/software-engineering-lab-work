@@ -13,17 +13,30 @@ export class JobsComponent implements OnInit {
 
   departments: string[] = [];
   jobs: JobOpportunity[] = [];
-  skills: Skill[] = []
+  skills: Skill[] = [];
+
+  jobStatusSelected: string = 'Ativas';
+  filteredJobs: JobOpportunity[] = [];
+  // filterDeleted 
 
   constructor( private apiService: APIService ) { }
 
   ngOnInit(): void {
     this.apiService.get.departments().subscribe((departments: string[]) => this.departments = departments);
     this.apiService.get.all_skills().subscribe((skills: Skill[]) => this.skills = skills);
-    this.apiService.get.job_opportunities().subscribe((jobs: JobOpportunity[]) => this.jobs = jobs);
+    this.apiService.get.job_opportunities().subscribe((jobs: JobOpportunity[]) => {
+      this.jobs = jobs;
+      this.filterJobs();
+    });
   }
 
-  addJob = (job: JobOpportunity) => this.jobs.push(job);
-  removeJob = (id: string) => this.jobs = this.jobs.filter(job => job._id !== id);
+  
+  addJob = (job: JobOpportunity) => {
+    this.jobs.push(job);
+    this.filterJobs();
+  
+  }
+  filterJobs = () => 
+    this.filteredJobs = this.jobs.filter(job => job.deleted === (this.jobStatusSelected === 'Inativas'));
 
 }

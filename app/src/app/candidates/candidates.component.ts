@@ -14,19 +14,28 @@ export class CandidatesComponent implements OnInit {
 	candidates: Candidate[] = [];
 	currentCandidate: string;
 	newLink: string;
-	jobOpportunies: JobOpportunity[] = [];
 	evaluators: User[];
-
+	filteredCandidates: Candidate[] = [];
+	candidateStatusSelected: string = "Ativos";
+	
 	constructor(
 		private apiService: APIService) { }
 
 	ngOnInit(): void {
 		this.apiService.get.all_candidates().subscribe(
-			(candidates: Candidate[]) => this.candidates = candidates,
+			(candidates: Candidate[]) => {
+				this.candidates = candidates;
+				this.filterCandidates();
+			},
 			(error) => console.log(error)
 		);
 	}
-	addCandidate = (candidate: Candidate) => this.candidates.push(candidate);
-	removeCandidate = (id: string) => this.candidates = this.candidates.filter(c => !(c._id === id));
 
+	addCandidate = (candidate: Candidate) => {
+		this.candidates.push(candidate);
+		this.filterCandidates();
+	}
+	
+	filterCandidates = () => this.filteredCandidates = this.candidates
+		.filter(candidate => candidate.deleted === (this.candidateStatusSelected === 'Inativos'));
 }

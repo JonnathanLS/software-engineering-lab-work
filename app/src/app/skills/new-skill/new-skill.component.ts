@@ -3,6 +3,7 @@ import { Skill } from 'src/app/model-interfaces/skill';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { APIService } from 'src/app/api/api.service';
 import { propertiesInputAngularInvalid } from 'src/app/utils/utils';
+import { NotifierService } from 'src/app/notifier/notifier.service';
 
 interface TextNewSkill { Show: string, Hide: string };
 const TXT_NEW_SKILL: TextNewSkill = { Show: 'Nova Competência', Hide: 'Ocultar' };
@@ -22,16 +23,18 @@ export class NewSkillComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private apiService: APIService ){}
+    private apiService: APIService,
+    private notifierService: NotifierService){}
 
   ngOnInit(): void {
     propertiesInputAngularInvalid('NewSkillComponent', this.skills);
-    const newSkill: Skill = { _id: null, name: '', description: '' };
+    const newSkill: Skill = { _id: null, name: '', description: '', deleted: null };
     this.skillForm = this.formBuilder.group(newSkill);
   }
   create(skill: Skill){
     this.apiService.post.skill(skill).subscribe(
       (skillCreated: Skill) => {
+        this.notifierService.success('Competência Cadastrada com Sucesso')
         this.skillCreated.emit(skillCreated);
         this.skillForm.reset();
         this.toogleContainerNewSkill();

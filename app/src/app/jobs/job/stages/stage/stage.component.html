@@ -8,7 +8,7 @@
 <div class="stage-info" [id]="stage._id">
     <input *ngIf="updateStage" [(ngModel)]="stage.name" />
     <input [(ngModel)]="stage.description" disabled />
-    <h1 class="stages-title">Competências Necessárias</h1>
+    <h1 class="skills-title">Competências Necessárias</h1>
     <div *ngIf="!updateStage; else selectSkills" class="stage__skills">
         <input *ngFor="let skill of stage.skills" [value]="skill.name" disabled/>
     </div>

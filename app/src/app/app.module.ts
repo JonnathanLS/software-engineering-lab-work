@@ -46,6 +46,8 @@ import { ResultComponent } from './jobs/job/result/result.component';
 import { CandidateResultComponent } from './jobs/job/result/candidate-result/candidate-result.component';
 import { StageResultComponent } from './jobs/job/result/candidate-result/stage-result/stage-result.component';
 import { SkillResultComponent } from './jobs/job/result/candidate-result/stage-result/skill-result/skill-result.component';
+import { NotifierModule } from './notifier/notifier.module';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 @NgModule({
   declarations: [
@@ -74,7 +76,7 @@ import { SkillResultComponent } from './jobs/job/result/candidate-result/stage-r
     CandidateResultComponent,
     StageResultComponent,
     SkillResultComponent,
-    StageEvaluatorComponent
+    StageEvaluatorComponent,
   ],
   imports: [
     BrowserModule,
@@ -86,6 +88,7 @@ import { SkillResultComponent } from './jobs/job/result/candidate-result/stage-r
     LoaderModule,
     AuthenticationModule,
     BrowserAnimationsModule,
+    NotifierModule,
     AngularMaterialModule,
     MatMenuModule,
     MatButtonModule,
@@ -93,11 +96,10 @@ import { SkillResultComponent } from './jobs/job/result/candidate-result/stage-r
     MatRadioModule,
     MatIconModule,
     MatListModule,
-    
-
     MatFormFieldModule,
     MatInputModule,
-    MatExpansionModule
+    MatExpansionModule,
+    PdfViewerModule
 
   ],
   providers: [HttpClientModule],

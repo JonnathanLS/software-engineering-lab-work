@@ -1,0 +1,30 @@
+.notifier{
+   opacity: 0.9;
+   padding: 1rem;
+   margin: 0.5rem;
+   border-radius: 1px;
+   cursor: pointer;
+   z-index: 999;
+}
+.notifier-position{
+   width: 100%;
+   position: fixed;
+}
+.notifier-type-success{
+   background-color: greenyellow;
+}
+.notifier-type-error{
+   background-color: tomato;
+}
+.notifier-type-warning{
+   background-color: orange;
+}
+.notifier-type-info{
+   background-color: lightsteelblue;
+}
+.notifier-position-top{
+   top: 0;
+}
+.notifier-position-bottom{
+   bottom: 0;
+}

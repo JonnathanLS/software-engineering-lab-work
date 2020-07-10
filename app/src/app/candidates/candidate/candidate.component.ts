@@ -5,9 +5,11 @@ import { toggleDisabledInputsAndSelect, propertiesInputAngularInvalid } from 'sr
 import { CandidateJobOpportunity } from 'src/app/model-interfaces/candidate-job-opportunity';
 import { JobOpportunity } from 'src/app/model-interfaces/job-opportunity';
 import { User } from 'src/app/model-interfaces/user';
+import { NotifierService } from 'src/app/notifier/notifier.service';
 
 interface TextNewCurriculum { Show: string, Hide: string };
 const TXT_NEW_CURRICULUM: TextNewCurriculum = { Show: 'Anexar Currículo', Hide: 'Ocultar' };
+let jobOpportunities: JobOpportunity[] = [];
 
 @Component({
 	selector: 'app-candidate',
@@ -17,7 +19,7 @@ const TXT_NEW_CURRICULUM: TextNewCurriculum = { Show: 'Anexar Currículo', Hide:
 export class CandidateComponent implements OnInit {
 
 	@Input() candidate: Candidate;
-	@Output() candidateRemoved = new EventEmitter();
+	@Output() candidateRemoved = new EventEmitter<null>();
 
 	panelOpenState: boolean = false;
 	uploadCandidate = false;
@@ -28,29 +30,34 @@ export class CandidateComponent implements OnInit {
 	thereAreJobOpportunitiesToAssociate: boolean;
 	textCurriculum = 'Anexar Currículo';
 
-	jobs: JobOpportunity[];
+	
 
 	constructor(
-		private apiService: APIService ) { }
+		private apiService: APIService,
+		private notifierService: NotifierService ) { }
 
 	ngOnInit(): void {
 		propertiesInputAngularInvalid('CandidateComponent', this.candidate);
 		this.hasCurriculum = this.candidate.hasResume;
-		this.apiService.get.job_opportunities().subscribe(
-			(jobs: JobOpportunity[]) => {
-			  this.jobs = jobs;
-			  this.updatePropJobOpportunitiesToAssociate();
-			},
-			error => console.error(error)
-		  )
+		debugger
+		if (!jobOpportunities.length){
+			this.apiService.get.job_opportunities().subscribe(
+				(jobs: JobOpportunity[]) => {
+					jobOpportunities = jobs;
+					this.updatePropJobOpportunitiesToAssociate();
+				},
+				error => console.error(error)
+			);
+		}
+		this.updatePropJobOpportunitiesToAssociate();
 	}
 
 	delete() {
 		this.apiService.delete.candidate(this.candidate._id).subscribe(
 			response => {
 				if (response.status === 204) {
-					console.log('Candidato deletado com sucesso');
-					this.candidateRemoved.emit(this.candidate._id);
+					this.notifierService.success('Candidato Desativado com Sucesso');
+					this.candidateRemoved.emit();
 				}
 			},
 			error => console.warn(error)
@@ -63,7 +70,7 @@ export class CandidateComponent implements OnInit {
 	update() {
 		this.apiService.update.candidate(this.candidate).subscribe(
 			(candidateUpdated: Candidate) => {
-				console.log('Candidato Atualizado com Sucesso')
+				this.notifierService.success('Candidato Atualizado com Sucesso')
 				toggleDisabledInputsAndSelect(candidateUpdated._id);
 				this.uploadCandidate = false;
 			},
@@ -90,7 +97,7 @@ export class CandidateComponent implements OnInit {
 		if (action === 'download') {
 			this.apiService.get.candidate_curriculum(this.candidate._id).subscribe(
 				curriculum => {
-					console.log("Download do currículo do candidato concluído.", curriculum);
+					this.notifierService.success("Download do Currículo do Candidato Concluído.");
 					const url = window.URL.createObjectURL(new Blob([curriculum as BlobPart], { type: 'application/pdf' }));
 					var link = document.createElement('a');
 					document.body.appendChild(link);
@@ -105,7 +112,7 @@ export class CandidateComponent implements OnInit {
 		else this.apiService.delete.candidate_curriculum(this.candidate._id).subscribe(
 			response => {
 				if (response.status === 204) {
-					console.log('Currículo deletado com sucesso');
+					this.notifierService.success('Currículo Excluído com Sucesso');
 					this.hasCurriculum = false;
 				}
 			},
@@ -124,7 +131,7 @@ export class CandidateComponent implements OnInit {
 		this.apiService.disassociate_candidate_with_job_opportunity(associateId).subscribe(
 			response => {
 				if (response.status === 204) {
-					console.log('Vaga de trabalho desvinculada do candidato');
+					this.notifierService.success('Vaga de Trabalho Desvinculada com Sucesso');
 					this.thereAreJobOpportunitiesToAssociate = true;
 					this.candidate.jobOpportunities = this.candidate.jobOpportunities.filter(associate => associate._id !== associateId);
 				}
@@ -133,7 +140,9 @@ export class CandidateComponent implements OnInit {
 		);
 	}
 
-	updatePropJobOpportunitiesToAssociate = () =>
-		this.thereAreJobOpportunitiesToAssociate = this.candidate.jobOpportunities.length < this.jobs.length;
+	updatePropJobOpportunitiesToAssociate = () => {
+		debugger
+		this.thereAreJobOpportunitiesToAssociate = this.candidate.jobOpportunities.length < jobOpportunities.length;
+	}
 
 }

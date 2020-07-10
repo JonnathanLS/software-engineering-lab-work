@@ -11,13 +11,20 @@ import { toggleDisabledInputsAndSelect } from '../utils/utils';
 })
 export class SkillsComponent implements OnInit {
   skills: Skill[] = [];
+  filteredSkills: Skill[];
+  skillStatusSelected: string =  "Ativas";
   constructor( private apiService: APIService ) { }
 
   ngOnInit(): void {
-    this.apiService.get.all_skills().subscribe((skills: Skill[]) => this.skills = skills);
+    this.apiService.get.all_skills().subscribe((skills: Skill[]) => {
+      this.skills = skills;
+      this.filterSkills();
+    });
   }
 
-  addSkill = (skill: Skill) => this.skills.push(skill);
-  removeSkill = (id: string) => this.skills = this.skills.filter(skill => skill._id !== id);
-  
+  addSkill = (skill: Skill) => this.skills.push(skill); 
+   
+  filterSkills = () => {
+    this.filteredSkills = this.skills.filter(skill => skill.deleted === (this.skillStatusSelected === 'Inativas'));
+  }
 }

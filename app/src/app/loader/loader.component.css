@@ -1,7 +1,7 @@
 .loader-loading, .loader-ending {
    margin: 0;
    background: linear-gradient(270deg, darkgreen ,green, lightgreen);
-   height: 0.4em;  
+   height: 0.5em;  
    width: 99%;   
 }
 .loader-loading{
@@ -9,7 +9,7 @@
 }
 @keyframes progress-loading {
    0% { width: 0; }
-   99% { width: 99%; }
+   100% { width: 99%; }
 }
 .loader-ending {
    /* '1s' is related to the time configured on the interceptor */
@@ -20,6 +20,6 @@
    100% { opacity: 0; }
 }
 .loader-stopped{
-   height: 0.4em;  
+   height: 0.5em;  
    width: 100%;
 }

@@ -10,9 +10,9 @@
 .stage-menu button {
   margin-left: 1rem;
 }
-.stages-title{
-  padding: 1rem;
-  font-weight: bold;
+.skills-title{
+  padding-bottom: 0.8rem;
+  font-size: 14px;
   border-bottom: 1px solid lightslategray;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
