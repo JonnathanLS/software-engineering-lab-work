@@ -19,7 +19,7 @@ export const opacityEnterLeaveTrigger = trigger('opacityEnterLeaveTrigger', [
   ])
 ]);
 
-export const heightEnterLeaveTrigger = trigger('opacityEnterLeaveTrigger', [
+export const heightEnterLeaveTrigger = trigger('heightEnterLeaveTrigger', [
   transition(':enter', [
      style({ height: 0}),
      animate('1s ease',  keyframes([

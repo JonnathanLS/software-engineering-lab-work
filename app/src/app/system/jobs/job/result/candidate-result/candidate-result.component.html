@@ -11,32 +11,16 @@
       {{ panelOpenState ? "Ocultar" : "Expandir" }}
     </mat-panel-description>
   </mat-expansion-panel-header>
-  <label>Nome: </label>
-  <input [(ngModel)]="candidate.name" disabled />
-  <label>CPF: </label>
-  <input [(ngModel)]="candidate.cpf" disabled />
-  <label>Endereço: </label>
-  <input [(ngModel)]="candidate.address" disabled />
-  <label>Links: </label>
-  <input
-    class="link-item"
-    *ngFor="let link of candidate.links"
-    [value]="link"
-    disabled
-  />
-  <label>Currículo: </label>
-  <button
-    style="width: 100%;"
-    mat-stroked-button
-    color="primary"
-    (click)="downloadCurriculum()"
-  >
-    Download
-  </button>
-  <h2 class="result-title">Etapas</h2>
+
+  <p>
+    <strong>CPF</strong> : {{ candidate.cpf }} - 
+    <strong>Endereço</strong> : {{ candidate.address }} - 
+    <strong>Perfis Sociais</strong> : {{ candidate.links }} - 
+    <strong>Currículo</strong> : <a class="result__link" type="button" color="primary" (click)="downloadCurriculum()">Download</a>
+  </p>
+  <h2 class="result-title">Etapas :</h2>
   <app-stage-result
     class="stage-result"
     *ngFor="let stage of candidate.jobOpportunities.stageEvaluatorList"
-    [stage]="stage"
-  ></app-stage-result>
+    [stage]="stage"></app-stage-result>
 </mat-expansion-panel>

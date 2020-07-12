@@ -6,6 +6,7 @@ import { Skill } from 'src/app/model-interfaces/skill';
 import { Stage } from 'src/app/model-interfaces/stage';
 import { Router } from '@angular/router';
 import { NotifierService } from 'src/app/utils/notifier/notifier.service';
+import { JobService } from '../job.service';
 
 interface TextNewStage { Show: string, Hide: string };
 const TXT_NEW_STAGE: TextNewStage = { Show: 'Nova Etapa', Hide: 'Ocultar' };
@@ -28,14 +29,14 @@ export class JobComponent implements OnInit {
   constructor(
     private apiService: APIService,
     private router: Router,
-    private notifierService: NotifierService) { }
+    private notifierService: NotifierService,
+    private jobService: JobService) { }
 
   ngOnInit(): void {
     propertiesInputAngularInvalid("JobComponent", this.job, this.departments, this.skills);
   }
 
   delete() {
-    debugger
     this.apiService.delete.job_opportunity(this.job._id).subscribe(
       response => {
         if (response.status === 204) {
@@ -48,7 +49,6 @@ export class JobComponent implements OnInit {
     );
   }
   activate(){
-    debugger
     this.apiService.activate.job(this.job._id).subscribe(
       response => {
         if (response) {

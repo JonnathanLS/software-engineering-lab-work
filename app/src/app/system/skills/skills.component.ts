@@ -14,7 +14,7 @@ export class SkillsComponent implements OnInit {
   constructor( private apiService: APIService ) { }
 
   ngOnInit(): void {
-    this.apiService.get.all_skills().subscribe((skills: Skill[]) => {
+    this.apiService.get.skills().subscribe((skills: Skill[]) => {
       this.skills = skills;
       this.filterSkills();
     });

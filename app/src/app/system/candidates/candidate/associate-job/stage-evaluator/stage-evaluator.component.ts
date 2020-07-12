@@ -6,6 +6,7 @@ import { FormGroup } from '@angular/forms';
 import { Evaluate } from 'src/app/model-interfaces/evaluate';
 import { User } from 'src/app/model-interfaces/user';
 import { APIService } from 'src/app/api/api.service';
+import { JobService } from 'src/app/system/jobs/job.service';
 
 @Component({
   selector: 'app-stage-evaluator',
@@ -19,15 +20,12 @@ export class StageEvaluatorComponent implements OnInit {
   @Input() form: FormGroup;
   evaluatorSelected: string;
 
-  constructor(private apiService: APIService) { }
+  constructor(private jobService: JobService) { }
 
   ngOnInit(): void {
     propertiesInputAngularInvalid('StageEvaluatorComponent', this.stage, this.form)
     this.evaluatorSelected = null;
-    this.apiService.get.evaluators().subscribe(
-      (evaluators: User[]) => this.evaluators = evaluators,
-      error => console.log(error)
-    );
+    this.evaluators = this.jobService.evaluators;
   }
   addStageEvaluator = (stageId: string) => {
     const key: string = 'stageEvaluatorList';

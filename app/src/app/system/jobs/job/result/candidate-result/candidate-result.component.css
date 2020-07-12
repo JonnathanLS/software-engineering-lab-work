@@ -1,3 +1,15 @@
 .mat-expansion-panel-header-description {
   flex-grow: 0;
 }
+.result-title{
+  font-weight: bold;
+  margin: 0.5rem 0;
+}
+.result__link{
+  cursor: pointer;
+  color: blue;
+}
+.result__link:hover{
+  cursor: pointer;
+  color: green;
+}

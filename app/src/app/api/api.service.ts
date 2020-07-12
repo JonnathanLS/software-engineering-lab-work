@@ -103,7 +103,7 @@ export class APIService {
 	finish_job = (id: string) => this.httpClient.put<boolean>(`${API.job_opportunities}${id}/finish`, {});
 	add_estages_to_job_opportunity = (stage: Stage, job_id: string) => {
 		const newStage = builderObject(stage, ['name', 'description', 'skills']);
-		return this.httpClient.post<Stage[]>(`${API.job_opportunities}${job_id}${STAGES_PATH}`, json(newStage));
+		return this.httpClient.post<Stage>(`${API.job_opportunities}${job_id}${STAGES_PATH}`, json(newStage));
 	}
 	associate_candidate_with_job_opportunity = (candidate_id: string, associate: CandidateJobOpportunity) => {
 		associate.stageEvaluatorList.map(stageEvaluator => delete stageEvaluator.done);

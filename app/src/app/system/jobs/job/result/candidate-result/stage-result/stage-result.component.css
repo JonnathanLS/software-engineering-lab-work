@@ -1,3 +1,7 @@
 .mat-expansion-panel-header-description {
   flex-grow: 0;
 }
+.result-title{
+  font-weight: bold;
+  margin: 0.5rem 0;
+}

@@ -4,7 +4,7 @@
 			{{ job.name.toUpperCase() }}
 		</mat-panel-title>
 		<mat-panel-description>
-			
+
 		</mat-panel-description>
 		<mat-panel-description>
 			{{ panelOpenState ? "Ocultar" : "Expandir" }}
@@ -17,7 +17,6 @@
 		<ng-template #updateButton>
 			<button mat-stroked-button color="primary" (click)="update()">Atualizar</button>
 		</ng-template>
-		<button mat-stroked-button color="accent" (click)="delete()">Deletar</button>
 		<button *ngIf="job.deleted; else activateJob" mat-stroked-button color="accent" (click)="activate()">Ativar</button>
 		<ng-template #activateJob>
 			<button  mat-stroked-button color="accent" (click)="delete()">Desativar</button>

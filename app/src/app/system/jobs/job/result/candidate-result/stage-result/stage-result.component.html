@@ -11,11 +11,8 @@
       {{ panelOpenState ? "Ocultar" : "Expandir" }}
     </mat-panel-description>
   </mat-expansion-panel-header>
-  <label>Nome: </label>
-  <input [(ngModel)]="stage.stage.name" />
-  <label>Descrição: </label>
-  <input [(ngModel)]="stage.stage.description" disabled />
-  <h2 class="result-title">Competências</h2>
+  <p><strong>Nome</strong> : {{ stage.stage.name }}</p>
+  <p><strong>Descrição</strong> : {{ stage.stage.description }}</p>
   <mat-list>
     <app-skill-result
       class="skill-result"
@@ -23,4 +20,7 @@
       [skillEvaluation]="skill"
     ></app-skill-result>
   </mat-list>
+  <div *ngIf="!stage.skillEvaluations.length">
+    As competências dessa etapa ainda não foram pontuadas ...
+  </div>
 </mat-expansion-panel>

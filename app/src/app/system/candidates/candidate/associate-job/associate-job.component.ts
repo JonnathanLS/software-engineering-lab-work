@@ -6,6 +6,7 @@ import { fbGetValue, fbSetValue, propertiesInputAngularInvalid } from 'src/app/u
 import { APIService } from 'src/app/api/api.service';
 import { Candidate } from 'src/app/model-interfaces/candidate';
 import { JobService } from 'src/app/system/jobs/job.service';
+import { NotifierService } from 'src/app/utils/notifier/notifier.service';
 
 @Component({
   selector: 'app-associate-job',
@@ -23,17 +24,18 @@ export class AssociateJobComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private apiService: APIService,
-    private jobService: JobService
+    private jobService: JobService,
+    private notifierService: NotifierService
   ) { }
 
   ngOnInit(): void {
-    debugger
+    
     propertiesInputAngularInvalid('AssociateJobComponent', this.candidate)
     const associate: CandidateJobOpportunity = { _id: null, stageEvaluatorList: null, jobOpportunityId: null, jobOpportunity: null };
     this.associateJobForm = this.formBuilder.group(associate);
     fbSetValue(this.associateJobForm, 'stageEvaluatorList', []);
-    if(!this.jobService.jobs.length) this.apiService.get.job_opportunities().subscribe(jobs => this.jobs = jobs);
-    else this.jobs = this.jobService.jobs;
+    this.jobs = this.jobService.jobs;
+    this.jobsToBeDisplayed();
   }
   selectJob = () => {
     let jobResult: JobOpportunity;
@@ -43,22 +45,29 @@ export class AssociateJobComponent implements OnInit {
   jobsToBeDisplayed = () => {
     const associatedJobsId: string[] = [];
     this.candidate.jobOpportunities.map(associate => associatedJobsId.push(associate.jobOpportunity._id));
-    return this.jobs.filter(job =>  !associatedJobsId.includes(job._id));
+    this.jobs = this.jobs.filter(job => !associatedJobsId.includes(job._id) && !job.deleted && !job.finished);
   }
 
   associate(associatedJob: CandidateJobOpportunity) {
 
-    if (!associatedJob.jobOpportunityId) throw new Error("Select a job opportunity to link to the candidate.");
-
+    if (!associatedJob.jobOpportunityId) {
+      const message = 'Select a job opportunity to link to the candidate.'
+      this.notifierService.warning(message);
+      throw new Error(message)
+    }
     const job: JobOpportunity = this.jobs.filter(job => job._id === associatedJob.jobOpportunityId)[0];
     
     const stagesInvalid = !associatedJob.stageEvaluatorList.length || associatedJob.stageEvaluatorList.length !== job.stages.length;
     
-    if (stagesInvalid) throw new Error("To associate a job opportunity to the candidate, register the evaluator for all steps.")
+    if (stagesInvalid) {
+      const message = 'To associate a job opportunity to the candidate, register the evaluator for all steps.'
+      this.notifierService.warning(message);
+      throw new Error(message)
+    }
     this.apiService.associate_candidate_with_job_opportunity(this.candidate._id, associatedJob).subscribe(
       (associatedJobs: CandidateJobOpportunity[]) => {
-        console.log(associatedJobs)
-        this.jobs = this.jobsToBeDisplayed();
+        this.jobsToBeDisplayed();
+        this.notifierService.success('Candidato associado a vaga com Sucesso.')
         this.associatedJobs.emit(associatedJobs);
         this.associateJobForm.reset();
       },

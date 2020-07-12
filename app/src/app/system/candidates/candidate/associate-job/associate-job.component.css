@@ -10,8 +10,12 @@
     margin-bottom: 1rem;
 }
 .associate-job button{
-    margin: 0;
+    margin: 1rem 0 0 0;
     border-radius: 0;
     flex-grow: 1;
     flex-basis: 1;
+}
+.associate-job__stages{
+    width: 100%;
+    display: flex;
 }

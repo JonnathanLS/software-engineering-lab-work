@@ -41,9 +41,7 @@ export class CandidateComponent implements OnInit {
 	ngOnInit(): void {
 		propertiesInputAngularInvalid('CandidateComponent', this.candidate);
 		this.hasCurriculum = this.candidate.hasResume;
-		// if(!this.jobService.jobs.length) this.apiService.get.job_opportunities().subscribe(jobs => this.jobOpportunities = jobs);
-		
-		// else this.jobOpportunities = this.jobService.jobs;
+		this.jobOpportunities = this.jobService.jobs;
 		this.updatePropJobOpportunitiesToAssociate();
 	}
 
@@ -60,7 +58,7 @@ export class CandidateComponent implements OnInit {
 		);
 	}
 	activate(){
-		debugger
+		
 		this.apiService.activate.candidate(this.candidate._id).subscribe(
 		  response => {
 			if (response) {
@@ -153,7 +151,7 @@ export class CandidateComponent implements OnInit {
 	}
 
 	updatePropJobOpportunitiesToAssociate = () => {
-		this.thereAreJobOpportunitiesToAssociate = this.candidate.jobOpportunities.length < this.jobOpportunities.length;
+		this.thereAreJobOpportunitiesToAssociate = this.candidate.jobOpportunities.length < this.jobOpportunities.filter(job=> !job.deleted && !job.finished).length;
 	}
 
 }
