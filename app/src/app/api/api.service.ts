@@ -10,6 +10,7 @@ import { Evaluate } from '../model-interfaces/evaluate';
 import { builderObject, hasPropertyWithValueNullOrEmpty } from '../utils/utils';
 import { CandidateJobOpportunity } from '../model-interfaces/candidate-job-opportunity';
 import { of } from 'rxjs';
+import { Evaluation } from '../model-interfaces/evaluation';
 
 const json = (object: Object) => JSON.stringify(object);
 
@@ -20,26 +21,23 @@ export class APIService {
 	
 	get = {
 		// Users
-		user_info: () => this.httpClient.get(`${API.users}login`),
-		evaluators: () => this.httpClient.get(`${API.users}evaluators`),
+		user_info: () => this.httpClient.get<User>(`${API.users}login`),
+		evaluators: () => this.httpClient.get<User[]>(`${API.users}evaluators`),
 		// Departments
-		departments: () => this.httpClient.get(API.departments),
+		departments: () => this.httpClient.get<string[]>(API.departments),
 		// Job Oppotunities
-		job_opportunities: () => this.httpClient.get(API.job_opportunities),
-		job_opportunity: (id: string) => this.httpClient.get(`${API.job_opportunities}${id}`),
-		stages_of_job_opportunity: (job_id: Stage) => this.httpClient.get(`${API.job_opportunities}${job_id}${STAGES_PATH}`),
+		job_opportunities: () => this.httpClient.get<JobOpportunity[]>(API.job_opportunities),
+		job_opportunity: (id: string) => this.httpClient.get<JobOpportunity>(`${API.job_opportunities}${id}`),
+		stages_of_job_opportunity: (job_id: Stage) => this.httpClient.get<Stage>(`${API.job_opportunities}${job_id}${STAGES_PATH}`),
 		// Skills
-		all_skills: () => this.httpClient.get(API.skills),
-		skill_by_id: (id: string) => this.httpClient.get(`${API.skills}${id}`),
+		skills: () => this.httpClient.get<Skill[]>(API.skills),
+		skill_by_id: (id: string) => this.httpClient.get<Skill>(`${API.skills}${id}`),
 		// Candidates
-		all_candidates: () => this.httpClient.get(API.candidates),
-		candidate: (id: string) => this.httpClient.get(`${API.candidates}${id}`),
+		candidates: () => this.httpClient.get<Candidate[]>(API.candidates),
+		candidate: (id: string) => this.httpClient.get<Candidate>(`${API.candidates}${id}`),
 		candidate_resume: (candidate_id: string) => this.httpClient.get(`${API.candidates}${candidate_id}/resume`),
 
-		evaluations_that_the_user_is_responsible: () => this.httpClient.get(`${API.evaluations}`),
-		job_opportunity_by_evaluation: (id: string) => this.httpClient.get(`${API.evaluations}${id}/job-opportunity`),
-		candidate_by_evaluation: (id: string) => this.httpClient.get(`${API.evaluations}${id}/candidate`),
-		skills_by_evaluation: (id: string) => this.httpClient.get(`${API.evaluations}${id}/skills`),
+		evaluations_that_the_user_is_responsible: () => this.httpClient.get<Evaluation[]>(`${API.evaluations}`),
 		candidate_curriculum: (id: string) => this.httpClient.get(`${API.candidates}${id}/resume`, { responseType: 'blob' }),
 		job_opportunity_result: (id: string) => this.httpClient.get(`${API.job_opportunities}${id}/results`),
 	}
@@ -47,15 +45,15 @@ export class APIService {
 		user: (user: User) => this.httpClient.post(API.users, json(user)),
 		job_opportunity: (job: JobOpportunity) => {
 			const newValue = builderObject(job, ['name', 'description', 'department']);
-			return this.httpClient.post(API.job_opportunities, json(newValue));
+			return this.httpClient.post<JobOpportunity>(API.job_opportunities, json(newValue));
 		},
 		skill: (skill: Skill) => {
 			const newValue = builderObject(skill, ['name', 'description']);
-			return this.httpClient.post(API.skills, json(newValue));
+			return this.httpClient.post<Skill>(API.skills, json(newValue));
 		},
 		candidate: (candidate: Candidate) => {
 			const newValue = builderObject(candidate, ['name', 'cpf', 'address', 'links']);
-			return this.httpClient.post(API.candidates, json(newValue));
+			return this.httpClient.post<Candidate>(API.candidates, json(newValue));
 		},
 		candidate_curriculum: (candidate_id: string, file: FormData) => {
 			const empty = file.get('resume') === 'null';
@@ -74,19 +72,19 @@ export class APIService {
 			console.log(job._id);
 			const newData = builderObject(job, ['name', 'description', 'department']);
 			console.log(job._id);
-			return this.httpClient.put(`${API.job_opportunities}${job._id}`, json(newData));
+			return this.httpClient.put<JobOpportunity>(`${API.job_opportunities}${job._id}`, json(newData));
 		},
 		skill: (skill: Skill) => {
 			const newData = builderObject(skill, ['name', 'description']);
-			return this.httpClient.put(`${API.skills}${skill._id}`, json(newData));
+			return this.httpClient.put<Skill>(`${API.skills}${skill._id}`, json(newData));
 		},
 		stage: (stage: Stage) => {
 			const newData = builderObject(stage, ['name', 'description', 'skills']);
-			return this.httpClient.put(`${API.stages}${stage._id}`, json(newData))
+			return this.httpClient.put<Stage>(`${API.stages}${stage._id}`, json(newData))
 		},
 		candidate: (candidate: Candidate) => {
 			const newData = builderObject(candidate, ['name', 'cpf', 'address', 'links']);
-			return this.httpClient.put(`${API.candidates}${candidate._id}`, json(newData))
+			return this.httpClient.put<Candidate>(`${API.candidates}${candidate._id}`, json(newData))
 		},
 	}
 	delete = {
@@ -97,9 +95,15 @@ export class APIService {
 		candidate: (id: string) => this.httpClient.delete(`${API.candidates}${id}`, { observe: 'response' }),
 		candidate_curriculum: (id: string) => this.httpClient.delete(`${API.candidates}${id}/resume`, { observe: 'response' }),
 	}
+	activate = {
+		job: (id: string) => this.httpClient.put<boolean>(`${API.job_opportunities}${id}/activate`, {}),
+		skill: (id: string) => this.httpClient.put<boolean>(`${API.skills}${id}/activate`, {}),
+		candidate: (id: string) => this.httpClient.put<boolean>(`${API.candidates}${id}/activate`, {}),
+	}
+	finish_job = (id: string) => this.httpClient.put<boolean>(`${API.job_opportunities}${id}/finish`, {});
 	add_estages_to_job_opportunity = (stage: Stage, job_id: string) => {
 		const newStage = builderObject(stage, ['name', 'description', 'skills']);
-		return this.httpClient.post(`${API.job_opportunities}${job_id}${STAGES_PATH}`, json(newStage));
+		return this.httpClient.post<Stage[]>(`${API.job_opportunities}${job_id}${STAGES_PATH}`, json(newStage));
 	}
 	associate_candidate_with_job_opportunity = (candidate_id: string, associate: CandidateJobOpportunity) => {
 		associate.stageEvaluatorList.map(stageEvaluator => delete stageEvaluator.done);

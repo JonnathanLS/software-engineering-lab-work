@@ -9,5 +9,6 @@ export interface Candidate {
 	hasResume: boolean,
 	curriculum: FormData,
 	jobOpportunities: CandidateJobOpportunity[],
-	deleted: boolean
+	deleted: boolean,
+	deleteReason: string,
 }

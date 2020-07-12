@@ -1,14 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+
+import { LogoutComponent } from './authentication/logout/logout.component';
 import { AuthenticationComponent } from './authentication/authentication.component';
 import { AuthenticationGuardService } from './authentication/authentication-guard.service';
-import { JobsComponent } from './jobs/jobs.component';
-import { SkillsComponent } from './skills/skills.component';
-import { CandidatesComponent } from './candidates/candidates.component';
-import { EvaluationsComponent } from './evaluations/evaluations.component';
-import { UserComponent } from './user/user.component';
-import { LogoutComponent } from './authentication/logout/logout.component';
-import { ResultComponent } from './jobs/job/result/result.component';
+
+import { UserComponent } from './system/user/user.component';
+import { JobsComponent } from './system/jobs/jobs.component';
+import { SkillsComponent } from './system/skills/skills.component';
+import { ResultComponent } from './system/jobs/job/result/result.component';
+import { CandidatesComponent } from './system/candidates/candidates.component';
+import { EvaluationsComponent } from './system/evaluations/evaluations.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'auth', pathMatch: 'full' },

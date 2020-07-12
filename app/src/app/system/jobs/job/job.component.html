@@ -1,0 +1,50 @@
+<mat-expansion-panel class="expansion-painel" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+	<mat-expansion-panel-header>
+		<mat-panel-title>
+			{{ job.name.toUpperCase() }}
+		</mat-panel-title>
+		<mat-panel-description>
+			
+		</mat-panel-description>
+		<mat-panel-description>
+			{{ panelOpenState ? "Ocultar" : "Expandir" }}
+		</mat-panel-description>
+	</mat-expansion-panel-header>
+
+	<div class="job-menu">
+		<button mat-stroked-button (click)="toogleContainerNewStage()">{{ textButtonNewStage }}</button>
+		<button mat-stroked-button color="warn" *ngIf="!updateJob; else updateButton" (click)="edit()">Editar</button>
+		<ng-template #updateButton>
+			<button mat-stroked-button color="primary" (click)="update()">Atualizar</button>
+		</ng-template>
+		<button mat-stroked-button color="accent" (click)="delete()">Deletar</button>
+		<button *ngIf="job.deleted; else activateJob" mat-stroked-button color="accent" (click)="activate()">Ativar</button>
+		<ng-template #activateJob>
+			<button  mat-stroked-button color="accent" (click)="delete()">Desativar</button>
+		</ng-template>
+		<button mat-stroked-button color="primary" (click)="seeResults()">Resultados</button>
+		<button mat-stroked-button color="primary" (click)="finalize()">Encerrar</button>
+	</div>
+	<div class="container-new-stage">
+		<div class="job-info" [id]="job._id">
+			<input *ngIf="updateJob" [(ngModel)]="job.name" />
+			<input [(ngModel)]="job.description" disabled />
+			<select disabled [(ngModel)]="job.department">
+			<option
+				*ngFor="let department of departments"
+				[selected]="department === job.department"
+			>
+				{{ department }}
+			</option>
+			</select>
+		</div>
+		<div *ngIf="displayContainerNewStage">
+			<app-new-stage
+			[skills]="skills"
+			[jobID]="job._id"
+			(stageCreated)="addStage($event)"
+			></app-new-stage>
+		</div>
+	</div>
+	<app-stages [stages]="job.stages" [skills]="skills"></app-stages>
+</mat-expansion-panel>

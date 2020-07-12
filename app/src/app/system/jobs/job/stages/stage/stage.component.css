@@ -1,0 +1,19 @@
+.mat-expansion-panel-header-description {
+  flex-grow: 0;
+}
+.stage-menu{
+  display: flex;
+  margin-top: 1.15rem;
+  margin-bottom: 1.0rem;
+  justify-content: flex-end
+}
+.stage-menu button {
+  margin-left: 1rem;
+}
+.sub-title{
+  padding-bottom: 0.8rem;
+  padding-left: 0.8rem;
+  font-size: 16px;
+  border-bottom: 1px solid lightslategray;
+  margin: 1rem 0;
+}

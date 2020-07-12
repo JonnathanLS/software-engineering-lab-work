@@ -1,0 +1,20 @@
+<div class="container">
+    <app-new-skill (skillCreated)="addSkill($event)" [skills]="skills"></app-new-skill>
+    <div class="skills-title">
+        <p>COMPETÊNCIAS</p>
+        <mat-radio-group aria-labelledby="job-label" 
+            [(ngModel)]="skillStatusSelected" 
+            [ngModelOptions]="{standalone: true}" 
+            (change)="filterSkills()">
+            <mat-radio-button value="Ativas">Ativas</mat-radio-button>
+            <mat-radio-button value="Inativas">Inativas</mat-radio-button>
+        </mat-radio-group>
+    </div>
+    <mat-accordion>
+        <app-skill class="skill"
+            *ngFor="let skill of filteredSkills"
+            [skill]="skill"
+            (skillUpdate)="filterSkills()">
+        </app-skill>
+    </mat-accordion>
+</div>

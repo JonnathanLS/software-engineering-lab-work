@@ -1,11 +1,39 @@
-import { JobOpportunity } from '../model-interfaces/job-opportunity';
-import { Stage } from '../model-interfaces/stage';
-import { Skill } from '../model-interfaces/skill';
 import { FormGroup } from '@angular/forms';
-import { NotifierService } from '../notifier/notifier.service';
-const notifierService = new NotifierService();
 
+import { trigger, style, animate, transition, keyframes } from '@angular/animations';
+import { API } from '../api/api-endpoint';
 
+export const opacityEnterLeaveTrigger = trigger('opacityEnterLeaveTrigger', [
+  transition(':enter', [
+     style({ opacity: 0 }),
+     animate('1s ease',  keyframes([
+        style({ opacity: 0, offset: 0 }),
+        style({ opacity: 0.8,  offset: 1 })
+     ])),
+  ]),
+  transition(':leave', [
+     animate('1s ease',  keyframes([
+        style({ opacity: 0.8, offset: 0 }),
+        style({ opacity: 0,  offset: 1 })
+     ]))
+  ])
+]);
+
+export const heightEnterLeaveTrigger = trigger('opacityEnterLeaveTrigger', [
+  transition(':enter', [
+     style({ height: 0}),
+     animate('1s ease',  keyframes([
+        style({ height: 0 }),
+        style({ height: 100 })
+     ])),
+  ]),
+  transition(':leave', [
+     animate('1s ease',  keyframes([
+        style({ height: 100 }),
+        style({ height: 0 })
+     ]))
+  ])
+]);
 
 export const toggleDisabledInputsAndSelect = (idElement: string) => {
   propertiesInputAngularInvalid('Util - toggleDisabledInputsAndSelect', idElement);
@@ -41,10 +69,7 @@ export const hasPropertyWithValueNullOrEmpty = (object: Object, ...props: string
 export const builderObject = (object: Object, properties: string[]) => {
   const invalid = hasPropertyWithValueNullOrEmpty(object, ...properties);
   const message = `Builder Object : the reported object contains properties with invalid values`;
-  if (invalid) {
-    notifierService.error(message);
-    throw new Error(message);
-  }
+  if (invalid) throw new Error(message);
   return properties.reduce((newObject, prop) => {
     newObject[prop] = object[prop];
     return newObject;
@@ -57,9 +82,7 @@ export const fbSetValue = (form: FormGroup, key: string, value: any) => form.get
 export const propertiesInputAngularInvalid = (nameComponent: string, ...props: any[]) => {
   props.map(prop => {
     if (!prop){
-      const message = nameComponent + " : there are properties that need to be passed on";
-      notifierService.error(message);
-      throw new Error(message);
+      throw new Error(nameComponent + " : there are properties that need to be passed on");
     }
   })
 }

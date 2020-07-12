@@ -8,4 +8,5 @@ export interface JobOpportunity {
     department: string,
     deleted: boolean,
     deleteReason: string,
+    finished: boolean,
 }

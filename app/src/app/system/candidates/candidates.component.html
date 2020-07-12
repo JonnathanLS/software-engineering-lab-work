@@ -1,0 +1,18 @@
+<div class="container">
+    <app-new-candidate (candidateCreated)="addCandidate($event)"></app-new-candidate>
+    <div class="candidates-title">
+        <p>CANDIDATOS</p>
+        <mat-radio-group [(ngModel)]="candidateStatusSelected"  
+        [ngModelOptions]="{standalone: true}" (change)="filterCandidates()">
+            <mat-radio-button value="Ativos">Ativos</mat-radio-button>
+            <mat-radio-button value="Inativos">Inativos</mat-radio-button>
+        </mat-radio-group>
+    </div>
+    <mat-accordion>
+        <app-candidate 
+            *ngFor="let candidate of filteredCandidates"
+            [candidate]="candidate" 
+            (candidateUpdate)="filterCandidates()">
+        </app-candidate>
+    </mat-accordion>
+</div>

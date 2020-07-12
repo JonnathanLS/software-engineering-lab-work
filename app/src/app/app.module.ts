@@ -1,52 +1,57 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-
 import { HttpClientModule } from '@angular/common/http'
-import { AuthenticationModule } from './authentication/authentication.module';
+import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HeaderComponent } from './header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { JobsComponent } from './jobs/jobs.component';
-import { SkillsComponent } from './skills/skills.component';
-import { AngularMaterialModule } from './angular-material/angular-material.module';
-import { CandidatesComponent } from './candidates/candidates.component';
-import { NewCandidateComponent } from './candidates/new-candidate/new-candidate.component';
-import { UploadFileComponent } from './candidates/candidate/upload-file/upload-file.component';
-import { CandidateComponent } from './candidates/candidate/candidate.component';
-import { StageEvaluatorComponent } from './candidates/candidate/associate-job/stage-evaluator/stage-evaluator.component';
-import { AssociateJobComponent } from './candidates/candidate/associate-job/associate-job.component';
-import { NewJobComponent } from './jobs/new-job/new-job.component';
-import { MatButtonModule } from '@angular/material/button';
+
+import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
+
 import { MatTabsModule } from '@angular/material/tabs';
-import { MatRadioModule } from '@angular/material/radio';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
-
-
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatExpansionModule } from '@angular/material/expansion';
 import { MatListModule } from '@angular/material/list';
-import { JobComponent } from './jobs/job/job.component';
-import { NewStageComponent } from './jobs/job/new-stage/new-stage.component';
-import { StagesComponent } from './jobs/job/stages/stages.component';
-import { StageComponent } from './jobs/job/stages/stage/stage.component';
-import { NewSkillComponent } from './skills/new-skill/new-skill.component';
-import { SkillComponent } from './skills/skill/skill.component';
-import { LoaderModule } from './loader/loader.module';
-import { EvaluationsComponent } from './evaluations/evaluations.component';
-import { EvaluationComponent } from './evaluations/evaluation/evaluation.component';
-import { EvaluateComponent } from './evaluations/evaluation/evaluate/evaluate.component';
-import { UserComponent } from './user/user.component';
-import { NewUserComponent } from './user/new-user/new-user.component';
-import { ResultComponent } from './jobs/job/result/result.component';
-import { CandidateResultComponent } from './jobs/job/result/candidate-result/candidate-result.component';
-import { StageResultComponent } from './jobs/job/result/candidate-result/stage-result/stage-result.component';
-import { SkillResultComponent } from './jobs/job/result/candidate-result/stage-result/skill-result/skill-result.component';
-import { NotifierModule } from './notifier/notifier.module';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { AngularMaterialModule } from './utils/angular-material/angular-material.module';
+
+import { HeaderComponent } from './header/header.component';
+import { LoaderModule } from './utils/loader/loader.module';
+import { NotifierModule } from './utils/notifier/notifier.module';
+import { AuthenticationModule } from './authentication/authentication.module';
+
+
+import { JobsComponent } from './system/jobs/jobs.component';
+import { SkillsComponent } from './system/skills/skills.component';
+import { CandidatesComponent } from './system/candidates/candidates.component';
+import { NewCandidateComponent } from './system/candidates/new-candidate/new-candidate.component';
+import { UploadFileComponent } from './system/candidates/candidate/upload-file/upload-file.component';
+import { CandidateComponent } from './system/candidates/candidate/candidate.component';
+import { StageEvaluatorComponent } from './system/candidates/candidate/associate-job/stage-evaluator/stage-evaluator.component';
+import { AssociateJobComponent } from './system/candidates/candidate/associate-job/associate-job.component';
+import { NewJobComponent } from './system/jobs/new-job/new-job.component';
+
+
+
+import { UserComponent } from './system/user/user.component';
+import { JobComponent } from './system/jobs/job/job.component';
+import { SkillComponent } from './system/skills/skill/skill.component';
+import { StagesComponent } from './system/jobs/job/stages/stages.component';
+import { ResultComponent } from './system/jobs/job/result/result.component';
+import { NewUserComponent } from './system/user/new-user/new-user.component';
+import { NewSkillComponent } from './system/skills/new-skill/new-skill.component';
+import { StageComponent } from './system/jobs/job/stages/stage/stage.component';
+import { EvaluationsComponent } from './system/evaluations/evaluations.component';
+import { NewStageComponent } from './system/jobs/job/new-stage/new-stage.component';
+import { EvaluationComponent } from './system/evaluations/evaluation/evaluation.component';
+import { EvaluateComponent } from './system/evaluations/evaluation/evaluate/evaluate.component';
+import { CandidateResultComponent } from './system/jobs/job/result/candidate-result/candidate-result.component';
+import { StageResultComponent } from './system/jobs/job/result/candidate-result/stage-result/stage-result.component';
+import { SkillResultComponent } from './system/jobs/job/result/candidate-result/stage-result/skill-result/skill-result.component';
+
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 @NgModule({

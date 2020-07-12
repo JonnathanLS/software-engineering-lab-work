@@ -2,9 +2,7 @@ import { Injectable, EventEmitter, Output } from '@angular/core';
 import { User } from '../model-interfaces/user';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { API } from '../api/api-endpoint';
-import { ErrorMessages } from 'src/assets/error-messages';
 import { APIService } from '../api/api.service';
-import { UserService } from '../user/user.service';
 
 const TOKEN = "token";
 
@@ -15,8 +13,7 @@ export class AuthenticationService {
 
 	constructor(
 		private http: HttpClient, 
-		private apiService: APIService,
-		private userService: UserService ) { }
+		private apiService: APIService ) { }
 
 	authenticate = (user: User): Promise<string> => {
 		if (!user.username) throw new Error('Authentication Service : authentication method requires a user to be informed.');
@@ -42,20 +39,18 @@ export class AuthenticationService {
 							sessionStorage.setItem('user', userInfo.username);
 							sessionStorage.setItem('role', userInfo.role);
 							this.getLoggedIn.emit('Sign In');
-							resolve(ErrorMessages.authenticate.valid);
+							resolve('Autorização de Acesso a API Válida.');
 						},
 						error => console.warn(error)
 					);
 					
 				},
-				error => {
-					reject(new Error(ErrorMessages.authenticate.invalid));
-				}
+				error => reject('Não foi possível realizar a autenticação, verifique os dados informados ...')
 			);
 		})
-
 	}
 
 	isAuthenticated = (): boolean => !!sessionStorage.getItem(TOKEN);
+
 	getAuthorization = (): string => sessionStorage.getItem(TOKEN);
 }

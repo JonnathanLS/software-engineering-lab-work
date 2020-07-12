@@ -1,0 +1,25 @@
+<mat-expansion-panel class="expansion-painel" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+        {{ skill.name }}
+        </mat-panel-title>
+        <mat-panel-description>
+        {{ panelOpenState ? 'Ocultar' : 'Expandir'}}
+        </mat-panel-description>
+    </mat-expansion-panel-header>
+    
+    <div class="skill-menu">
+        <button mat-stroked-button color="warn" *ngIf="!uploadSkill; else updateButton" (click)="edit()">Editar</button>
+        <ng-template #updateButton>
+        <button mat-stroked-button color="primary" (click)="update()">Atualizar</button>
+        </ng-template>
+        <button *ngIf="skill.deleted; else activateSkill" mat-stroked-button color="accent" (click)="activate()">Ativar</button>
+        <ng-template #activateSkill>
+            <button  mat-stroked-button color="accent" (click)="delete()">Desativar</button>
+        </ng-template>
+    </div>
+    <div class="skill-info" [id]="skill._id">
+        <input *ngIf="uploadSkill" [(ngModel)]="skill.name" />
+        <input [(ngModel)]="skill.description" disabled />
+    </div>
+</mat-expansion-panel>
